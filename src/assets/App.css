@@ -6,14 +6,17 @@ body {
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
+
 a {
     color: inherit;
     text-decoration: none;
 }
+
 button {
     border: none;
     background: none;
 }
+
 * {
     padding: 0;
     margin: 0;
@@ -31,19 +34,23 @@ button {
     fill: blueviolet;
     margin-left: 5px;
 }
+
 .header_top {
     background: #FFF;
     height: 104px;
     display: flex;
     align-items: center;
 }
+
 .header_logo {
     display: flex;
     align-items: center;
 }
+
 .header_logo img {
     width: 91px;
 }
+
 .header_container {
     display: flex;
     align-items: top;
@@ -51,6 +58,7 @@ button {
     position: relative;
     justify-content: space-between;
 }
+
 .header_name {
     width: 285px;
     padding: 7px 10px;
@@ -61,19 +69,23 @@ button {
     align-items: center;
     justify-content: space-between;
 }
+
 .header_name .bolder {
     font-size: 13px;
     font-weight: 700;
 
 }
+
 .header_bottom {
     height: 37px;
     background: #efefef;
     border-top: #00509d solid 7px;
 }
+
 .header_nav {
     height: 100%;
 }
+
 .header_nav-item {
     height: 100%;
     display: flex;
@@ -82,9 +94,11 @@ button {
     background: #00509d;
     color: #ffffff;
 }
+
 .header_link {
     position: relative;
 }
+
 .header_link:before {
     position: absolute;
     width: 100%;
@@ -93,50 +107,60 @@ button {
     bottom: 0;
     left: 0;
 }
-.header_link:hover:before{
+
+.header_link:hover:before {
     content: "";
 }
 
 .main {
     padding: 20px 0;
 }
+
 .main_container {
     display: grid;
     grid-template-columns: 1.5fr 5fr 3fr;
     grid-column-gap: 12px;
 }
+
 .employee {
     border: 1px #efefef solid;
 }
+
 .employee_info {
     padding: 15px 16px 3px;
 }
+
 .employee_img img {
     object-fit: cover;
     width: 100%;
     height: 141px;
 }
+
 .employee_name {
     text-align: center;
     font-weight: 400;
     font-size: 14px;
     margin-bottom: 5px;
 }
+
 .employee_position {
     font-size: 13px;
     text-align: center;
     font-weight: 400;
 }
+
 .employee_dropdown {
     width: 100%;
     position: relative;
     display: inline-block;
     transition: 0.6s;
 }
+
 .employee_dropdown-child {
     display: none;
     transition: 0.6s;
 }
+
 .employee_btn {
     border-top: 1px solid #dadada;
     border-bottom: 1px solid #dadada;
@@ -149,12 +173,14 @@ button {
     font-size: 16px;
     cursor: pointer;
 }
+
 .employee_link {
     display: block;
     padding: 5px 10px;
     width: 100%;
     font-size: 13px;
 }
+
 .employee_dropdown.active .employee_dropdown-child {
     display: block;
 }
@@ -162,13 +188,16 @@ button {
 .menu {
     border: 1px solid #dfdfdf;
     margin-bottom: 15px;
+    position: relative;
 }
+
 .menu_header {
     height: 35px;
     background-color: #f8f8f8;
     border-bottom: 1px solid #dfdfdf;
     display: flex;
 }
+
 .menu_link {
     display: block;
     height: 100%;
@@ -177,14 +206,17 @@ button {
     padding: 0 10px;
     font-size: 14px;
 }
+
 .menu_link:hover {
     color: steelblue;
 }
+
 .menu_link.active {
     position: relative;
     background: #FFF;
     border-bottom: 1px solid #FFF;
 }
+
 .menu_link.active::before {
     content: "";
     position: absolute;
@@ -200,21 +232,26 @@ button {
 .menu_block {
     overflow-y: scroll;
 }
+
 .todo_info {
     padding: 15px;
     min-height: 180px;
 }
+
 .todo_message {
     width: 40px;
     margin-right: 5px;
 }
+
 .todo_nothing {
     display: flex;
     align-items: center;
 }
+
 .report {
     padding: 20px;
 }
+
 .report-box {
     width: 91px;
     height: 68px;
@@ -222,23 +259,27 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color:#5599ff;
+    background-color: #5599ff;
     padding: 5px;
 }
+
 .report-box img {
     width: 39px;
 }
+
 .report-box-title {
     font-size: 13px;
     color: #FFF;
 }
+
 .calendar_center {
     display: flex;
     justify-content: center;
     padding-top: 20px;
 }
+
 .react-calendar {
-    border : none !important;
+    border: none !important;
 }
 
 .auth {
@@ -246,6 +287,7 @@ button {
     height: 100vh;
     background: url("../assets//images/auth.webp") no-repeat center/cover;
 }
+
 .auth_container {
     max-width: 1250px;
     width: 100%;
@@ -256,10 +298,12 @@ button {
     justify-content: flex-end;
     align-items: center;
 }
+
 .auth_logo {
     width: 130px;
 
 }
+
 .auth_form {
     position: relative;
     width: 295px;
@@ -272,11 +316,13 @@ button {
     justify-content: space-between;
     padding: 40px 20px;
 }
+
 .auth_sign-in {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
+
 .auth_username {
     padding: 0 0 0 39px;
     height: 38px;
@@ -285,9 +331,11 @@ button {
     background: url('../assets//images/user-ico.svg') no-repeat left;
     background-position-x: 10px;
 }
+
 .auth_username::placeholder {
     color: "#dadada"
 }
+
 .auth_password {
     padding: 0 0 0 39px;
     height: 38px;
@@ -296,9 +344,11 @@ button {
     background: url('../assets//images/lock.svg') no-repeat left;
     background-position-x: 10px;
 }
+
 .auth_password::placeholder {
     color: "#dadada"
 }
+
 .auth_login {
     border: 1px solid #38adff;
     background-color: #38adff;
@@ -313,3 +363,48 @@ button {
     height: 200px;
     background-color: black;
 }
+
+.slide {
+    width: 377px;
+    height: 205px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity ease-in-out 0.4s;
+}
+
+.slider:hover .btn-slide{
+    opacity: 0.6;
+}
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.active-anim {
+    opacity: 1;
+}
+
+.btn-slide {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: black;
+    border: 1px solid rgba(34, 34, 0.287);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.4;
+    color: white;
+    transition: 0.3s;
+}
+.next{
+    bottom: 10px;
+    left: 200px;
+}
+.prev{
+    bottom: 10px;
+    right: 200px;
+}
+
