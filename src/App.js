@@ -8,8 +8,8 @@ import { ToRead } from './components/ToRead';
 import { Slider } from './components/Slider';
 import { CalendarPart } from './components/CalendarPart';
 import { Document } from './components/Document';
-
 import { Auth } from './components/Auth';
+import {useDispatch, useSelector} from "react-redux";
 
 const todos = [
     {
@@ -76,8 +76,11 @@ const calendar = [
 ]
 
 const App = () => {
+  const {isAuth} = useSelector(store => store.login)
   return (
-    <div className="App">
+<>
+  {
+    isAuth ? <div className="App">
       <Header />
       <main className="main">
         <div className="container main_container">
@@ -90,10 +93,13 @@ const App = () => {
             <Menu actions={slider} minh={"205px"} scroll={false}/>
             <Menu actions={calendar} minh={"474px"} scroll={false}/>
           </div>
-        </div> 
+        </div>
       </main>
-      {/* <Auth/> */}
-    </div>
+    </div> :
+        <Auth/>
+  }
+
+</>
   );
 }
 

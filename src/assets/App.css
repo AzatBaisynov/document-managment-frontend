@@ -358,6 +358,10 @@ button {
     line-height: 40px;
     font-size: 19px;
 }
+.auth_error-message{
+    color: red;
+    padding-bottom: 10px;
+}
 
 .test {
     height: 200px;
