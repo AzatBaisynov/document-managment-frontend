@@ -25,7 +25,7 @@ export const Slider = () => {
             {dataSlider.map((obj,index) => {
                     return (
                       <div className={slideIndex === index + 1 ? "slide active-anim" : "slide"} key={obj.id}>
-                          <img style={{width: "100%"}} src={process.env.PUBLIC_URL + `/Imgs/img${index+1}.jpeg`}/>
+                          <img style={{width: "100%"}} src={process.env.PUBLIC_URL + `/Imgs/img${index+1}.jpeg`} key={obj.id}/>
                       </div>
                         )
             })}

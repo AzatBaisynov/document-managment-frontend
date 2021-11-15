@@ -11,8 +11,8 @@ const toggleActive = (e) => {
 
 export const Employee = () => {
     return (<div>
-        <section class="employee">
-            <div class="employee_info">
+        <section className="employee">
+            <div className="employee_info">
                 <div className="employee_img">
                     <img src={user} alt="" />
                 </div>

@@ -1,4 +1,6 @@
-export const loginAction = () =>{
+export const loginAction = (token) =>{
+    localStorage.setItem("token", token)
+    localStorage.setItem("isAuth","true")
     return {type: "LOG_IN_SUCCESS"}
 }
 export const logoutAction = () =>{

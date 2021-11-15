@@ -9,11 +9,12 @@ export const Menu = ({ actions, minh, scroll }) => {
         <MemoryRouter >
             <div className="menu">
                 <div className="menu_header">
-                    {actions.map((el) =>
+                    {actions.map((el, idx) =>
                         <NavLink
                             exact
                             className="menu_link"
                             to={el.action_link}
+                            key={idx}
                         >{el.action_text}</NavLink>
                     )}
                 </div>
@@ -22,11 +23,12 @@ export const Menu = ({ actions, minh, scroll }) => {
                 style={{minHeight : minh, maxHeight : minh, overflowY : scroll ? "scroll" : "hidden"}}
                 >
                     <Switch>
-                        {actions.map((el) =>
+                        {actions.map((el, idx) =>
                             <Route
                                 exact
                                 path={el.action_link}
                                 component={el.action}
+                                key={idx}
                             />
                         )}
                     </Switch>
