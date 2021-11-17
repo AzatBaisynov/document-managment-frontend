@@ -13,27 +13,34 @@ export const ContactsPage = () => {
 
         <div className="contacts__page">
             <div className="container">
-                <div className="contacts__header">
-                    <div className="contacts__header-item contacts__header-logo">
-                        <i className="fas fa-home">
+                <Router>
+                    <div className="contacts__header">
 
-                        </i>
-                    </div>
-                    <NavLink to='/homepage'> <a href="#" className="contacts__header-item">Homepage</a></NavLink>
-                    <div className="contacts__header-item contacts__header-logo">
-                        <i className="fas fa-angle-right">
+                        <a href="/" className="contacts__header-logo contacts__header-item">
+                            <i className="fas fa-home">
 
-                        </i>
-                    </div>
-                    <NavLink to='/sraffyellowpage'> <a href="#" className="contacts__header-item">Staff yellow pages</a></NavLink>
-                    <div className="contacts__header-item contacts__header-logo">
-                        <i className="fas fa-angle-right">
+                            </i>
+                        </a>
 
-                        </i>
+                        <a href="/" className="contacts__header-item"> Homepage</a>
+                        <div className="contacts__header-item contacts__header-logo">
+                            <i className="fas fa-angle-right">
+
+                            </i>
+                        </div>
+                        <NavLink to='/staff' className="contacts__header-item">Staff yellow pages</NavLink>
+                        <div className="contacts__header-item contacts__header-logo">
+                            <i className="fas fa-angle-right"> </i>
+                        </div>
+                        <NavLink to='/address' className="contacts__header-item"> Address Book</NavLink>
                     </div>
-                    <NavLink to='/addressbook'> <a href="#" className="contacts__header-item">Address Book</a></NavLink>
-                </div>
-                <ContactsHomePage/>
+
+                    <Switch>
+                        <Route exact path="/" component={ContactsHomePage}/>
+                        <Route exact path="/staff" component={ContactsStaffYellowPages}/>
+                        <Route exact to="/address" component={ContactsHomePage}/>
+                    </Switch>
+                </Router>
             </div>
         </div>
     );

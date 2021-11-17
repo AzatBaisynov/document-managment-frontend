@@ -6,7 +6,7 @@ import ContactsMembersDetails from "../contacts/ContactsMembersDetails";
 
 export const ContactsHomePage = () => {
     return (
-        <div className="container">
+        <div>
             <div className="contacts__homepage">
                 <ContactsOrganisation/>
                 <ContactsMembers/>

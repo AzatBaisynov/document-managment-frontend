@@ -17,6 +17,7 @@ const ContactsOrganisation = () => {
             </label>
             <input type="search" placeholder="keywords" className="contacts__organisation-search" id="search"/>
             <nav className="class_dropdown">
+
                 <button onClick={toggleActive}><i className="fas fa-caret-right contacts__caret"> </i> Link</button>
                 <div className="class_dropdown-child">
                     <a href="#" className="class_link">CNPC</a>

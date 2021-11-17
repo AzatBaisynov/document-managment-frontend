@@ -456,6 +456,14 @@ button {
     position: relative;
 }
 
+.contacts__organisation button {
+    text-align: left;
+}
+
+.contacts__organisation .class_dropdown.active i {
+    transform: rotate(90deg);
+}
+
 .contacts__organisation-search {
     width: 100%;
     padding: 10px 13px;
@@ -475,7 +483,9 @@ button {
 
 .contacts__caret {
     color: gray;
+    margin-right: 5px;
 }
+
 
 .contacts__members {
     padding: 20px 0 10px;
