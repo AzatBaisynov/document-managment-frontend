@@ -78,7 +78,7 @@ button {
 
 .header_bottom {
     height: 37px;
-    background: #efefef;
+    background: #ceeaf5;
     border-top: #00509d solid 7px;
 }
 
@@ -149,14 +149,14 @@ button {
     font-weight: 400;
 }
 
-.employee_dropdown {
+.class_dropdown {
     width: 100%;
     position: relative;
     display: inline-block;
     transition: 0.6s;
 }
 
-.employee_dropdown-child {
+.class_dropdown-child {
     display: none;
     transition: 0.6s;
 }
@@ -168,20 +168,20 @@ button {
     width: 100%;
     text-align: left;
     padding: 0 10px;
-    background-color: #f8f8f8;
+    background-color: #ceeaf5;
     color: #00509d;
     font-size: 16px;
     cursor: pointer;
 }
 
-.employee_link {
+.class_link {
     display: block;
     padding: 5px 10px;
     width: 100%;
     font-size: 13px;
 }
 
-.employee_dropdown.active .employee_dropdown-child {
+.class_dropdown.active .class_dropdown-child {
     display: block;
 }
 
@@ -193,7 +193,7 @@ button {
 
 .menu_header {
     height: 35px;
-    background-color: #f8f8f8;
+    background-color: #ceeaf5;
     border-bottom: 1px solid #dfdfdf;
     display: flex;
 }
@@ -358,7 +358,8 @@ button {
     line-height: 40px;
     font-size: 19px;
 }
-.auth_error-message{
+
+.auth_error-message {
     color: red;
     padding-bottom: 10px;
 }
@@ -376,9 +377,10 @@ button {
     transition: opacity ease-in-out 0.4s;
 }
 
-.slider:hover .btn-slide{
+.slider:hover .btn-slide {
     opacity: 0.6;
 }
+
 .slide img {
     width: 100%;
     height: 100%;
@@ -403,12 +405,217 @@ button {
     color: white;
     transition: 0.3s;
 }
-.next{
+
+.next {
     bottom: 10px;
     left: 200px;
 }
-.prev{
+
+.prev {
     bottom: 10px;
     right: 200px;
 }
 
+.contacts__page {
+    background-color: whitesmoke;
+    padding-bottom: 30px;
+}
+
+.contacts__header {
+    height: 53px;
+    display: flex;
+    align-items: center;
+}
+
+.contacts__header-item {
+    margin-right: 10px;
+}
+
+.contacts__header a {
+    font-size: 12px;
+}
+
+.contacts__header-logo {
+    color: gray;
+}
+
+.contacts__homepage {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    background-color: white;
+    padding: 10px;
+    height: 630px;
+}
+
+.contacts__homepage-item {
+    border: 1px solid gray;
+}
+
+.contacts__organisation {
+    padding: 10px 15px;
+    position: relative;
+}
+
+.contacts__organisation-search {
+    width: 100%;
+    padding: 10px 13px;
+    position: relative;
+    border-radius: 50px;
+    border: 1px solid gray;
+    margin-bottom: 17px;
+}
+
+.contacts__organisation-search-label {
+    position: absolute;
+    color: gray;
+    z-index: 99;
+    right: 25px;
+    top: 20px;
+}
+
+.contacts__caret {
+    color: gray;
+}
+
+.contacts__members {
+    padding: 20px 0 10px;
+    border-right: none;
+    border-left: none;
+}
+
+.contacts__members-item:hover {
+    background-color: whitesmoke;
+}
+
+.contacts__members-item:hover .contacts__members-link {
+    color: #15a4fa;
+}
+
+.contacts__members-title {
+    font-size: 16px;
+    padding-left: 15px;
+}
+
+.contacts__members-title span {
+    color: #ff6f0f;
+}
+
+.contacts__members-subtitle {
+    color: #7a7a7a;
+    font-size: 14px;
+    padding: 16px 0 10px 15px;
+}
+
+.contacts__members-link {
+    font-size: 14px;
+    margin: 7px 0 0 19px;
+}
+
+
+.contacts__members-item {
+    padding: 5px 0 5px 15px;
+    display: flex;
+}
+
+.contacts__members-item-img {
+    width: 40px;
+    height: 40px;
+}
+
+.contacts__members-item-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.contacts__principal {
+    padding: 5px 0 5px 15px;
+    display: flex;
+    background-color: whitesmoke;
+
+}
+
+.contacts__principal-link {
+    font-size: 14px;
+    margin: 7px 0 0 19px;
+    color: #15a4fa;
+}
+
+.contacts__homepage-container {
+    max-width: 280px;
+    margin: 0 auto;
+
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.contacts__member-details-img-cover {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.contacts__member-details-img {
+    width: 90px;
+    height: 90px;
+    position: relative;
+}
+
+.contacts__member-details-img-absolute {
+    position: absolute;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    object-fit: cover;
+    background-color: white;
+    right: 5px;
+    bottom: 10px;
+}
+
+.contacts__member-details-img-men {
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+.contacts__homepage-info {
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.contacts__members-title {
+    color: #333;
+    font-size: 20px;
+    margin: 15px 0;
+}
+
+.contacts__homepage-info span {
+    color: black;
+    margin-left: 7px;
+}
+
+.contacts__homepage-scan {
+    padding: 15px 0;
+    border: 1px solid gainsboro;
+}
+
+.contacts__homepage-scan-img {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.contacts__homepage-scan-img img {
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+}
+
+.contacts__homepage-scan-desc {
+    text-align: center;
+    font-size: 12px;
+}

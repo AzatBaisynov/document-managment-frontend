@@ -1,12 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Route, Switch, MemoryRouter, NavLink } from 'react-router-dom';
-import { ToCompleted } from './ToCompleted';
-import { Todo } from './Todo';
-import { ToRead } from './ToRead';
+import {BrowserRouter as Router, Link, Route, Switch, MemoryRouter, NavLink} from 'react-router-dom';
 
-export const Menu = ({ actions, minh, scroll }) => {
+export const Menu = ({actions, minh, scroll}) => {
     return (
-        <MemoryRouter >
+        <MemoryRouter>
             <div className="menu">
                 <div className="menu_header">
                     {actions.map((el, idx) =>
@@ -18,9 +15,9 @@ export const Menu = ({ actions, minh, scroll }) => {
                         >{el.action_text}</NavLink>
                     )}
                 </div>
-                <div 
-                className="menu_block" 
-                style={{minHeight : minh, maxHeight : minh, overflowY : scroll ? "scroll" : "hidden"}}
+                <div
+                    className="menu_block"
+                    style={{minHeight: minh, maxHeight: minh, overflowY: scroll ? "scroll" : "hidden"}}
                 >
                     <Switch>
                         {actions.map((el, idx) =>

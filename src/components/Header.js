@@ -12,7 +12,7 @@ export const Header = () => {
         <div className="header_top">
             <div className="container header_container">
                 <div className="header_logo">
-                    <img src={logo}></img>
+                    <img src={logo}/>
                 </div>
                 <div className="header_info">
                     <p className="header_name">Welcome <span className="bolder">Ilzat</span><
