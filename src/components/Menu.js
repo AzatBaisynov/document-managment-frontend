@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Link, Route, Switch, MemoryRouter, NavLink} from 'react-router-dom';
+import PaymentRequests from "./documents/PaymentRequests";
 
 export const Menu = ({actions, minh, scroll}) => {
     return (

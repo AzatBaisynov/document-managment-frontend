@@ -84,8 +84,8 @@ const MainPage = () => {
                     <Menu actions={documents} minh={"302px"} scroll={false}/>
                 </section>
                 <div>
+                    <Menu actions={calendar} minh={"300px"} scroll={false}/>
                     <Menu actions={slider} minh={"205px"} scroll={false}/>
-                    <Menu actions={calendar} minh={"474px"} scroll={false}/>
                 </div>
             </div>
         </main>

@@ -10,7 +10,6 @@ const login = (state = initState, action) => {
             return {isAuth: false}
         default:
             return state
-
     }
 }
 export default login
