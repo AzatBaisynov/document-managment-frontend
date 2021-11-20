@@ -10,18 +10,15 @@ import ContactsMembersDetails from "../components/contacts/ContactsMembersDetail
 
 export const ContactsPage = () => {
     return (
-
         <div className="contacts__page">
             <div className="container">
                 <Router>
                     <div className="contacts__header">
-
                         <a href="/" className="contacts__header-logo contacts__header-item">
                             <i className="fas fa-home">
 
                             </i>
                         </a>
-
                         <a href="/" className="contacts__header-item"> Homepage</a>
                         <div className="contacts__header-item contacts__header-logo">
                             <i className="fas fa-angle-right">
@@ -34,7 +31,6 @@ export const ContactsPage = () => {
                         </div>
                         <NavLink to='/address' className="contacts__header-item"> Address Book</NavLink>
                     </div>
-
                     <Switch>
                         <Route exact path="/" component={ContactsHomePage}/>
                         <Route exact path="/staff" component={ContactsStaffYellowPages}/>

@@ -5,5 +5,6 @@ export const loginAction = (token) =>{
 }
 export const logoutAction = () =>{
     localStorage.removeItem("isAuth")
+    localStorage.removeItem("token")
     return {type: "LOG_OUT"}
 }

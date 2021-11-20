@@ -346,7 +346,7 @@ button {
 }
 
 .auth_password::placeholder {
-    color: "#dadada"
+    color: #dadada
 }
 
 .auth_login {
@@ -456,6 +456,10 @@ button {
     position: relative;
 }
 
+.contacts__organisation .class_dropdown {
+    margin-bottom: 15px;
+}
+
 .contacts__organisation button {
     text-align: left;
 }
@@ -484,6 +488,7 @@ button {
 .contacts__caret {
     color: gray;
     margin-right: 5px;
+    pointer-events: none;
 }
 
 
@@ -555,6 +560,9 @@ button {
     max-width: 280px;
     margin: 0 auto;
 
+}
+.contacts__homepage-descriptions {
+    padding: 0 0 0 20px;
 }
 
 .flex {
