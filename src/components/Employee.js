@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import user from '../assets/images/user.png'
-import {NavLink, Route, Switch, BrowserRouter} from "react-router-dom";
+import { NavLink, Route, Switch, BrowserRouter } from "react-router-dom";
 import axios from "axios";
-import {Contact} from "./contacts/Contact";
+import { Contact } from "./contacts/Contact";
 
 
 const toggleActive = (e) => {
@@ -26,7 +26,7 @@ export const Employee = () => {
         }
         axios(config)
             .then(function (response) {
-                setMembers({...response.data})
+                setMembers({ ...response.data })
             })
             .catch(function (error) {
                 console.log(error);
@@ -37,7 +37,7 @@ export const Employee = () => {
         <section className="employee">
             <div className="employee_info">
                 <div className="employee_img">
-                    <img src={user} alt=""/>
+                    <img src={user} alt="" />
                 </div>
                 <h4 className="employee_name">
                     {
@@ -52,23 +52,16 @@ export const Employee = () => {
             <nav className="class_dropdown active">
                 <button className="employee_btn" onClick={toggleActive}>My work</button>
                 <div className="class_dropdown-child">
+                    <NavLink to='/contacts' className="class_link">Contacts</NavLink>
                     <a href="#" className="class_link">Related Processes</a>
                     <a href="#" className="class_link">To do</a>
-                    <NavLink to='/contacts'> <a href="#" className="class_link">Contacts</a></NavLink>
-                    <NavLink to='/paymentrequests'> <a href="#" className="class_link">Pay</a></NavLink>
-
-
-
                 </div>
             </nav>
             <nav className="class_dropdown">
                 <button className="employee_btn" onClick={toggleActive}>Link</button>
                 <div className="class_dropdown-child">
-                    <a href="#" className="class_link">CNPC</a>
-                    <a href="#" className="class_link">RICHFIT BeiJing</a>
-                    <a href="#" className="class_link">ITMMS</a>
-                    <a href="#" className="class_link">HelpDesk</a>
-                    <a href="#" className="class_link">OA PC Client Downloads</a>
+                    <a href="http://www.ccecc.com.cn/" target="_blank" className="class_link">CCECC</a>
+                    <a href="#" className="class_link">DMS user manual</a>
                 </div>
             </nav>
         </section>

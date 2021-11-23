@@ -11,6 +11,7 @@ export const CalendarPart = () => {
                 onChange={onChange}
                 value={value}
             />
+            <p className="calendar_data">No Data</p>
         </div>
     )
 }

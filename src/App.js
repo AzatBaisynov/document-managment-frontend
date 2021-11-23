@@ -9,6 +9,7 @@ import {ContactsHomePage} from "./components/contacts-pages/ContactsHomePage";
 import {ContactsStaffYellowPages} from "./components/contacts-pages/ContactsStaffYellowPages";
 import {ContactsAddressBook} from "./components/contacts-pages/ContactsAddressBook";
 import PaymentRequests from "./components/documents/PaymentRequests";
+import { Dismissal } from "./components/documents/Dismissal";
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
                             <Switch>
                                 <Route exact path="/" component={MainPage}/>
                                 <Route exact path="/contacts" component={ContactsPage}/>
+                                <Route exact path="/dismissal" component={Dismissal}/>
                                 <Route exact path="/paymentrequests" component={PaymentRequests}/>
                                 <Route exact path="/homepage" component={ContactsHomePage}/>
                                 <Route exact path="/sraffyellowpage" component={ContactsStaffYellowPages}/>

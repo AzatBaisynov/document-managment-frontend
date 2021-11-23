@@ -22,6 +22,10 @@ button {
     margin: 0;
 }
 
+.d-inline {
+    display: inline-block;
+}
+
 .container {
     max-width: 1220px;
     padding: 0 10px;
@@ -37,7 +41,7 @@ button {
 
 .header_top {
     background: #FFF;
-    height: 104px;
+    height: 133px;
     display: flex;
     align-items: center;
 }
@@ -48,7 +52,7 @@ button {
 }
 
 .header_logo img {
-    width: 91px;
+    width: 120px;
 }
 
 .header_container {
@@ -60,7 +64,7 @@ button {
 }
 
 .header_name {
-    padding: 7px 10px;
+    padding: 13px 19px;
     background: #efefef;
     border-radius: 0 0 7px 7px;
     font-size: 13px;
@@ -74,7 +78,7 @@ button {
 }
 
 .header_name .bolder {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
 
 }
@@ -278,11 +282,26 @@ button {
 .calendar_center {
     display: flex;
     justify-content: center;
+    align-items: center;
     padding-top: 20px;
+    flex-direction: column;
+}
+.calendar_data {
+    text-align: center;
+    margin-top: 30px;
 }
 
 .react-calendar {
     border: none !important;
+}
+.react-calendar__tile--active {
+    border-radius: 5px;
+}
+.react-calendar__navigation__label{
+    background: #006edc !important;
+    color: #fff;
+    opacity: .7;
+    border-radius: 5px;
 }
 
 .auth {
@@ -336,7 +355,7 @@ button {
 }
 
 .auth_username::placeholder {
-    color: "#dadada"
+    color: #dadada
 }
 
 .auth_password {
@@ -719,4 +738,8 @@ button {
 .payment__request-gap {
     background-color: #ceeaf5;
     height: 10px;
+}
+
+.notice {
+    padding: 10px;
 }

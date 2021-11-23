@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 
 const PaymentRequests = () => {
@@ -18,7 +18,7 @@ const PaymentRequests = () => {
         }
         axios(config)
             .then(function (response) {
-                setUser({...response.data})
+                setUser({ ...response.data })
             })
             .catch(function (error) {
                 console.log(error);
@@ -29,9 +29,7 @@ const PaymentRequests = () => {
         <div className="container">
             <div className="payment__request-wrapper">
                 <div className="payment__request-header payment__request-background">
-                    <p>
-                        Technical assignment for payment form development
-                    </p>
+                    <p>Technical assignment for payment form development</p>
                 </div>
                 <div className="payment__request-gap">
 
@@ -64,7 +62,7 @@ const PaymentRequests = () => {
                     </div>
 
                     <div className="payment__request-fill   payment__request-border-r">
-                        <input type="text" placeholder={user.fullName} className="payment__request-input"/>
+                        <input type="text" placeholder={user.fullName} className="payment__request-input" />
                     </div>
                     <div className="payment__request-options ">
 
@@ -78,10 +76,10 @@ const PaymentRequests = () => {
                         Initiator
                     </div>
                     <div className="payment__request-fill  payment__request-border-r">
-                        <input type="text" placeholder="Ilzat" className="payment__request-input"/>
+                        <input type="text" placeholder="Ilzat" className="payment__request-input" />
                     </div>
                     <div className="payment__request-options">
-                        <input type="text" className="payment__request-input-l"/>
+                        <input type="text" className="payment__request-input-l" />
                     </div>
                 </div>
             </div>
