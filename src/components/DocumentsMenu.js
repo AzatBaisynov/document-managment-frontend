@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Link, Route, Switch, MemoryRouter, NavLink } from 'react-router-dom';
-import { Document } from './Document';
+import { DocumentComponents } from './DocumentComponents';
 import PaymentRequests from "./documents/PaymentRequests";
 
 export const DocumentsMenu = ({ actions, minh, scroll }) => {
@@ -28,7 +28,7 @@ export const DocumentsMenu = ({ actions, minh, scroll }) => {
                                 path={el.action_link}
                                 key={idx}
                             >
-                                <Document category_id={el.action_id} />
+                                <DocumentComponents category_id={el.action_id} />
                             </Route>
                         )}
                     </Switch>

@@ -1,7 +1,14 @@
 import React from 'react';
 import {BrowserRouter as Router, Link, Route, Switch, MemoryRouter, NavLink} from 'react-router-dom';
-import { Document } from './Document';
+import {DocumentComponents} from './DocumentComponents';
 import PaymentRequests from "./documents/PaymentRequests";
+import {DocumentsMenu} from "./DocumentsMenu";
+
+class Document extends React.Component {
+    render() {
+        return null;
+    }
+}
 
 export const Menu = ({actions, minh, scroll}) => {
     return (
@@ -31,6 +38,7 @@ export const Menu = ({actions, minh, scroll}) => {
                             />
                         )}
                     </Switch>
+                  <DocumentComponents/>
                 </div>
             </div>
         </MemoryRouter>

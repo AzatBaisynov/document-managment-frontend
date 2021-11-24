@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import user from '../assets/images/user.png'
-import { NavLink, Route, Switch, BrowserRouter } from "react-router-dom";
+import {NavLink, Route, Switch, BrowserRouter} from "react-router-dom";
 import axios from "axios";
-import { Contact } from "./contacts/Contact";
+import {Contact} from "./contacts/Contact";
+import {DocumentsMenu} from "./DocumentsMenu";
 
 
 const toggleActive = (e) => {
@@ -26,7 +27,7 @@ export const Employee = () => {
         }
         axios(config)
             .then(function (response) {
-                setMembers({ ...response.data })
+                setMembers({...response.data})
             })
             .catch(function (error) {
                 console.log(error);
@@ -37,7 +38,7 @@ export const Employee = () => {
         <section className="employee">
             <div className="employee_info">
                 <div className="employee_img">
-                    <img src={user} alt="" />
+                    <img src={user} alt=""/>
                 </div>
                 <h4 className="employee_name">
                     {

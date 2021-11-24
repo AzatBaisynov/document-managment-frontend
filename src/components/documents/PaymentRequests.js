@@ -2,11 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 
 const PaymentRequests = () => {
-    // const info = ["initiator", "Initiated Department", "Initiated Date",
-    //     "Invoice Receipt Date", "Payment Deadline", "Payers", "Invoice Content", "Invoice No.",
-    //     "Invoice Amount", "Currency", "Exchange Rate", "Converted to KZ", "Invoice Date",
-    //     "Invoice Type", "Invoice No.", "Payee", "Payee Account", "Receiving Bank",
-    //     "SWIFT Code", "Upload Attachment"]
     const [user, setUser] = useState({})
     useEffect(() => {
         const config = {
@@ -76,10 +71,10 @@ const PaymentRequests = () => {
                         Initiator
                     </div>
                     <div className="payment__request-fill  payment__request-border-r">
-                        <input type="text" placeholder="Ilzat" className="payment__request-input" />
+
                     </div>
                     <div className="payment__request-options">
-                        <input type="text" className="payment__request-input-l" />
+                        <input type="text" placeholder={user.fullName} className="payment__request-input" />
                     </div>
                 </div>
             </div>

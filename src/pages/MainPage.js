@@ -7,7 +7,7 @@ import { ToCompleted } from '../components/ToCompleted';
 import { ToRead } from '../components/ToRead';
 import { Slider } from '../components/Slider';
 import { CalendarPart } from '../components/CalendarPart';
-import { Document } from '../components/Document';
+import { DocumentComponents } from '../components/DocumentComponents';
 import { Notice } from '../components/Notice';
 import { News } from '../components/News';
 import axios from 'axios';
@@ -35,14 +35,14 @@ const MainPage = () => {
                                 action_link: "/",
                                 action_text: el.name,
                                 action_id: el.id,
-                                action: Document
+                                action: DocumentComponents
                             }
                         }
                         return {
                             action_link: `/${el.name.toLowerCase()}`,
                             action_text: el.name,
                             action_id: el.id,
-                            action: Document
+                            action: DocumentComponents
                         }
                     }))
                 }
@@ -74,22 +74,22 @@ const MainPage = () => {
     //     {
     //         action_link: "/",
     //         action_text: "Finance",
-    //         action: Document
+    //         action: DocumentComponents
     //     },
     //     {
     //         action_link: "/legal",
     //         action_text: "Legal",
-    //         action: Document
+    //         action: DocumentComponents
     //     },
     //     {
     //         action_link: "/hr",
     //         action_text: "HR",
-    //         action: Document
+    //         action: DocumentComponents
     //     },
     //     {
     //         action_link: "/administration",
     //         action_text: "Administration",
-    //         action: Document
+    //         action: DocumentComponents
     //     }
     // ]
     const slider = [

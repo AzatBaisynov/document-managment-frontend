@@ -3,10 +3,10 @@ import cash from '../assets/images/cash.svg'
 import { Link, Route } from "react-router-dom";
 import PaymentRequests from "./documents/PaymentRequests";
 
-export const Document = ({category_id}) => {
+export const DocumentComponents = ({category_id}) => {
     
     return (
-        <a href="/dismissal" target="_blank" className="d-inline">
+        <a href="/document" target="_blank" className="d-inline">
             <div className="report">
                 <div className="report-box">
                     <img src={cash} />
