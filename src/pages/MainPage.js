@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../assets/App.css';
-import { Employee } from '../components/Employee.js';
-import { Menu } from '../components/Menu.js';
-import { Todo } from '../components/Todo';
-import { ToCompleted } from '../components/ToCompleted';
-import { ToRead } from '../components/ToRead';
-import { Slider } from '../components/Slider';
-import { CalendarPart } from '../components/CalendarPart';
-import { DocumentComponents } from '../components/DocumentComponents';
-import { Notice } from '../components/Notice';
-import { News } from '../components/News';
+import {Employee} from '../components/Employee.js';
+import {Menu} from '../components/Menu.js';
+import {Todo} from '../components/Todo';
+import {ToCompleted} from '../components/ToCompleted';
+import {ToRead} from '../components/ToRead';
+import {Slider} from '../components/Slider';
+import {CalendarPart} from '../components/CalendarPart';
+import {DocumentComponents} from '../components/DocumentComponents';
+import {Notice} from '../components/Notice';
+import {News} from '../components/News';
 import axios from 'axios';
-import { DocumentsMenu } from '../components/DocumentsMenu';
-
+import {DocumentsMenu} from '../components/DocumentsMenu';
 
 
 const MainPage = () => {
@@ -21,7 +20,7 @@ const MainPage = () => {
     useEffect(() => {
         const config = {
             method: 'get',
-            url: 'http://localhost:8080/v1/api/document/categories',
+            url: 'http://109.248.133.36:8080/v1/api/document/categories',
             headers: {
                 'Authorization': localStorage.getItem("token")
             }
@@ -53,6 +52,7 @@ const MainPage = () => {
 
     }, [])
 
+
     const todos = [
         {
             action_link: "/",
@@ -70,28 +70,6 @@ const MainPage = () => {
             action: ToCompleted
         }
     ]
-    // const documents = [
-    //     {
-    //         action_link: "/",
-    //         action_text: "Finance",
-    //         action: DocumentComponents
-    //     },
-    //     {
-    //         action_link: "/legal",
-    //         action_text: "Legal",
-    //         action: DocumentComponents
-    //     },
-    //     {
-    //         action_link: "/hr",
-    //         action_text: "HR",
-    //         action: DocumentComponents
-    //     },
-    //     {
-    //         action_link: "/administration",
-    //         action_text: "Administration",
-    //         action: DocumentComponents
-    //     }
-    // ]
     const slider = [
         {
             action_link: "/",
@@ -123,15 +101,15 @@ const MainPage = () => {
 
         <main className="main">
             <div className="container main_container">
-                <Employee />
+                <Employee/>
                 <section className="middle">
-                    <Menu actions={todos} minh={"163px"} scroll={true} />
-                    <Menu actions={noticeAndNews} minh={"450px"} scroll={false} />
-                    <DocumentsMenu actions={documents} minh={"302px"} scroll={false} />
+                    <Menu actions={todos} minh={"163px"} scroll={true}/>
+                    <Menu actions={noticeAndNews} minh={"450px"} scroll={false}/>
+                    <DocumentsMenu actions={documents} minh={"302px"} scroll={false}/>
                 </section>
                 <div>
-                    <Menu actions={calendar} minh={"390px"} scroll={false} />
-                    <Menu actions={slider} minh={"205px"} scroll={false} />
+                    <Menu actions={calendar} minh={"390px"} scroll={false}/>
+                    <Menu actions={slider} minh={"205px"} scroll={false}/>
                 </div>
             </div>
         </main>

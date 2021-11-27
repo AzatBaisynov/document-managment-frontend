@@ -36,7 +36,7 @@ button {
 .header_ico {
     width: 14px;
     fill: blueviolet;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .header_top {
@@ -71,6 +71,9 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.header_name span{
+    margin-left: 5px;
 }
 
 .header_name p {

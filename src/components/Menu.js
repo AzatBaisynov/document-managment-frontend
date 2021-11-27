@@ -38,7 +38,6 @@ export const Menu = ({actions, minh, scroll}) => {
                             />
                         )}
                     </Switch>
-                  <DocumentComponents/>
                 </div>
             </div>
         </MemoryRouter>

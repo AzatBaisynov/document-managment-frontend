@@ -25,7 +25,7 @@ export const Document = () => {
         }
         axios(config)
             .then(function (response) {
-                setUser({ ...response.data })
+                setUser({...response.data})
             })
             .catch(function (error) {
                 console.log(error);
