@@ -40,7 +40,7 @@ export const DocumentsMenu = ({actions, minh, scroll}) => {
                                 path={el.action_link}
                                 key={idx}
                             >
-                                <DocumentComponents category_id={el.action_text}/>
+                                <DocumentComponents category_id={el.action_id}/>
                             </Route>
                         )}
                     </Switch>
