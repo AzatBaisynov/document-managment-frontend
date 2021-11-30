@@ -5,17 +5,6 @@ import PaymentRequests from "./documents/PaymentRequests";
 import axios from "axios";
 
 export const DocumentsMenu = ({actions, minh, scroll}) => {
-    // const config = {
-    //     method: 'get',
-    //     url: 'http://109.248.133.36:8080/v1/api/document',
-    //     headers: {
-    //         'Authorization': localStorage.getItem("token")
-    //     }
-    // };
-    // axios(config)
-    //     .then(function (response) {
-    //     console.log(response.data)
-    //     })
     return (
         <MemoryRouter>
             <div className="menu">

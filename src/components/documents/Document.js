@@ -5,42 +5,41 @@ import DocumentGrid from "./DocumentGrid";
 import DocumentRow from "./DocumentRow";
 import DocumentRadio from "./DocumentRadio";
 import DocumentSelect from "./DocumentSelect";
-import {NavLink, Route, Switch} from "react-router-dom";
-import {ContactsHomePage} from "../contacts-pages/ContactsHomePage";
-import {ContactsStaffYellowPages} from "../contacts-pages/ContactsStaffYellowPages";
+import {NavLink} from "react-router-dom";
 import {MemoryRouter as Router} from "react-router";
 import DocumentComment from "./DocumentComment";
 import DocumentCheckBox from "./DocumentCheckBox";
 import axios from "axios";
 
 export const Document = () => {
-    const [user, setUser] = useState({})
+
+    const [document, setDocument] = useState([])
     useEffect(() => {
         const config = {
-            method: 'GET',
-            url: 'http://109.248.133.36:8080/v1/api/user',
+            method: 'get',
+            url: `http://109.248.133.36:8080/v1/api/document/3`,
             headers: {
                 'Authorization': localStorage.getItem("token")
             }
-        }
+        };
         axios(config)
             .then(function (response) {
-                setUser({...response.data})
+                setDocument(response.data)
             })
             .catch(function (error) {
                 console.log(error);
             });
 
     }, [])
+
+
     return (
         <div className="contacts__page">
             <div className="container">
                 <Router>
                     <div className="contacts__header">
                         <a href="/" className="contacts__header-logo contacts__header-item">
-                            <i className="fas fa-home">
-
-                            </i>
+                            <i className="fas fa-home"> </i>
                         </a>
                         <a href="/" className="contacts__header-item"> Homepage</a>
                         <div className="contacts__header-item contacts__header-logo">
@@ -56,77 +55,62 @@ export const Document = () => {
                         Approval Content
                     </p>
                     <div className="document__cover">
-                        <div className="document__title">
-                            Payment approval form for company
-                        </div>
-                        <DocumentGrid/>
-                        <DocumentRow/>
-                        <div className="document__row_grid">
-                            <div className="document__flex">
-                                <DocumentSubtitle/>
-                                <div>
-                                    <DocumentInput user={user.fullName}/>
-                                </div>
-                            </div>
-                            <div className="document__flex">
-                                <DocumentSubtitle/>
-                                <div>
-                                    <DocumentCheckBox user={user}/>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="document__row_grid">
-                            <div className="document__flex">
-                                <DocumentSubtitle/>
-                                <div>
-                                    <DocumentSelect/>
-                                </div>
-                            </div>
-                            <div className="document__flex">
-                                <DocumentSubtitle/>
-                                <div>
-                                    <DocumentRadio/>
-                                </div>
-                            </div>
-                        </div>
-                        <DocumentComment/>
-                        <div className="document__row">
-                            <div className="document__flex">
-                                <div>
-                                    <DocumentSubtitle/>
-                                </div>
-                                <div className="document__checkbox">
-                                    <div>
-                                        <input type="checkbox" id="scales" name="scales"/>
-                                        <label htmlFor="scales">Annual leave</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="horns" name="horns"/>
-                                        <label htmlFor="horns">Round Vacation</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="horns" name="horns"/>
-                                        <label htmlFor="horns">Unpaid leave</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="horns" name="horns"/>
-                                        <label htmlFor="horns">Unpaid leave</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="horns" name="horns"/>
-                                        <label htmlFor="horns">Unpaid leave</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="horns" name="horns"/>
-                                        <label htmlFor="horns">Unpaid leave</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="horns" name="horns"/>
-                                        <label htmlFor="horns">Unpaid leave</label>
-                                    </div>
-                                </div>
 
+                        {
+                            <div className="document__title">
+                                {document.document.name}
                             </div>
+                        }
+                        <div className="document__rows">
+                            {
+                                document.fields.map((el) => (
+                                    <div className={`${el.half ? "document__row-half" : "document__row-full"}`}>
+                                        <div className="document__flex">
+                                            <div
+                                                className={`${el.half ? "document__subtitle-sm" : "document__subtitle-lg"}`}>
+                                                {el.name}
+                                            </div>
+                                            <div className="document__desc">
+                                                {
+                                                    el.type == "1" &&
+                                                    <input type="text"
+                                                           className={`document__input ${el.required ? "document__require" : ""}`}/>
+                                                }
+
+                                                {
+                                                    el.type == "2" &&
+                                                    <input type="date"
+                                                           className={`document__input document__date${el.required ? "document__require" : ""}`}/>
+                                                }
+
+
+                                                {
+                                                    el.type == "3" &&
+                                                    <div
+                                                        className={`document__checkbox ${el.required ? "document__require" : ""}`}>
+                                                        <div className="document__yes">
+                                                            <input type="radio" id="yes"
+                                                                   name="contact" value="email"/>
+                                                            <label htmlFor="yes">Yes</label>
+                                                        </div>
+                                                        <input type="radio" id="no"
+                                                               name="contact" value="phone"/>
+                                                        <label htmlFor="no">No</label>
+                                                    </div>
+                                                }
+
+                                                {
+                                                    el.type == "4" &&
+
+                                                    <input type="text"
+                                                           className={`document__input document__comment${el.required ? "document__require" : ""}`}/>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+
                         </div>
                     </div>
                 </div>

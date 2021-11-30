@@ -72,7 +72,8 @@ button {
     align-items: center;
     justify-content: space-between;
 }
-.header_name span{
+
+.header_name span {
     margin-left: 5px;
 }
 
@@ -259,7 +260,7 @@ button {
 }
 
 .report {
-    padding: 20px;
+    padding: 10px;
 }
 
 .report-box {
@@ -271,6 +272,7 @@ button {
     justify-content: center;
     background-color: #5599ff;
     padding: 5px;
+    font-size: 40px;
 }
 
 .report-box img {
@@ -279,7 +281,9 @@ button {
 
 .report-box-title {
     font-size: 13px;
-    color: #FFF;
+    color: black;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .calendar_center {
@@ -794,15 +798,36 @@ button {
     transform: translateX(-50%)
 }
 
-.document__row {
+.document__rows {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.document__row-full {
+    width: 100%;
     border-bottom: 1px solid lightgrey;
 }
 
-.document__subtitle {
+.document__row-half {
+    width: 50%;
+    border-bottom: 1px solid lightgrey;
+}
+
+
+.document__subtitle-lg {
     border-right: 1px solid lightgrey;
     padding: 15px 10px;
     background-color: whitesmoke;
     width: 175px;
+    display: flex;
+    align-items: center;
+}
+
+.document__subtitle-sm {
+    border-right: 1px solid lightgrey;
+    padding: 15px 10px;
+    background-color: whitesmoke;
+    width: 261px;
     display: flex;
     align-items: center;
 }
@@ -862,12 +887,15 @@ button {
     margin-right: 15px;
     color: cornflowerblue;
 }
-
+.document__date{
+    width: 300px;
+}
 .document__checkbox {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 10px;
+    max-width: 80px;
 }
 
 .document__require {
@@ -888,3 +916,6 @@ button {
     margin-right: 10px;
 }
 
+.document__img {
+    color: #FFFFFF;
+}

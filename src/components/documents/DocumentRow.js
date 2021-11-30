@@ -2,15 +2,20 @@ import React from 'react';
 import DocumentSubtitle from "./DocumentSubtitle";
 import DocumentInput from "./DocumentInput";
 
-const DocumentRow = () => {
+const DocumentRow = ({fields}) => {
     return (
         <div className="document__row">
             <div className="document__flex">
                 <div>
                     <DocumentSubtitle/>
                 </div>
-                <DocumentInput/>
+                <div className="document__desc">
+                    {
+                        fields.map((el)=>{
 
+                        })
+                    }
+                </div>
             </div>
         </div>
     );

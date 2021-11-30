@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import cash from '../assets/images/cash.svg'
-import { Link, Route } from "react-router-dom";
+import {Link, Route} from "react-router-dom";
 import axios from 'axios';
 import PaymentRequests from "./documents/PaymentRequests";
 
-export const DocumentComponents = ({ category_id }) => {
+export const DocumentComponents = ({category_id}) => {
 
     const [document, setDocument] = useState([])
 
@@ -27,15 +27,17 @@ export const DocumentComponents = ({ category_id }) => {
     }, [])
 
     return (
+
         <div>
             {
                 document.map((el, idx) => (
-                    <a href="/document" target="_blank" className="d-inline" key={idx}>
+                    <a href={`/document/`} target="_blank" className="d-inline" key={idx}>
                         <div className="report">
                             <div className="report-box">
-                                <img src={cash} />
+                                {el.url ? <img src={el.url}/>
+                                    : <i className="fas fa-file-alt document__img"> </i>}
                             </div>
-                            <h4 className="report-box-title" style={{ color: "black" }}>{el.name}</h4>
+                            <h4 className="report-box-title">{el.name}</h4>
                         </div>
                     </a>
                 ))

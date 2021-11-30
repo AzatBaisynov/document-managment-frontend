@@ -14,6 +14,9 @@ const ContactsMembers = ({ department, setEmployee }) => {
                     'Authorization' : localStorage.getItem("token")
                 }
             }
+            {
+                console.log(localStorage.getItem("token"))
+            }
             axios(config)
                 .then(function (response) {
                     console.log(response.data)
