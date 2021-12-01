@@ -761,12 +761,12 @@ button {
 .document__cover {
     border-top: 1px solid lightgrey;
     border-right: 1px solid lightgrey;
-    border-left: 1px solid lightgrey;
     font-size: 12px;
 }
-
+    
 .document__title {
     border-bottom: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -821,6 +821,7 @@ button {
     width: 175px;
     display: flex;
     align-items: center;
+    border-left: 1px solid lightgrey;
 }
 
 .document__subtitle-sm {
@@ -830,6 +831,7 @@ button {
     width: 261px;
     display: flex;
     align-items: center;
+    border-left: 1px solid lightgrey;
 }
 
 .document__comment_subtitle {

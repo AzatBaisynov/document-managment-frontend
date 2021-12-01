@@ -29,7 +29,7 @@ export const DocumentComponents = ({category_id}) => {
         <div>
             {
                 document.map((el, idx) => (
-                    <NavLink to={`/document/`} target="_blank" className="d-inline" key={idx}>
+                    <NavLink to={`/document/${el.id}`} target="_blank" className="d-inline" key={idx}>
                         <div className="report">
                             <div className="report-box">
                                 {el.url ? <img src={el.url}/>

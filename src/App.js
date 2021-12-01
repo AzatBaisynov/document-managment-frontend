@@ -29,6 +29,7 @@ const App = () => {
                                 <Route exact path="/homepage" component={ContactsHomePage}/>
                                 <Route exact path="/sraffyellowpage" component={ContactsStaffYellowPages}/>
                                 <Route exact path="/addressbook" component={ContactsAddressBook}/>
+                                <Route path="/document/:id" component={Document}/>
                             </Switch>
 
                         </Router>

@@ -1,14 +1,17 @@
-import React, {useEffect, useState} from 'react'
-import {NavLink} from "react-router-dom";
+import React, {useEffect, useState } from 'react'
+import {NavLink, useParams} from "react-router-dom";
 import {MemoryRouter as Router} from "react-router";
 import axios from "axios";
 
 export const Document = () => {
     const [document, setDocument] = useState([])
+    const {id} = useParams()
+
     useEffect(() => {
+        console.log(id)
         const config = {
             method: 'get',
-            url: `http://109.248.133.36:8080/v1/api/document/1`,
+            url: `http://109.248.133.36:8080/v1/api/document/${id}`,
             headers: {
                 'Authorization': localStorage.getItem("token")
             }
