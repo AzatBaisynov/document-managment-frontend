@@ -1,23 +1,14 @@
 import React, {useEffect, useState} from 'react'
-import DocumentInput from "./DocumentInput";
-import DocumentSubtitle from "./DocumentSubtitle";
-import DocumentGrid from "./DocumentGrid";
-import DocumentRow from "./DocumentRow";
-import DocumentRadio from "./DocumentRadio";
-import DocumentSelect from "./DocumentSelect";
 import {NavLink} from "react-router-dom";
 import {MemoryRouter as Router} from "react-router";
-import DocumentComment from "./DocumentComment";
-import DocumentCheckBox from "./DocumentCheckBox";
 import axios from "axios";
 
 export const Document = () => {
-
     const [document, setDocument] = useState([])
     useEffect(() => {
         const config = {
             method: 'get',
-            url: `http://109.248.133.36:8080/v1/api/document/3`,
+            url: `http://109.248.133.36:8080/v1/api/document/1`,
             headers: {
                 'Authorization': localStorage.getItem("token")
             }
@@ -58,12 +49,12 @@ export const Document = () => {
 
                         {
                             <div className="document__title">
-                                {document.document.name}
+                                {document?.document?.name}
                             </div>
                         }
                         <div className="document__rows">
                             {
-                                document.fields.map((el) => (
+                                document?.fields?.map((el) => (
                                     <div className={`${el.half ? "document__row-half" : "document__row-full"}`}>
                                         <div className="document__flex">
                                             <div

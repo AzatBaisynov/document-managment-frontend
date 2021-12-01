@@ -1,8 +1,7 @@
 import React from 'react';
-import {BrowserRouter as Router, Link, Route, Switch, MemoryRouter, NavLink} from 'react-router-dom';
+import {Route, Switch, MemoryRouter, NavLink} from 'react-router-dom';
 import {DocumentComponents} from './DocumentComponents';
-import PaymentRequests from "./documents/PaymentRequests";
-import axios from "axios";
+
 
 export const DocumentsMenu = ({actions, minh, scroll}) => {
     return (

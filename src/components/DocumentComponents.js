@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import cash from '../assets/images/cash.svg'
-import {Link, Route} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import axios from 'axios';
-import PaymentRequests from "./documents/PaymentRequests";
 
 export const DocumentComponents = ({category_id}) => {
 
@@ -31,7 +29,7 @@ export const DocumentComponents = ({category_id}) => {
         <div>
             {
                 document.map((el, idx) => (
-                    <a href={`/document/`} target="_blank" className="d-inline" key={idx}>
+                    <NavLink to={`/document/`} target="_blank" className="d-inline" key={idx}>
                         <div className="report">
                             <div className="report-box">
                                 {el.url ? <img src={el.url}/>
@@ -39,7 +37,7 @@ export const DocumentComponents = ({category_id}) => {
                             </div>
                             <h4 className="report-box-title">{el.name}</h4>
                         </div>
-                    </a>
+                    </NavLink>
                 ))
             }
         </div>
