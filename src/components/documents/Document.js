@@ -5,6 +5,7 @@ import axios from "axios";
 
 export const Document = () => {
     const [document, setDocument] = useState([])
+    const [fields, setFields] = useState([])
 
     const {id} = useParams()
 
@@ -20,17 +21,43 @@ export const Document = () => {
         axios(config)
             .then(function (response) {
                 setDocument(response.data)
+                setFields(response.data.fields)
+                console.log(response.data.fields)
             })
             .catch(function (error) {
-
+                console.log(error)
             });
 
     }, [])
 
     const handleChange = (e) => {
-        e.preventDefault()
-        console.log(e.target.value)
+        let { id } = e.target
+        const { value } = e.target
+        id = id.replaceAll("inp", "")
+
+        const fieldsWithValues = fields.map(el => {
+            if (el.id === +id) {
+                el.value = value
+                return el
+            } else {
+                return el
+            }
+        })
+        setFields(fieldsWithValues)
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(fields)
+    }
+
+    const fielder = ({type}, idx, arr) => {
+        console.log(`THIS IS TEST ` + type)
+        return ( 
+            <div> HELLO WORLD </div>
+        )
+    }
+
     return (
         <div className="contacts__page">
             <div className="container">
@@ -53,7 +80,7 @@ export const Document = () => {
                     <p className="document__approval">
                         Approval Content
                     </p>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="document__cover">
 
                             {
@@ -63,8 +90,8 @@ export const Document = () => {
                             }
                             <div className="document__rows">
                                 {
-                                    document?.fields?.map((el) => (
-                                        <div className={`${el.half ? "document__row-half" : "document__row-full"}`}>
+                                    document?.fields?.map((el, idx, arr) => (
+                                        <div className={`${el.half ? "document__row-half" : "document__row-full"}`} key={idx}>
                                             <div className="document__flex">
                                                 <div
                                                     className={`${el.half ? "document__subtitle-sm" : "document__subtitle-lg"}`}>
@@ -72,11 +99,7 @@ export const Document = () => {
                                                 </div>
                                                 <div className="document__desc">
                                                     {
-                                                        el.type == "1" &&
-                                                        <div className={`${el.required ? "document__require" : ""}`}>
-                                                            <input type="text" onChange={handleChange} id={`inp${el.id}`}
-                                                                   className={`document__input ${el.required ? "document__require" : ""}`}/>
-                                                        </div>
+                                                        fielder(el, idx, arr)
                                                     }
 
                                                     {
@@ -93,8 +116,8 @@ export const Document = () => {
                                                             className={`document__checkbox ${el.required ? "document__require" : ""}`}>
                                                             <div>
                                                                 {
-                                                                    el?.choice?.split(", ").map((radio) => (
-                                                                        <span>
+                                                                    el?.choice?.split(", ").map((radio, idx) => (
+                                                                        <span key={idx}>
                                                                         <input type="radio"
                                                                                id={`${radio}-${el.id}`}
                                                                                name="radio"
@@ -118,7 +141,7 @@ export const Document = () => {
 
                                                         <textarea
                                                             className={`document__input document__comment${el.required ? "document__require" : ""}`}
-                                                            onChange={handleChange}id={`inp${el.id}`}
+                                                            onChange={handleChange} id={`inp${el.id}`}
                                                         >
                                                         </textarea>
                                                     }
