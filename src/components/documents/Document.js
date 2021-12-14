@@ -5,7 +5,6 @@ import axios from "axios";
 
 export const Document = () => {
     const [document, setDocument] = useState([])
-    const [fields, setFields] = useState([])
 
     const {id} = useParams()
 
@@ -21,10 +20,9 @@ export const Document = () => {
         axios(config)
             .then(function (response) {
                 setDocument(response.data)
-                setFields(response.data.fields)
             })
             .catch(function (error) {
-                console.log(error);
+
             });
 
     }, [])
