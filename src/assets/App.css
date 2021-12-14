@@ -763,7 +763,7 @@ button {
     border-right: 1px solid lightgrey;
     font-size: 12px;
 }
-    
+
 .document__title {
     border-bottom: 1px solid lightgrey;
     border-left: 1px solid lightgrey;
@@ -889,15 +889,21 @@ button {
     margin-right: 15px;
     color: cornflowerblue;
 }
-.document__date{
+
+.document__date {
     width: 300px;
 }
+
 .document__checkbox {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 10px;
-    max-width: 73px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.document__checkbox-item {
+    margin-left: 10px;
 }
 
 .document__require {
@@ -911,13 +917,28 @@ button {
     z-index: 999;
     top: 50%;
     transform: translateY(-50%);
-    right: 0;
+    right: -10px;
 }
 
-.document__checkbox div {
-    margin-right: 10px;
-}
 
 .document__img {
     color: #FFFFFF;
+}
+
+.document__submit {
+    background-color: #ed7b3d;
+    width: 120px;
+    height: 40px;
+}
+
+.document__submit:hover {
+    color: #ed7b3d;
+    background-color: #FFFFFF;
+    border: 1px solid #ed7b3d;
+}
+
+.document__button-cover {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
 }
