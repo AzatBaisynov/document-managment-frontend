@@ -18,11 +18,12 @@ export const Document = () => {
                 'Authorization': localStorage.getItem("token")
             }
         };
+
         axios(config)
             .then(function (response) {
                 setDocument(response.data)
                 setFields(response.data.fields)
-                console.log(response.data.fields)
+                // console.log(response.data.fields)
             })
             .catch(function (error) {
                 console.log(error)
@@ -31,9 +32,10 @@ export const Document = () => {
     }, [])
 
     const handleChange = (e) => {
-        let { id } = e.target
-        const { value } = e.target
+        let {id} = e.target
+        const {value} = e.target
         id = id.replaceAll("inp", "")
+
 
         const fieldsWithValues = fields.map(el => {
             if (el.id === +id) {
@@ -48,15 +50,9 @@ export const Document = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(fields)
+        // console.log(fields)
     }
-
-    const fielder = ({type}, idx, arr) => {
-        console.log(`THIS IS TEST ` + type)
-        return ( 
-            <div> HELLO WORLD </div>
-        )
-    }
+    let counter = 0
 
     return (
         <div className="contacts__page">
@@ -89,9 +85,40 @@ export const Document = () => {
                                 </div>
                             }
                             <div className="document__rows">
+
                                 {
                                     document?.fields?.map((el, idx, arr) => (
-                                        <div className={`${el.half ? "document__row-half" : "document__row-full"}`} key={idx}>
+
+                                        <div className={`${el.half ? "document__row-half" : "document__row-full"}`}
+                                             key={idx}>
+
+                                            <div className="document__hidden">
+                                                {
+                                                    counter += el.count
+                                                }
+                                            </div>
+                                            {
+                                                counter % 2 > 0 && arr[idx + 1] && arr[idx + 1] !== 0 && !arr[idx + 1].half
+                                                &&
+                                                <div className="document__row-empty">
+                                                    <div className="document__hidden">
+                                                        {
+                                                            counter = counter + 1
+                                                        }
+                                                    </div>
+                                                </div>
+                                            }
+                                            {
+                                                counter % 2 > 0 && el.last
+                                                &&
+                                                <div className="document__row-empty">
+                                                    <div className="document__hidden">
+                                                        {
+                                                            counter = counter + 1
+                                                        }
+                                                    </div>
+                                                </div>
+                                            }
                                             <div className="document__flex">
                                                 <div
                                                     className={`${el.half ? "document__subtitle-sm" : "document__subtitle-lg"}`}>
@@ -99,13 +126,19 @@ export const Document = () => {
                                                 </div>
                                                 <div className="document__desc">
                                                     {
-                                                        fielder(el, idx, arr)
+                                                        el.type == "1" && el.half &&
+                                                        <div className={`${el.required ? "document__require" : ""}`}>
+                                                            <input type="text" onChange={handleChange}
+                                                                   id={`inp${el.id}`}
+                                                                   className={`document__input document__date`}/>
+                                                        </div>
                                                     }
 
                                                     {
                                                         el.type == "3" &&
                                                         <div className={`${el.required ? "document__require" : ""}`}>
-                                                            <input type="date" onChange={handleChange} id={`inp${el.id}`}
+                                                            <input type="date" onChange={handleChange}
+                                                                   id={`inp${el.id}`}
                                                                    className={`document__input document__date`}/>
                                                         </div>
                                                     }
@@ -147,6 +180,7 @@ export const Document = () => {
                                                     }
                                                 </div>
                                             </div>
+
                                         </div>
                                     ))
                                 }
