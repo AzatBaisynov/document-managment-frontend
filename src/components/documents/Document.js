@@ -23,7 +23,6 @@ export const Document = () => {
             .then(function (response) {
                 setDocument(response.data)
                 setFields(response.data.fields)
-                // console.log(response.data.fields)
             })
             .catch(function (error) {
                 console.log(error)
@@ -50,8 +49,39 @@ export const Document = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // console.log(fields)
+        let document = fields.map((el) => {
+            let newDate = null
+            let newAmount = null
+            if (el.type == "3") {
+                newDate = [el.value]
+            } else if (el.type == "5") {
+                newAmount = [el.value]
+            }
+
+            return {"id": el.id, "value": el.value, "date": newDate, "amount": newAmount}
+        })
+        const data = {"documentId": id, fields: document}
+        const config = {
+            method: 'post',
+            url: 'http://109.248.133.36:8080/v1/api/document/byuser',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+        console.log(data)
+        axios(config)
+            .then(({data}) => {
+                (JSON.stringify(data))
+            })
+
+            .catch(function (error) {
+                    console.log(error);
+                }
+            )
     }
+
+
     let counter = 0
 
     return (
@@ -68,8 +98,9 @@ export const Document = () => {
 
                             </i>
                         </div>
-                        <NavLink to='/address' className="contacts__header-item"> Address
-                            Book</NavLink>
+                        <NavLink to='/address' className="contacts__header-item">
+                            {document?.document?.name}
+                        </NavLink>
                     </div>
                 </Router>
                 <div className="document">
@@ -88,10 +119,8 @@ export const Document = () => {
 
                                 {
                                     document?.fields?.map((el, idx, arr) => (
-
                                         <div className={`${el.half ? "document__row-half" : "document__row-full"}`}
                                              key={idx}>
-
                                             <div className="document__hidden">
                                                 {
                                                     counter += el.count
@@ -178,12 +207,256 @@ export const Document = () => {
                                                         >
                                                         </textarea>
                                                     }
+                                                    {
+                                                        el.type == "6" && el.half &&
+                                                        <div className={`${el.required ? "document__require" : ""}`}>
+                                                            <input type="text" onChange={handleChange}
+                                                                   id={`inp${el.id}`}
+                                                                   className={`document__input document__date`}
+                                                                   placeholder="0.00"/>
+                                                        </div>
+                                                    }
+                                                    {
+                                                        el.type == "5" && el.half &&
+                                                        <div
+                                                            className={`${el.required ? "document__require input__wrapper" : "input__wrapper"}`}>
+                                                            <input type="file" onChange={handleChange}
+                                                                   id={`inp${el.id}`}
+                                                                   className={`document__input document__date input input__file`}
+                                                                   placeholder="Please select the file to upload"
+                                                                   accept=".jpg, .jpeg, .png"
+                                                                   name="profile_pic"/>
+                                                            <label htmlFor={`inp${el.id}`}
+                                                                   className="input__file-button">
+                                                                <span className="input__file-icon-wrapper">
+                                                                    Upload
+                                                                </span>
+                                                                <span
+                                                                    className="input__file-button-text">Please select the file to upload</span>
+                                                            </label>
+
+                                                        </div>
+                                                    }
+
                                                 </div>
                                             </div>
-
                                         </div>
                                     ))
                                 }
+                                <div className="border">
+                                    <div className="document__unique">
+                                        <p className="document__unique-item">
+
+                                        </p>
+                                        <p className="document__unique-item">
+                                            From
+                                        </p>
+                                        <p className="document__unique-item">
+                                            To
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Departure Date
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Departure Time
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Arrival Date
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Arrival Time
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Airline Company/Flight Number
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Ticket Category
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Ticket amount (KZT)
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Remarks
+                                        </p>
+                                        <p className="document__unique-item">
+
+                                        </p>
+                                    </div>
+                                    <div className="document__unique-fill">
+                                        <p className="document__unique-fill-item document__unique-fill-1  ">
+                                            <input type="checkbox" id="radio"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-fill-2 ">
+                                            <input type="text"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-fill-3">
+                                            <input type="text"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-fill-4">
+                                            <input type="date"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-fill-5">
+                                            <input type="time"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-fill-6">
+                                            <input type="date"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-fill-7">
+                                            <input type="time"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-fill-8">
+                                            <input type="text"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-fill-9">
+                                            <input type="text"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-fill-10">
+                                            <input type="text"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-fill-11">
+                                            <input type="text"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-fill-12">
+
+                                        </p>
+                                    </div>
+                                    <div className="document__unique-more">
+                                        <input type="checkbox" id="radio"/>
+                                        <label htmlFor="radio" className="document__unique-label"> select all</label>
+                                        <i className="far fa-trash-alt document__unique-svg"> </i>
+                                        <button className="document__unique-btn document__unique-button-1">
+                                            <i className="fas fa-arrow-up"> </i>
+                                        </button>
+                                        <button className="document__unique-btn document__unique-button-2">
+                                            <i className="fas fa-plus"> </i>
+                                        </button>
+                                        <button className="document__unique-btn document__unique-button-3">
+                                            <i className="fas fa-arrow-down"> </i>
+                                        </button>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+                                <div className="border">
+                                    <div className="document__unique">
+                                        <p className="document__unique-item">
+
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Start date
+                                        </p>
+                                        <p className="document__unique-item">
+                                            End Date
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Original Currency
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Accomodation Fee
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Other Fee
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Subtotal of the original currency
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Exchange Rate
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Amount (USD)
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Travel Days
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Region
+                                        </p>
+                                        <p className="document__unique-item">
+                                            Allowance
+                                        </p>
+                                        <p className="document__unique-item">
+
+                                        </p>
+                                    </div>
+                                    <div className="document__unique-fill">
+                                        <p className="document__unique-fill-item document__unique-filled-1  ">
+                                            <input type="checkbox" id="radio"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-filled-2 ">
+                                            <input type="date"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-filled-3">
+                                            <input type="date"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-filled-4">
+                                            <select id="cars" className="document__select">
+                                                <option label="==Select==">==Select==</option>
+                                                <option label="Department afford/ Team afford">Department afford/ Team
+                                                    afford
+                                                </option>
+                                                <option label="Project afford/ Project">Project afford/ Project</option>
+                                            </select>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-filled-5">
+                                            <input type="text"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-filled-6">
+                                            <input type="text"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-filled-7">
+                                            <input type="text" placeholder="0"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-filled-8">
+                                            <input type="text"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-filled-9">
+                                            <input type="text" placeholder="0"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-filled-10">
+                                            <input type="text"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-filled-11">
+                                            <select id="cars" className="document__select">
+                                                <option label="==Select==">==Select==</option>
+                                                <option label="Department afford/ Team afford">Department afford/ Team
+                                                    afford
+                                                </option>
+                                                <option label="Project afford/ Project">Project afford/ Project</option>
+                                            </select>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-filled-12">
+                                            <input type="text" placeholder="0.00"/>
+                                        </p>
+                                        <p className="document__unique-fill-item document__unique-filled-13">
+
+                                        </p>
+                                    </div>
+                                    <div className="document__unique-more">
+                                        <input type="checkbox" id="radio"/>
+                                        <label htmlFor="radio" className="document__unique-label"> select all</label>
+                                        <i className="far fa-trash-alt document__unique-svg"> </i>
+                                        <button className="document__unique-btn document__unique-button-1">
+                                            <i className="fas fa-arrow-up"> </i>
+                                        </button>
+                                        <button className="document__unique-btn document__unique-button-2">
+                                            <i className="fas fa-plus"> </i>
+                                        </button>
+                                        <button className="document__unique-btn document__unique-button-3">
+                                            <i className="fas fa-arrow-down"> </i>
+                                        </button>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                         <div className="document__button-cover">
