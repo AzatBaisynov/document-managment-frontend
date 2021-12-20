@@ -1019,6 +1019,7 @@ button {
     display: flex;
     border: 1px solid lightgrey;
     border-top: none;
+    position: relative;
     background-color: white;
 }
 

@@ -40,7 +40,7 @@ export const Auth = () => {
                         <p className="auth_error-message">{message}</p>
                         <input id="auth_login" className="auth_username" placeholder="Username" type="text"
                                onChange={(e) => setLogin(e.target.value)}/>
-                        <label htmlFor="auth_password"></label>
+                        <label htmlFor="auth_password"> </label>
                         <input id="auth_password" className="auth_password" placeholder="Password" type="password"
                                onChange={(e) => setPassword(e.target.value)}
                         />

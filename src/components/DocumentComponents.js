@@ -35,7 +35,13 @@ export const DocumentComponents = ({category_id}) => {
                                 {el.url ? <img src={el.url}/>
                                     : <i className="fas fa-file-alt document__img"> </i>}
                             </div>
-                            <h4 className="report-box-title">{el.name}</h4>
+                            <h4 className="report-box-title">
+                                {
+                                    el.name.split("").map((element, idx) => (
+                                        idx < 8 ? element : ""))
+                                }
+                                ...
+                            </h4>
                         </div>
                     </NavLink>
                 ))

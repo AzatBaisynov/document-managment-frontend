@@ -2,12 +2,13 @@ import React, {useEffect, useState} from 'react'
 import {NavLink, useParams} from "react-router-dom";
 import {MemoryRouter as Router} from "react-router";
 import axios from "axios";
+import {DocumentUnique} from "./DocumentUnique";
 
 export const Document = () => {
     const [document, setDocument] = useState([])
     const [fields, setFields] = useState([])
-
     const {id} = useParams()
+    const [isShown, setIsShown] = useState(false)
 
 
     useEffect(() => {
@@ -112,7 +113,9 @@ export const Document = () => {
 
                             {
                                 <div className="document__title">
-                                    {document?.document?.name}
+                                    {
+                                        document?.document?.name
+                                    }
                                 </div>
                             }
                             <div className="document__rows">
@@ -236,225 +239,222 @@ export const Document = () => {
                                                             </label>
 
                                                         </div>
-                                                    }
+                                                       }
 
                                                 </div>
                                             </div>
                                         </div>
                                     ))
                                 }
-                                <div className="border">
-                                    <div className="document__unique">
-                                        <p className="document__unique-item">
+                                <DocumentUnique/>
+                                {/*<div className="border">*/}
+                                {/*    <div className="document__unique">*/}
+                                {/*        <p className="document__unique-item">*/}
 
-                                        </p>
-                                        <p className="document__unique-item">
-                                            From
-                                        </p>
-                                        <p className="document__unique-item">
-                                            To
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Departure Date
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Departure Time
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Arrival Date
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Arrival Time
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Airline Company/Flight Number
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Ticket Category
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Ticket amount (KZT)
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Remarks
-                                        </p>
-                                        <p className="document__unique-item">
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            From*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            To*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Departure Date*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Departure Time*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Arrival Date*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Arrival Time*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Airline Company/Flight Number*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Ticket Category*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Ticket amount (KZT)*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Remarks*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
 
-                                        </p>
-                                    </div>
-                                    <div className="document__unique-fill">
-                                        <p className="document__unique-fill-item document__unique-fill-1  ">
-                                            <input type="checkbox" id="radio"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-fill-2 ">
-                                            <input type="text"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-fill-3">
-                                            <input type="text"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-fill-4">
-                                            <input type="date"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-fill-5">
-                                            <input type="time"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-fill-6">
-                                            <input type="date"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-fill-7">
-                                            <input type="time"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-fill-8">
-                                            <input type="text"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-fill-9">
-                                            <input type="text"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-fill-10">
-                                            <input type="text"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-fill-11">
-                                            <input type="text"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-fill-12">
+                                {/*        </p>*/}
+                                {/*    </div>*/}
+                                {/*    {*/}
+                                {/*        isShown &&*/}
+                                {/*        <div className="document__unique-fill">*/}
+                                {/*            <p className="document__unique-fill-item document__unique-fill-1  ">*/}
+                                {/*                <input type="checkbox" id="radio"/>*/}
+                                {/*            </p>*/}
+                                {/*            <p className="document__unique-fill-item document__unique-fill-2 ">*/}
+                                {/*                <input type="text"/>*/}
+                                {/*            </p>*/}
+                                {/*            <p className="document__unique-fill-item document__unique-fill-3">*/}
+                                {/*                <input type="text"/>*/}
+                                {/*            </p>*/}
+                                {/*            <p className="document__unique-fill-item document__unique-fill-4">*/}
+                                {/*                <input type="date"/>*/}
+                                {/*            </p>*/}
+                                {/*            <p className="document__unique-fill-item document__unique-fill-5">*/}
+                                {/*                <input type="time"/>*/}
+                                {/*            </p>*/}
+                                {/*            <p className="document__unique-fill-item document__unique-fill-6">*/}
+                                {/*                <input type="date"/>*/}
+                                {/*            </p>*/}
+                                {/*            <p className="document__unique-fill-item document__unique-fill-7">*/}
+                                {/*                <input type="time"/>*/}
+                                {/*            </p>*/}
+                                {/*            <p className="document__unique-fill-item document__unique-fill-8">*/}
+                                {/*                <input type="text"/>*/}
+                                {/*            </p>*/}
+                                {/*            <p className="document__unique-fill-item document__unique-fill-9">*/}
+                                {/*                <input type="text"/>*/}
+                                {/*            </p>*/}
+                                {/*            <p className="document__unique-fill-item document__unique-fill-10">*/}
+                                {/*                <input type="text"/>*/}
+                                {/*            </p>*/}
+                                {/*            <p className="document__unique-fill-item document__unique-fill-11">*/}
+                                {/*                <input type="text"/>*/}
+                                {/*            </p>*/}
+                                {/*            <p className="document__unique-fill-item document__unique-fill-12"*/}
+                                {/*               onClick={()=>setIsShown(false)}*/}
+                                {/*            >*/}
+                                {/*                x*/}
+                                {/*            </p>*/}
+                                {/*        </div>*/}
+                                {/*    }*/}
+                                {/*    <div className="document__unique-more">*/}
+                                {/*        <input type="checkbox" id="radio"/>*/}
+                                {/*        <label htmlFor="radio" className="document__unique-label"> select all</label>*/}
+                                {/*        <i className="far fa-trash-alt document__unique-svg"> </i>*/}
+                                {/*        <button className="document__unique-btn document__unique-button-1">*/}
+                                {/*            <i className="fas fa-arrow-up"> </i>*/}
+                                {/*        </button>*/}
+                                {/*        <button className="document__unique-btn document__unique-button-2"*/}
+                                {/*                onClick={()=>setIsShown(true)}>*/}
+                                {/*            <i className="fas fa-plus"> </i>*/}
+                                {/*        </button>*/}
+                                {/*        <button className="document__unique-btn document__unique-button-3">*/}
+                                {/*            <i className="fas fa-arrow-down"> </i>*/}
+                                {/*        </button>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
+                                {/*<div className="border">*/}
+                                {/*    <div className="document__unique">*/}
+                                {/*        <p className="document__unique-item">*/}
 
-                                        </p>
-                                    </div>
-                                    <div className="document__unique-more">
-                                        <input type="checkbox" id="radio"/>
-                                        <label htmlFor="radio" className="document__unique-label"> select all</label>
-                                        <i className="far fa-trash-alt document__unique-svg"> </i>
-                                        <button className="document__unique-btn document__unique-button-1">
-                                            <i className="fas fa-arrow-up"> </i>
-                                        </button>
-                                        <button className="document__unique-btn document__unique-button-2">
-                                            <i className="fas fa-plus"> </i>
-                                        </button>
-                                        <button className="document__unique-btn document__unique-button-3">
-                                            <i className="fas fa-arrow-down"> </i>
-                                        </button>
-                                    </div>
-                                </div>
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Start date*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            End Date*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Original Currency*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Accomodation Fee*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Other Fee*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Subtotal of the original currency*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Exchange Rate*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Amount (USD)*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Travel Days*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Region*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
+                                {/*            Allowance*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-item">*/}
 
+                                {/*        </p>*/}
+                                {/*    </div>*/}
+                                {/*    <div className="document__unique-fill">*/}
+                                {/*        <p className="document__unique-fill-item document__unique-filled-1  ">*/}
+                                {/*            <input type="checkbox" id="radio"/>*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-fill-item document__unique-filled-2 ">*/}
+                                {/*            <input type="date"/>*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-fill-item document__unique-filled-3">*/}
+                                {/*            <input type="date"/>*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-fill-item document__unique-filled-4">*/}
+                                {/*            <select id="cars" className="document__select">*/}
+                                {/*                <option label="==Select==">==Select==</option>*/}
+                                {/*                <option label="Department afford/ Team afford">Department afford/ Team*/}
+                                {/*                    afford*/}
+                                {/*                </option>*/}
+                                {/*                <option label="Project afford/ Project">Project afford/ Project</option>*/}
+                                {/*            </select>*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-fill-item document__unique-filled-5">*/}
+                                {/*            <input type="text"/>*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-fill-item document__unique-filled-6">*/}
+                                {/*            <input type="text"/>*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-fill-item document__unique-filled-7">*/}
+                                {/*            <input type="text" placeholder="0"/>*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-fill-item document__unique-filled-8">*/}
+                                {/*            <input type="text"/>*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-fill-item document__unique-filled-9">*/}
+                                {/*            <input type="text" placeholder="0"/>*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-fill-item document__unique-filled-10">*/}
+                                {/*            <input type="text"/>*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-fill-item document__unique-filled-11">*/}
+                                {/*            <select id="cars" className="document__select">*/}
+                                {/*                <option label="==Select==">==Select==</option>*/}
+                                {/*                <option label="Department afford/ Team afford">Department afford/ Team*/}
+                                {/*                    afford*/}
+                                {/*                </option>*/}
+                                {/*                <option label="Project afford/ Project">Project afford/ Project</option>*/}
+                                {/*            </select>*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-fill-item document__unique-filled-12">*/}
+                                {/*            <input type="text" placeholder="0.00"/>*/}
+                                {/*        </p>*/}
+                                {/*        <p className="document__unique-fill-item document__unique-filled-13">*/}
 
-
-
-
-
-
-
-
-
-                                <div className="border">
-                                    <div className="document__unique">
-                                        <p className="document__unique-item">
-
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Start date
-                                        </p>
-                                        <p className="document__unique-item">
-                                            End Date
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Original Currency
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Accomodation Fee
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Other Fee
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Subtotal of the original currency
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Exchange Rate
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Amount (USD)
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Travel Days
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Region
-                                        </p>
-                                        <p className="document__unique-item">
-                                            Allowance
-                                        </p>
-                                        <p className="document__unique-item">
-
-                                        </p>
-                                    </div>
-                                    <div className="document__unique-fill">
-                                        <p className="document__unique-fill-item document__unique-filled-1  ">
-                                            <input type="checkbox" id="radio"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-filled-2 ">
-                                            <input type="date"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-filled-3">
-                                            <input type="date"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-filled-4">
-                                            <select id="cars" className="document__select">
-                                                <option label="==Select==">==Select==</option>
-                                                <option label="Department afford/ Team afford">Department afford/ Team
-                                                    afford
-                                                </option>
-                                                <option label="Project afford/ Project">Project afford/ Project</option>
-                                            </select>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-filled-5">
-                                            <input type="text"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-filled-6">
-                                            <input type="text"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-filled-7">
-                                            <input type="text" placeholder="0"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-filled-8">
-                                            <input type="text"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-filled-9">
-                                            <input type="text" placeholder="0"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-filled-10">
-                                            <input type="text"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-filled-11">
-                                            <select id="cars" className="document__select">
-                                                <option label="==Select==">==Select==</option>
-                                                <option label="Department afford/ Team afford">Department afford/ Team
-                                                    afford
-                                                </option>
-                                                <option label="Project afford/ Project">Project afford/ Project</option>
-                                            </select>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-filled-12">
-                                            <input type="text" placeholder="0.00"/>
-                                        </p>
-                                        <p className="document__unique-fill-item document__unique-filled-13">
-
-                                        </p>
-                                    </div>
-                                    <div className="document__unique-more">
-                                        <input type="checkbox" id="radio"/>
-                                        <label htmlFor="radio" className="document__unique-label"> select all</label>
-                                        <i className="far fa-trash-alt document__unique-svg"> </i>
-                                        <button className="document__unique-btn document__unique-button-1">
-                                            <i className="fas fa-arrow-up"> </i>
-                                        </button>
-                                        <button className="document__unique-btn document__unique-button-2">
-                                            <i className="fas fa-plus"> </i>
-                                        </button>
-                                        <button className="document__unique-btn document__unique-button-3">
-                                            <i className="fas fa-arrow-down"> </i>
-                                        </button>
-                                    </div>
-                                </div>
+                                {/*        </p>*/}
+                                {/*    </div>*/}
+                                {/*    <div className="document__unique-more">*/}
+                                {/*        <input type="checkbox" id="radio"/>*/}
+                                {/*        <label htmlFor="radio" className="document__unique-label"> select all</label>*/}
+                                {/*        <i className="far fa-trash-alt document__unique-svg"> </i>*/}
+                                {/*        <button className="document__unique-btn document__unique-button-1">*/}
+                                {/*            <i className="fas fa-arrow-up"> </i>*/}
+                                {/*        </button>*/}
+                                {/*        <button className="document__unique-btn document__unique-button-2">*/}
+                                {/*            <i className="fas fa-plus"> </i>*/}
+                                {/*        </button>*/}
+                                {/*        <button className="document__unique-btn document__unique-button-3">*/}
+                                {/*            <i className="fas fa-arrow-down"> </i>*/}
+                                {/*        </button>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
 
 
                             </div>
