@@ -90,7 +90,7 @@ button {
 .header_bottom {
     height: 37px;
     background: #ceeaf5;
-    border-top: #00509d solid 7px;
+    border-top: #2373c8 solid 7px;
 }
 
 .header_nav {
@@ -102,12 +102,13 @@ button {
     display: flex;
     align-items: center;
     padding: 0 20px;
-    background: #00509d;
+    background: #2373c8;
     color: #ffffff;
 }
 
 .header_link {
     position: relative;
+    font-weight: 600;
 }
 
 .header_link:before {

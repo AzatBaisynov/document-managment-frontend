@@ -55,7 +55,7 @@ export const Document = () => {
             let newAmount = null
             if (el.type == "3") {
                 newDate = [el.value]
-            } else if (el.type == "5") {
+            } else if (el.type === "5") {
                 newAmount = [el.value]
             }
 
@@ -158,7 +158,7 @@ export const Document = () => {
                                                 </div>
                                                 <div className="document__desc">
                                                     {
-                                                        el.type == "1" && el.half &&
+                                                        el.type === "1" && el.half &&
                                                         <div className={`${el.required ? "document__require" : ""}`}>
                                                             <input type="text" onChange={handleChange}
                                                                    id={`inp${el.id}`}
@@ -167,7 +167,7 @@ export const Document = () => {
                                                     }
 
                                                     {
-                                                        el.type == "3" &&
+                                                        el.type === "3" &&
                                                         <div className={`${el.required ? "document__require" : ""}`}>
                                                             <input type="date" onChange={handleChange}
                                                                    id={`inp${el.id}`}
@@ -176,7 +176,7 @@ export const Document = () => {
                                                     }
 
                                                     {
-                                                        el.type == "2" &&
+                                                        el.type === "2" &&
                                                         <div
                                                             className={`document__checkbox ${el.required ? "document__require" : ""}`}>
                                                             <div>
@@ -202,7 +202,7 @@ export const Document = () => {
                                                     }
 
                                                     {
-                                                        el.type == "4" &&
+                                                        el.type === "4" &&
 
                                                         <textarea
                                                             className={`document__input document__comment${el.required ? "document__require" : ""}`}
@@ -211,7 +211,7 @@ export const Document = () => {
                                                         </textarea>
                                                     }
                                                     {
-                                                        el.type == "6" && el.half &&
+                                                        el.type === "6" && el.half &&
                                                         <div className={`${el.required ? "document__require" : ""}`}>
                                                             <input type="text" onChange={handleChange}
                                                                    id={`inp${el.id}`}
@@ -220,7 +220,7 @@ export const Document = () => {
                                                         </div>
                                                     }
                                                     {
-                                                        el.type == "5" && el.half &&
+                                                        el.type === "5" && el.half &&
                                                         <div
                                                             className={`${el.required ? "document__require input__wrapper" : "input__wrapper"}`}>
                                                             <input type="file" onChange={handleChange}

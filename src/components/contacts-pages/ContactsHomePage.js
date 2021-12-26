@@ -20,7 +20,6 @@ export const ContactsHomePage = () => {
         }
         axios(config)
             .then(function (response) {
-                console.log(response.data)
                 setDepartmens([...response.data])
             })
             .catch(function (error) {

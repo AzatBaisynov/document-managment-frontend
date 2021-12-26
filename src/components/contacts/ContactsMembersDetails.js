@@ -4,9 +4,6 @@ import Scan from "../contacts/../../assets/images/scan.png"
 import Gender from "../contacts/../../assets/images/gender.png"
 
 const ContactsMembersDetails = ({ details }) => {
-    useEffect(() => {
-        console.log("HEYYYYY", details)
-    }, [details])
     return (
         <div className="contacts__homepage-item">
             {details.fullName ? (

@@ -14,12 +14,8 @@ const ContactsMembers = ({ department, setEmployee }) => {
                     'Authorization' : localStorage.getItem("token")
                 }
             }
-            {
-                console.log(localStorage.getItem("token"))
-            }
             axios(config)
                 .then(function (response) {
-                    console.log(response.data)
                     setMembers({ ...response.data })
                 })
                 .catch(function (error) {
@@ -28,12 +24,21 @@ const ContactsMembers = ({ department, setEmployee }) => {
         }
     }, [department])
 
+    const principalChecker = (contact, principal) => {
+        console.log(contact)
+        console.log(principal)
+        if (contact.id !== principal.id) 
+        return (
+            <Contact employee={contact} setEmployee={setEmployee} key={contact.id}/>
+        )
+    }
+
     return (
         <div className="contacts__homepage-item contacts__members">
             {
                 members?.employees && (
                     <div className="contacts__members-title">
-                        CPL department <span>{members.employees.length + 1}</span> staff
+                        CPL department <span>{members.employees.length}</span> staff
                     </div>
                 )
             }
@@ -42,17 +47,15 @@ const ContactsMembers = ({ department, setEmployee }) => {
             </p>
             {
                 members?.principal && (
-                    <Contact employee={members?.principal} setEmployee={setEmployee} />
+                    <Contact employee={members?.principal} setEmployee={setEmployee}/>
                 )
             }
             <p className="contacts__members-subtitle">
-                member
+                members
             </p>
 
             {
-                members?.employees?.map(el => (
-                    <Contact employee={el} setEmployee={setEmployee} />
-                ))
+                members?.employees?.map(el => principalChecker(el, members?.principal))
             }
         </div>
     );

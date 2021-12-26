@@ -33,7 +33,7 @@ export const Auth = () => {
         <section className="auth">
             <div className="auth_container">
                 <form className="auth_form" onSubmit={handleSubmit}>
-                    <img src={logo} className="auth_logo"/>
+                    <img src={logo} className="auth_logo" alt="logo"/>
                     <div className="auth_sign-in">
                         <label htmlFor="auth_loging">
                         </label>
