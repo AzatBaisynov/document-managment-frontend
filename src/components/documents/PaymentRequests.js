@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import { address } from '../data/data';
 
 const PaymentRequests = () => {
     const [user, setUser] = useState({})
     useEffect(() => {
         const config = {
             method: 'GET',
-            url: 'http://109.248.133.36:8080/v1/api/user',
+            url: `${address.use}/v1/api/user`,
             headers: {
                 'Authorization': localStorage.getItem("token")
             }

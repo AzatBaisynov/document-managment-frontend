@@ -4,6 +4,7 @@ import ContactsOrganisation from "../contacts/ContactsOrganisation";
 import ContactsMembers from "../contacts/ContactsMembers";
 import ContactsMembersDetails from "../contacts/ContactsMembersDetails";
 import axios from 'axios';
+import { address } from '../data/data';
 
 export const ContactsHomePage = () => {
     const [departments, setDepartmens] = useState([])
@@ -13,7 +14,7 @@ export const ContactsHomePage = () => {
     useEffect(() => {
         const config = {
             method : 'POST',
-            url: 'http://109.248.133.36:8080/v1/api/contacts/list',
+            url: `${address.use}/v1/api/contacts/list`,
             headers: {
                 'Authorization': localStorage.getItem("token")
             }

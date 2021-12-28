@@ -11,6 +11,7 @@ import {ContactsAddressBook} from "./components/contacts-pages/ContactsAddressBo
 import PaymentRequests from "./components/documents/PaymentRequests";
 import {Document} from "./components/documents/Document";
 import {DocumentsMenu} from "./components/DocumentsMenu";
+import { ApproveDoc } from "./components/approve/ApproveDoc";
 
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
                                 <Route exact path="/sraffyellowpage" component={ContactsStaffYellowPages}/>
                                 <Route exact path="/addressbook" component={ContactsAddressBook}/>
                                 <Route path="/document/:id" component={Document}/>
+                                <Route path="/approval/:id" component={ApproveDoc} />
                             </Switch>
 
                         </Router>

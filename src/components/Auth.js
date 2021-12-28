@@ -3,6 +3,7 @@ import logo from '../assets/images/logo_header.png'
 import {useDispatch} from "react-redux";
 import {loginAction} from "../redux/actions/login";
 import axios from "axios";
+import { address } from './data/data';
 
 
 export const Auth = () => {
@@ -16,7 +17,7 @@ export const Auth = () => {
         const auth = JSON.stringify({login, password})
         var config = {
             method: 'post',
-            url: 'http://109.248.133.36:8080/v1/api/auth',
+            url: `${address.use}/v1/api/auth`,
             headers: {
                 'Content-Type': 'application/json'
             },

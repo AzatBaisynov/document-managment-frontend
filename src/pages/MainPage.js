@@ -12,6 +12,7 @@ import {Notice} from '../components/Notice';
 import {News} from '../components/News';
 import axios from 'axios';
 import {DocumentsMenu} from '../components/DocumentsMenu';
+import { address } from '../components/data/data';
 
 
 const MainPage = () => {
@@ -20,7 +21,7 @@ const MainPage = () => {
     useEffect(() => {
         const config = {
             method: 'get',
-            url: 'http://109.248.133.36:8080/v1/api/document/categories',
+            url: `${address.use}/v1/api/document/categories`,
             headers: {
                 'Authorization': localStorage.getItem("token")
             }

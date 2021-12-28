@@ -6,13 +6,14 @@ import exclamation from '../assets/images/exclamation.svg'
 import {useDispatch} from "react-redux";
 import {logoutAction} from "../redux/actions/login";
 import axios from "axios";
+import { address } from './data/data';
 
 export const Header = () => {
     const [members, setMembers] = useState({})
     useEffect(() => {
         const config = {
             method: 'GET',
-            url: 'http://109.248.133.36:8080/v1/api/user',
+            url: `${address.use}/v1/api/user`,
             headers: {
                 'Authorization': localStorage.getItem("token")
             }

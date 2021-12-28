@@ -25,10 +25,10 @@ export const ContactsPage = () => {
 
                             </i>
                         </div>
-                        <NavLink to='/staff' className="contacts__header-item">Staff yellow pages</NavLink>
+                        {/* <NavLink to='/staff' className="contacts__header-item">Staff yellow pages</NavLink>
                         <div className="contacts__header-item contacts__header-logo">
                             <i className="fas fa-angle-right"> </i>
-                        </div>
+                        </div> */}
                         <NavLink to='/address' className="contacts__header-item"> Address Book</NavLink>
                     </div>
                     <Switch>

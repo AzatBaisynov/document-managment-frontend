@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from "react-router-dom";
 import axios from 'axios';
+import { address } from './data/data';
 
 export const DocumentComponents = ({ category_id }) => {
 
@@ -10,7 +11,7 @@ export const DocumentComponents = ({ category_id }) => {
         if (category_id) {
             const config = {
                 method: 'get',
-                url: `http://109.248.133.36:8080/v1/api/document/categories/${category_id}`,
+                url: `${address.use}/v1/api/document/categories/${category_id}`,
                 headers: {
                     'Authorization': localStorage.getItem("token")
                 }
@@ -26,7 +27,6 @@ export const DocumentComponents = ({ category_id }) => {
     }, [])
 
     return (
-
         <div>
             {
                 document.map((el, idx) => (

@@ -6,3 +6,9 @@ export const data =
             "Invoice Type", "Invoice No.", "Payee", "Payee Account", "Receiving Bank",
             "SWIFT Code", "Upload Attachment"]
     }
+
+export const address = {
+    dev : "http://localhost:8080",
+    prod : "http://109.248.133.36:8080",
+    use : "http://109.248.133.36:8080"
+}

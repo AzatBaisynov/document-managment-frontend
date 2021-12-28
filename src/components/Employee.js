@@ -4,6 +4,7 @@ import {NavLink, Route, Switch, BrowserRouter} from "react-router-dom";
 import axios from "axios";
 import {Contact} from "./contacts/Contact";
 import {DocumentsMenu} from "./DocumentsMenu";
+import { address } from './data/data';
 
 
 const toggleActive = (e) => {
@@ -20,7 +21,7 @@ export const Employee = () => {
     useEffect(() => {
         const config = {
             method: 'GET',
-            url: 'http://109.248.133.36:8080/v1/api/user',
+            url: `${address.use}/v1/api/user`,
             headers: {
                 'Authorization': localStorage.getItem("token")
             }

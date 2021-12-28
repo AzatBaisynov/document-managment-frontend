@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Contact } from './Contact';
+import { address } from '../data/data';
 
 const ContactsMembers = ({ department, setEmployee }) => {
     const [members, setMembers] = useState({})
@@ -9,7 +10,7 @@ const ContactsMembers = ({ department, setEmployee }) => {
         if (department) {
             const config = {
                 method: 'GET',
-                url: `http://109.248.133.36:8080/v1/api/contacts/${department}`,
+                url: `${address.use}/v1/api/contacts/${department}`,
                 headers: {
                     'Authorization' : localStorage.getItem("token")
                 }

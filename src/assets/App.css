@@ -245,6 +245,23 @@ button {
     overflow-y: scroll;
 }
 
+.todo_document {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.todo_document:hover {
+    text-decoration: underline;
+}
+
+.todo_dot_red {
+    width: 6px;
+    height: 6px;
+    background: orangered;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
 .todo_info {
     padding: 15px;
     min-height: 180px;
@@ -258,6 +275,7 @@ button {
 .todo_nothing {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .report {
@@ -447,6 +465,33 @@ button {
 .prev {
     bottom: 10px;
     right: 200px;
+}
+
+.contacts__created {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.contacts__created span {
+    font-size: 24px;
+}
+
+.contacts__close {
+    background: #fff;
+    color: orangered;
+    border: 1px orangered solid;
+    width: 145px;
+    height: 27px;
+    margin-top: 15px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+.contacts__close:hover {
+    background: orangered;
+    color: #fff;
 }
 
 .contacts__page {
@@ -846,6 +891,8 @@ button {
 .document__desc {
     padding: 10px 130px 10px 10px;
     width: 100%;
+    align-items: center;
+    display: flex;
 }
 
 .document__desc-select {
@@ -862,9 +909,52 @@ button {
     color: cornflowerblue;
 }
 
+.document__info_light { 
+    color: #a7a7a7;
+}
+
 .document__comment {
     border: 1px solid lightgrey;
     height: 80px;
+}
+
+.document__approve {
+    background: green;
+    width: 108px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 3px;
+    margin-left: 10px;
+    cursor: pointer;
+    border: 1px solid green;
+}
+
+.document__approve:hover {
+    border: 1px solid green;
+    background: none;
+    color: green;
+}
+
+.document__reject {
+    background: orangered;
+    width: 108px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid orangered;
+}
+
+.document__reject:hover {
+    border: 1px solid orangered;
+    background: none;
+    color: orangered;
 }
 
 .document__input-select {
@@ -929,6 +1019,10 @@ button {
     width: 120px;
     height: 40px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
 }
 
 .document__submit:hover {
