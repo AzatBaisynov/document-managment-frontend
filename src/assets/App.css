@@ -249,6 +249,7 @@ button {
     font-size: 12px;
     margin-bottom: 5px;
 }
+
 .todo_document:hover {
     text-decoration: underline;
 }
@@ -489,6 +490,7 @@ button {
     font-size: 16px;
     border-radius: 4px;
 }
+
 .contacts__close:hover {
     background: orangered;
     color: #fff;
@@ -798,7 +800,7 @@ button {
 }
 
 .document__approval {
-    color: #ef7b00;
+    color: #2373c8;
     font-size: 15px;
     padding-bottom: 40px;
     font-weight: bold;
@@ -909,7 +911,7 @@ button {
     color: cornflowerblue;
 }
 
-.document__info_light { 
+.document__info_light {
     color: #a7a7a7;
 }
 
@@ -1015,7 +1017,7 @@ button {
 }
 
 .document__submit {
-    background-color: #ed7b3d;
+    background-color: #2373c8;
     width: 120px;
     height: 40px;
     cursor: pointer;
@@ -1026,9 +1028,9 @@ button {
 }
 
 .document__submit:hover {
-    color: #ed7b3d;
+    color: #2373c8;
     background-color: #FFFFFF;
-    border: 1px solid #ed7b3d;
+    border: 1px solid #2373c8;
 }
 
 .document__button-cover {
@@ -1056,7 +1058,7 @@ button {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    background: #ed7b3d;
+    background: #2373c8;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -1303,4 +1305,93 @@ button {
     color: #FFFFFF;
     font-size: 17px;
     margin-left: 10px;
+}
+
+.document__orders {
+    margin: 20px 0;
+    border: 1px solid lightgrey;
+    padding: 20px;
+}
+
+.document__orders-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.document__orders-add {
+    border: 1px solid gray;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    color: gray;
+    cursor: pointer;
+}
+
+.document__orders-items {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-right: 50px;
+}
+
+.document__orders-names {
+    display: flex;
+    flex-direction: column;
+}
+
+.document__orders-name {
+    margin-bottom: 30px;
+    background-color: #2373c8;
+    color: #FFFFFF;
+    width: 130px;
+    height: 50px;
+    text-align: center;
+    padding: 10px;
+    text-transform: capitalize;
+    position: relative;
+    font-weight: 600;
+}
+
+.document__orders-positions {
+    display: flex;
+    flex-direction: column;
+}
+
+.document__orders-position {
+    margin-bottom: 50px;
+    background-color: #ceeaf5;
+    border-radius: 5px;
+    width: 235px;
+    height: 30px;
+    text-align: center;
+    padding: 10px;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.document__orders-statuses {
+    display: flex;
+    flex-direction: column;
+}
+
+.document__orders-status {
+    margin-bottom: 60px;
+    border: 1px solid lightgrey;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.document__orders-arrow {
+    color: gray;
+    position: absolute;
+    font-size: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -40%;
 }

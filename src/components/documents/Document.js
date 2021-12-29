@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { NavLink, useParams } from "react-router-dom";
-import { MemoryRouter as Router } from "react-router";
+import React, {useEffect, useState} from 'react'
+import {NavLink, useParams} from "react-router-dom";
+import {MemoryRouter as Router} from "react-router";
 import axios from "axios";
-import { DocumentUnique } from "./DocumentUnique";
-import { address } from '../data/data';
+import {address} from '../data/data';
+import {orders} from '../data/orders';
 import V from '../../assets/images/v.svg'
 
 export const Document = () => {
     const [document, setDocument] = useState([])
     const [fields, setFields] = useState([])
-    const { id } = useParams()
+    const [positions, setPositions] = useState([])
     const [isShown, setIsShown] = useState(false)
+    const {id} = useParams()
     const [submitted, setSubmitted] = useState(false)
-
 
     useEffect(() => {
         const config = {
@@ -22,7 +22,7 @@ export const Document = () => {
                 'Authorization': localStorage.getItem("token")
             }
         };
-
+        console.log(localStorage.getItem("token"))
         axios(config)
             .then(function (response) {
                 setDocument(response.data)
@@ -34,9 +34,13 @@ export const Document = () => {
 
     }, [])
 
+    useEffect(() => {
+        setPositions(orders)
+    }, [])
+
     const handleChange = (e) => {
-        let { id } = e.target
-        const { value } = e.target
+        let {id} = e.target
+        const {value} = e.target
         id = id.replaceAll("inp", "").replace(/[^0-9]+/g, "")
         const fieldsWithValues = fields.map(el => {
             if (el.id === +id) {
@@ -66,7 +70,7 @@ export const Document = () => {
             if (!el.value && !newDate && !newAmount) obj.value = ""
             return obj
         })
-        const data = { "documentId": id, fields: document }
+        const data = {"documentId": id, fields: document}
         const config = {
             method: 'post',
             url: `${address.use}/v1/api/document/byuser`,
@@ -77,14 +81,14 @@ export const Document = () => {
             data: data
         };
         axios(config)
-            .then(({ data }) => {
+            .then(({data}) => {
                 (JSON.stringify(data))
                 setSubmitted(true)
             })
 
             .catch(function (error) {
-                console.log(error);
-            }
+                    console.log(error);
+                }
             )
     }
 
@@ -115,11 +119,11 @@ export const Document = () => {
                     <Router>
                         <div className="contacts__header">
                             <a href="/" className="contacts__header-logo contacts__header-item">
-                                <i className="fas fa-home" />
+                                <i className="fas fa-home"/>
                             </a>
                             <a href="/" className="contacts__header-item"> Homepage</a>
                             <div className="contacts__header-item contacts__header-logo">
-                                <i className="fas fa-angle-right" />
+                                <i className="fas fa-angle-right"/>
                             </div>
                             <NavLink to='/address' className="contacts__header-item">
                                 {document?.document?.name}
@@ -143,7 +147,7 @@ export const Document = () => {
                                     {
                                         document?.fields?.map((el, idx, arr) => (
                                             <div className={`${el.half ? "document__row-half" : "document__row-full"}`}
-                                                key={idx}>
+                                                 key={idx}>
                                                 <div className="document__hidden">
                                                     {
                                                         counter += el.count
@@ -179,19 +183,21 @@ export const Document = () => {
                                                     <div className="document__desc">
                                                         {
                                                             el.type === 1 && el.half &&
-                                                            <div className={`${el.required ? "document__require" : ""}`}>
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
                                                                 <input type="text" onChange={handleChange}
-                                                                    id={`inp${el.id}`}
-                                                                    className={`document__input document__date`} />
+                                                                       id={`inp${el.id}`}
+                                                                       className={`document__input document__date`}/>
                                                             </div>
                                                         }
 
                                                         {
                                                             el.type === 3 &&
-                                                            <div className={`${el.required ? "document__require" : ""}`}>
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
                                                                 <input type="date" onChange={handleChange}
-                                                                    id={`inp${el.id}`}
-                                                                    className={`document__input document__date`} />
+                                                                       id={`inp${el.id}`}
+                                                                       className={`document__input document__date`}/>
                                                             </div>
                                                         }
                                                         {
@@ -203,14 +209,15 @@ export const Document = () => {
                                                                         el?.choice?.split(", ").map((radio, idx) => (
                                                                             <span key={idx}>
                                                                                 <input type="radio"
-                                                                                    id={`${radio}-${el.id}`}
-                                                                                    name={`radio${el.id}${el.name.replaceAll(" ", "")}`}
-                                                                                    className="document__checkbox-item"
-                                                                                    value={radio}
-                                                                                    onClick={handleChange}
+                                                                                       id={`${radio}-${el.id}`}
+                                                                                       name={`radio${el.id}${el.name.replaceAll(" ", "")}`}
+                                                                                       className="document__checkbox-item"
+                                                                                       value={radio}
+                                                                                       onClick={handleChange}
                                                                                 />
                                                                                 <label
-                                                                                    htmlFor={`${radio}-${el.id}`} style={{marginLeft : "4px"}}>{radio}
+                                                                                    htmlFor={`${radio}-${el.id}`}
+                                                                                    style={{marginLeft: "4px"}}>{radio}
                                                                                 </label>
                                                                             </span>
                                                                         ))
@@ -228,11 +235,12 @@ export const Document = () => {
                                                         }
                                                         {
                                                             el.type === 6 && el.half &&
-                                                            <div className={`${el.required ? "document__require" : ""}`}>
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
                                                                 <input type="text" onChange={handleChange}
-                                                                    id={`inp${el.id}`}
-                                                                    className={`document__input document__date`}
-                                                                    placeholder="0.00" />
+                                                                       id={`inp${el.id}`}
+                                                                       className={`document__input document__date`}
+                                                                       placeholder="0.00"/>
                                                             </div>
                                                         }
                                                         {
@@ -240,13 +248,13 @@ export const Document = () => {
                                                             <div
                                                                 className={`${el.required ? "document__require input__wrapper" : "input__wrapper"}`}>
                                                                 <input type="file" onChange={handleChange}
-                                                                    id={`inp${el.id}`}
-                                                                    className={`document__input document__date input input__file`}
-                                                                    placeholder="Please select the file to upload"
-                                                                    accept=".jpg, .jpeg, .png"
-                                                                    name="profile_pic" />
+                                                                       id={`inp${el.id}`}
+                                                                       className={`document__input document__date input input__file`}
+                                                                       placeholder="Please select the file to upload"
+                                                                       accept=".jpg, .jpeg, .png"
+                                                                       name="profile_pic"/>
                                                                 <label htmlFor={`inp${el.id}`}
-                                                                    className="input__file-button">
+                                                                       className="input__file-button">
                                                                     <span className="input__file-icon-wrapper">
                                                                         Upload
                                                                     </span>
@@ -261,13 +269,14 @@ export const Document = () => {
                                                             <div
                                                                 className={`${el.required ? "document__require input__wrapper" : "input__wrapper"}`}>
                                                                 <input type="file" onChange={handleChange}
-                                                                    id={`inp${el.id}`}
-                                                                    className={`document__input document__date input input__file`}
-                                                                    placeholder="Please select the file to upload"
-                                                                    accept=".jpg, .jpeg, .png"
-                                                                    name="profile_pic" />
+                                                                       id={`inp${el.id}`}
+                                                                       className={`document__input document__date input input__file`}
+                                                                       placeholder="Please select the file to upload"
+                                                                       accept=".jpg, .jpeg, .png"
+                                                                       name="profile_pic"/>
                                                                 <label htmlFor={`inp${el.id}`}
-                                                                    className="input__file-button" style={{ margin: 0 }}>
+                                                                       className="input__file-button"
+                                                                       style={{margin: 0}}>
                                                                     <span className="input__file-icon-wrapper">
                                                                         Upload
                                                                     </span>
@@ -493,6 +502,87 @@ export const Document = () => {
 
 
                                 </div>
+                            </div>
+                            <div className="document__orders">
+                                <div className="document__orders-title">
+                                    <p>
+                                        Orders
+                                    </p>
+
+                                    <button className="document__orders-add"
+                                            onClick={(e) => {
+                                                e.preventDefault()
+                                                setIsShown(!isShown)
+                                            }}>
+                                        <i className={`${isShown ? "fas fa-minus" : "fas fa-plus"}`}> </i>
+                                    </button>
+                                </div>
+                                {
+                                    isShown &&
+                                    <div className="document__orders-items">
+                                        <div className="document__orders-names">
+                                            <div className="document__orders-name">
+                                                Initiator
+                                                <i className="fas fa-long-arrow-alt-down document__orders-arrow">
+
+                                                </i>
+                                            </div>
+                                            <div className="document__orders-name">
+                                                Initiator Team Head
+                                                <i className="fas fa-long-arrow-alt-down document__orders-arrow">
+
+                                                </i>
+                                            </div>
+                                            {
+                                                positions.map((el) => (
+
+                                                    <div className="document__orders-name">
+                                                        {
+                                                            el.post.position
+                                                        }
+                                                        {
+                                                            el.post.id == "10" ? "" :
+                                                                <i className="fas fa-long-arrow-alt-down document__orders-arrow">
+
+                                                                </i>
+                                                        }
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
+                                        <div className="document__order-positions">
+                                            <div className="document__orders-position">
+                                                Team Member
+                                            </div>
+                                            <div className="document__orders-position">
+                                                Team Head
+                                            </div>
+                                            <div className="document__orders-position">
+                                                Nurgul Khairosheva
+                                            </div>
+                                            <div className="document__orders-position">
+                                                Assemgul Baiarstanova
+                                            </div>
+                                        </div>
+                                        <div className="document__order-statuses">
+                                            <div className="document__orders-status">
+                                                Initiator
+                                            </div>
+                                            <div className="document__orders-status">
+                                                Approver
+                                            </div>
+                                            <div className="document__orders-status">
+                                                Approver
+                                            </div>
+                                            <div className="document__orders-status">
+                                                Executor
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                }
+
+
                             </div>
                             <div className="document__button-cover">
                                 <div className="document__submit" onClick={handleSubmit}>
