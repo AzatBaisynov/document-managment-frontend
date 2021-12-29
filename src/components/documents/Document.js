@@ -5,6 +5,7 @@ import axios from "axios";
 import {address} from '../data/data';
 import {orders} from '../data/orders';
 import V from '../../assets/images/v.svg'
+import NewSlider from "./NewSlider";
 
 export const Document = () => {
     const [document, setDocument] = useState([])
@@ -550,35 +551,6 @@ export const Document = () => {
                                                 ))
                                             }
                                         </div>
-                                        <div className="document__order-positions">
-                                            <div className="document__orders-position">
-                                                Team Member
-                                            </div>
-                                            <div className="document__orders-position">
-                                                Team Head
-                                            </div>
-                                            <div className="document__orders-position">
-                                                Nurgul Khairosheva
-                                            </div>
-                                            <div className="document__orders-position">
-                                                Assemgul Baiarstanova
-                                            </div>
-                                        </div>
-                                        <div className="document__order-statuses">
-                                            <div className="document__orders-status">
-                                                Initiator
-                                            </div>
-                                            <div className="document__orders-status">
-                                                Approver
-                                            </div>
-                                            <div className="document__orders-status">
-                                                Approver
-                                            </div>
-                                            <div className="document__orders-status">
-                                                Executor
-                                            </div>
-                                        </div>
-
                                     </div>
                                 }
 
@@ -592,6 +564,7 @@ export const Document = () => {
                         </form>
                     </div>
                 </div>
+                <NewSlider/>
             </div>
         )
     }
