@@ -12,6 +12,7 @@ import PaymentRequests from "./components/documents/PaymentRequests";
 import {Document} from "./components/documents/Document";
 import {DocumentsMenu} from "./components/DocumentsMenu";
 import { ApproveDoc } from "./components/approve/ApproveDoc";
+import { CompleteDoc } from "./components/approve/CompletedDoc";
 
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
                                 <Route exact path="/addressbook" component={ContactsAddressBook}/>
                                 <Route path="/document/:id" component={Document}/>
                                 <Route path="/approval/:id" component={ApproveDoc} />
+                                <Route path="/complete/:id" component={CompleteDoc} />
                             </Switch>
 
                         </Router>

@@ -553,8 +553,6 @@ export const Document = () => {
                                         </div>
                                     </div>
                                 }
-
-
                             </div>
                             <div className="document__button-cover">
                                 <div className="document__submit" onClick={handleSubmit}>
@@ -564,7 +562,6 @@ export const Document = () => {
                         </form>
                     </div>
                 </div>
-                <NewSlider/>
             </div>
         )
     }

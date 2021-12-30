@@ -41,7 +41,7 @@ button {
 
 .header_top {
     background: #FFF;
-    height: 133px;
+    height: 110px;
     display: flex;
     align-items: center;
 }
@@ -52,7 +52,7 @@ button {
 }
 
 .header_logo img {
-    width: 120px;
+    height: 69px;
 }
 
 .header_container {
@@ -277,6 +277,7 @@ button {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    font-size: 14px;
 }
 
 .report {
@@ -493,6 +494,22 @@ button {
 
 .contacts__close:hover {
     background: orangered;
+    color: #fff;
+}
+
+.contacts__cancel {
+    background: #fff;
+    color: #0f71b7;
+    border: 1px #0f71b7 solid;
+    width: 145px;
+    height: 27px;
+    margin-top: 15px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.contacts__cancel:hover {
+    background: #0f71b7;
     color: #fff;
 }
 

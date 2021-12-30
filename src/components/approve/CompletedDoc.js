@@ -7,21 +7,21 @@ import { MemoryRouter as Router } from "react-router";
 import V from '../../assets/images/v.svg'
 import X from '../../assets/images/x.jpg'
 
-export const ApproveDoc = () => {
+export const CompleteDoc = () => {
     const { id } = useParams()
     const [document, setDocument] = useState([])
     const [submitted, setSubmitted] = useState(1)
     const [fields, setFields] = useState([])
-    const [comment, setComment] = useState("")
 
     useEffect(() => {
         const config = {
             method: 'get',
-            url: `${address.use}/v1/api/document/approval/${id}`,
+            url: `${address.use}/v1/api/document/completed/${id}`,
             headers: {
                 'Authorization': localStorage.getItem("token")
             }
         };
+
         axios(config)
             .then(function (response) {
                 setDocument(response.data)
@@ -30,6 +30,7 @@ export const ApproveDoc = () => {
             .catch(function (error) {
                 console.log(error)
             });
+
     }, [])
 
     const handleApprove = () => {
@@ -51,36 +52,18 @@ export const ApproveDoc = () => {
         console.log("approved")
     }
 
-    const handlePreDecline = () => {
-        setSubmitted(2)
-    }
-
-    const handleBack = () => {
-        setSubmitted(5)
-    }
-
-    const handleChange = (e) => {
-        setComment(e.target.value)
-    }
-
     const handleDecline = () => {
-        const data = JSON.stringify({
-            "comment": comment
-          });
-
         const config = {
-            method: 'post',
+            method: 'get',
             url: `${address.use}/v1/api/document/decline/${id}`,
             headers: {
-                'Authorization': localStorage.getItem("token"),
-                'Content-Type': 'application/json'
-            },
-            data : data
+                'Authorization': localStorage.getItem("token")
+            }
         }
         axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
-                setSubmitted(4)
+                setSubmitted(2)
             })
             .catch(function (error) {
                 console.log(error);
@@ -109,23 +92,6 @@ export const ApproveDoc = () => {
         )
     }
     else if (submitted === 2) {
-        return (
-            <div>
-                <div className="container">
-                    <div className="contacts__created">
-                        <img src={X} alt="done" width="150px" />
-                        <span>Please describe the reason for the refusal:</span>
-                        <textarea cols="40" rows="4" style={{margin : "20px", fontSize : "20px"}} onInput={handleChange}></textarea>
-                        <div>
-                            <button className="contacts__cancel" onClick={handleBack} >Cancel</button>
-                            <button className="contacts__close" onClick={handleDecline} style={{marginLeft: "15px"}}>Continue</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-    else if (submitted === 4) {
         return (
             <div>
                 <div className="container">
@@ -316,14 +282,6 @@ export const ApproveDoc = () => {
                                             </div>
                                         ))
                                     }
-                                </div>
-                            </div>
-                            <div className="document__button-cover">
-                                <div className="document__reject" onClick={handlePreDecline}>
-                                    Reject
-                                </div>
-                                <div className="document__approve" onClick={handleApprove}>
-                                    Approve
                                 </div>
                             </div>
                         </form>

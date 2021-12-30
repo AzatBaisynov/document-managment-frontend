@@ -90,11 +90,6 @@ const MainPage = () => {
             action_link: "/",
             action_text: "Notice",
             action: Notice
-        },
-        {
-            action_link: "/news",
-            action_text: "News",
-            action: News
         }
     ]
 
@@ -105,7 +100,7 @@ const MainPage = () => {
                 <Employee/>
                 <section className="middle">
                     <Menu actions={todos} minh={"163px"} scroll={true}/>
-                    <Menu actions={noticeAndNews} minh={"450px"} scroll={false}/>
+                    <Menu actions={noticeAndNews} minh={"368px"} scroll={false}/>
                     <DocumentsMenu actions={documents} minh={"302px"} scroll={false}/>
                 </section>
                 <div>

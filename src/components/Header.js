@@ -1,16 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../assets/images/logo_header.png';
 import wait from '../assets/images/wait.svg'
 import see from '../assets/images/see.svg'
 import exclamation from '../assets/images/exclamation.svg'
-import {useDispatch} from "react-redux";
-import {logoutAction} from "../redux/actions/login";
+import { useDispatch } from "react-redux";
+import { logoutAction } from "../redux/actions/login";
 import axios from "axios";
 import { address } from './data/data';
 
 export const Header = () => {
     const [members, setMembers] = useState({})
+    const [todo, setTodo] = useState(0)
     useEffect(() => {
+
         const config = {
             method: 'GET',
             url: `${address.use}/v1/api/user`,
@@ -20,32 +22,56 @@ export const Header = () => {
         }
         axios(config)
             .then(function (response) {
-                setMembers({...response.data})
+                setMembers({ ...response.data })
             })
             .catch(function (error) {
                 console.log(error);
             });
 
+        const config2 = {
+            method: 'get',
+            url: `${address.use}/v1/api/document`,
+            headers: {
+                'Authorization': localStorage.getItem("token")
+            }
+        };
+    
+        axios(config2)
+            .then(function (response) {
+                setTodo(response.data.length);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            setInterval(() => {
+                axios(config2)
+                .then(function (response) {
+                    setTodo(response.data.length);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            }, 7000)
     }, [])
     const dispatch = useDispatch()
     return (<header className="header">
         <div className="header_top">
             <div className="container header_container">
                 <div className="header_logo">
-                    <img src={logo}/>
+                    <img src={logo} />
                 </div>
                 <div className="header_info">
                     <div className="header_name">
                         <p> Welcome </p>
                         <span className="bolder">{members.fullName}</span>
-                        <img className="header_ico" src={wait}/>
+                        <img className="header_ico" src={wait} />
+                        <span> {todo? todo : "0"} </span>
+                        <img className="header_ico" src={see} />
                         <span> 0 </span>
-                        <img className="header_ico" src={see}/>
-                        <span> 0 </span>
-                        <img className="header_ico" src={exclamation}/>
+                        <img className="header_ico" src={exclamation} />
                         <p>Feedback</p>
                         <span className="bolder"
-                              onClick={() => dispatch(logoutAction())}
+                            onClick={() => dispatch(logoutAction())}
                         >Logout</span>
                     </div>
 

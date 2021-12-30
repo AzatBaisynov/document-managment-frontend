@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import logo from '../assets/images/logo_header.png'
+import logo from '../assets/images/logo.png'
 import {useDispatch} from "react-redux";
 import {loginAction} from "../redux/actions/login";
 import axios from "axios";
