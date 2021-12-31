@@ -13,6 +13,8 @@ import {Document} from "./components/documents/Document";
 import {DocumentsMenu} from "./components/DocumentsMenu";
 import { ApproveDoc } from "./components/approve/ApproveDoc";
 import { CompleteDoc } from "./components/approve/CompletedDoc";
+import DocumentCompleted from "./components/documents/DocumentCompleted";
+import ToDoPage from "./components/documents/ToDoPage";
 
 
 const App = () => {
@@ -26,6 +28,8 @@ const App = () => {
                             <Switch>
                                 <Route exact path="/" component={MainPage}/>
                                 <Route exact path="/contacts" component={ContactsPage}/>
+                                <Route exact path="/new" component={DocumentCompleted}/>
+                                <Route exact path="/tasks" component={ToDoPage}/>
                                 <Route exact path="/document" component={Document}/>
                                 <Route exact path="/paymentrequests" component={PaymentRequests}/>
                                 <Route exact path="/homepage" component={ContactsHomePage}/>

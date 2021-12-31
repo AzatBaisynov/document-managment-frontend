@@ -56,7 +56,9 @@ export const Employee = () => {
                 <div className="class_dropdown-child">
                     <NavLink to='/contacts' className="class_link">Contacts</NavLink>
                     <a href="#" className="class_link">Related Processes</a>
-                    <a href="#" className="class_link">To do</a>
+                    <NavLink to='/new' className="class_link">New</NavLink>
+                    <NavLink to='/tasks' className="class_link">To do</NavLink>
+
                 </div>
             </nav>
             <nav className="class_dropdown">

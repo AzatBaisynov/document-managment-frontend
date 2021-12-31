@@ -1412,3 +1412,129 @@ button {
     transform: translateX(-50%);
     bottom: -40%;
 }
+
+.task__search {
+    height: 30px;
+    border: 1px solid lightgrey;
+    padding: 10px 0 10px 50px;
+    margin: 10px;
+}
+
+.task__search span {
+    color: #0f71b7;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.task__search input {
+    height: 25px;
+    border: 1px solid lightgrey;
+    color: lightgrey;
+    padding-left: 10px;
+}
+
+.task__cover {
+    display: flex;
+    justify-content: center;
+}
+
+.task__item {
+    margin: 30px 0;
+    width: 400px;
+    height: 180px;
+    border: 1px solid lightgrey;
+    border-bottom: #0f71b7 2px solid;
+    padding: 10px;
+    display: flex;
+}
+
+.task__img {
+    width: 100px;
+    height: 100%;
+    object-fit: contain;
+    margin-right: 20px;
+}
+
+.task__content {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.task__title {
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.task__desc {
+    color: gray;
+    font-size: 12px;
+}
+
+.task__col {
+    display: flex;
+}
+
+.task__col span {
+    margin-right: 20px;
+}
+
+.task__border {
+    width: 100%;
+    background-color: gray;
+    font-size: 12px;
+    margin: 15px 0;
+}
+
+.task__label {
+    position: relative;
+}
+
+.task__svg {
+    position: absolute;
+    z-index: 99;
+    top: 5px;
+    right: 10px;
+}
+
+.document__completed {
+    border-top: 1px solid lightgrey;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+    border-left: 1px solid lightgrey;
+    margin-top: 20px;
+}
+
+.document__completed p {
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    background-color: #fdf7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    font-weight: 600;
+}
+
+.document__completed-col {
+    display: flex;
+    justify-content: space-between;
+}
+
+.document__completed-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.document__completed-column div {
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    padding: 10px;
+    font-size: 15px;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+
+}
