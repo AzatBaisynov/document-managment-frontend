@@ -26,8 +26,6 @@ const ContactsMembers = ({ department, setEmployee }) => {
     }, [department])
 
     const principalChecker = (contact, principal) => {
-        console.log(contact)
-        console.log(principal)
         if (contact.id !== principal.id) 
         return (
             <Contact employee={contact} setEmployee={setEmployee} key={contact.id}/>

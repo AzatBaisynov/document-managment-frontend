@@ -10,10 +10,12 @@ export const Todo = () => {
 
     useEffect(() => {
         refresh()
+        setTimeout(() => {
+            refresh()
+        }, 7000)
     }, [])
 
     const refresh = () => {
-        console.log("hey")
         const config = {
             method: 'get',
             url: `${address.use}/v1/api/document`,

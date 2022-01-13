@@ -6,6 +6,9 @@ import { NavLink } from 'react-router-dom'
 import { MemoryRouter as Router } from "react-router";
 import V from '../../assets/images/v.svg'
 import X from '../../assets/images/x.jpg'
+import DocumentCompleted from '../documents/DocumentCompleted'
+import file from '../../assets/images/file.svg'
+import { downloadFile } from "../FileDownloader";
 
 export const ApproveDoc = () => {
     const { id } = useParams()
@@ -13,6 +16,10 @@ export const ApproveDoc = () => {
     const [submitted, setSubmitted] = useState(1)
     const [fields, setFields] = useState([])
     const [comment, setComment] = useState("")
+    const [isShown, setIsShown] = useState(false)
+    const [isShowProcess, setIsShownProcess] = useState(false)
+    const [positions, setPositions] = useState([])
+    const [attachments, setAttachments] = useState([])
 
     useEffect(() => {
         const config = {
@@ -32,6 +39,36 @@ export const ApproveDoc = () => {
             });
     }, [])
 
+    useEffect(async () => {
+        const conf = {
+            method: 'get',
+            url: `${address.use}/v1/api/document/attachment/${id}`,
+            headers: {
+                'Authorization': localStorage.getItem("token")
+            }
+        }
+        const { data } = await axios(conf)
+        if (data) setAttachments(data)
+        // console.log(data)
+    }, [fields])
+
+    useEffect(() => {
+        const config = {
+            method: 'get',
+            url: `${address.use}/v1/api/document/orders/${id}`,
+            headers: {
+                'Authorization': localStorage.getItem("token")
+            }
+        };
+        axios(config)
+            .then(function (response) {
+                setPositions(response.data)
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
+    }, [])
+
     const handleApprove = () => {
         const config = {
             method: 'get',
@@ -42,13 +79,11 @@ export const ApproveDoc = () => {
         };
         axios(config)
             .then(function (response) {
-                console.log(JSON.stringify(response.data));
                 setSubmitted(0)
             })
             .catch(function (error) {
                 console.log(error);
             });
-        console.log("approved")
     }
 
     const handlePreDecline = () => {
@@ -66,7 +101,7 @@ export const ApproveDoc = () => {
     const handleDecline = () => {
         const data = JSON.stringify({
             "comment": comment
-          });
+        });
 
         const config = {
             method: 'post',
@@ -75,17 +110,15 @@ export const ApproveDoc = () => {
                 'Authorization': localStorage.getItem("token"),
                 'Content-Type': 'application/json'
             },
-            data : data
+            data: data
         }
         axios(config)
             .then(function (response) {
-                console.log(JSON.stringify(response.data));
                 setSubmitted(4)
             })
             .catch(function (error) {
                 console.log(error);
             })
-        console.log("approved")
     }
 
     const handleClose = () => {
@@ -115,10 +148,10 @@ export const ApproveDoc = () => {
                     <div className="contacts__created">
                         <img src={X} alt="done" width="150px" />
                         <span>Please describe the reason for the refusal:</span>
-                        <textarea cols="40" rows="4" style={{margin : "20px", fontSize : "20px"}} onInput={handleChange}></textarea>
+                        <textarea cols="40" rows="4" style={{ margin: "20px", fontSize: "20px" }} onInput={handleChange}></textarea>
                         <div>
                             <button className="contacts__cancel" onClick={handleBack} >Cancel</button>
-                            <button className="contacts__close" onClick={handleDecline} style={{marginLeft: "15px"}}>Continue</button>
+                            <button className="contacts__close" onClick={handleDecline} style={{ marginLeft: "15px" }}>Continue</button>
                         </div>
                     </div>
                 </div>
@@ -138,7 +171,7 @@ export const ApproveDoc = () => {
             </div>
         )
     }
-     else {
+    else {
         return (
             <div className="contacts__page">
                 <div className="container">
@@ -213,6 +246,68 @@ export const ApproveDoc = () => {
                                                                 {/* <input type="text" onChange={handleChange}
                                                                 id={`inp${el.id}`}
                                                                 className={`document__input document__date`} /> */}
+                                                                <p className="document__info_light">{el.value}</p>
+                                                            </div>
+                                                        }
+
+                                                        {
+                                                            el.type === 20 && el.half &&
+                                                            <div className={`${el.required ? "document__require" : ""}`}>
+                                                                {/* <input type="text" onChange={handleChange}
+                                                                id={`inp${el.id}`}
+                                                                className={`document__input document__date`} /> */}
+                                                                <p className="document__info_light">{el.value}</p>
+                                                            </div>
+                                                        }
+
+                                                        {
+                                                            el.type === 21 && el.half &&
+                                                            <div className={`${el.required ? "document__require" : ""}`}>
+                                                                {/* <input type="text" onChange={handleChange}
+                                                                id={`inp${el.id}`}
+                                                                className={`document__input document__date`} /> */}
+                                                                <p className="document__info_light">{el.value}</p>
+                                                            </div>
+                                                        }
+                                                        {
+                                                            el.type === 22 &&
+                                                            <div className={`${el.required ? "document__require" : ""}`}>
+                                                                {/* <input type="text" onChange={handleChange}
+                                                                id={`inp${el.id}`}
+                                                                className={`document__input document__date`} /> */}
+                                                                <p className="document__info_light">{el.value}</p>
+                                                            </div>
+                                                        }
+
+                                                        {
+                                                            el.type === 34 &&
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
+                                                                <p className="document__info_light">{el.value.replace("T", " ")}</p>
+                                                            </div>
+                                                        }
+
+                                                        
+
+                                                        {
+                                                            el.type === 33 &&
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
+                                                                <p className="document__info_light">{el.value}</p>
+                                                            </div>
+                                                        }
+                                                        {
+                                                            el.type === 36 &&
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
+                                                                <p className="document__info_light">{el.value}</p>
+                                                            </div>
+                                                        }
+
+                                                        {
+                                                            el.type === 37 &&
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
                                                                 <p className="document__info_light">{el.value}</p>
                                                             </div>
                                                         }
@@ -308,7 +403,15 @@ export const ApproveDoc = () => {
                                                                 <span
                                                                     className="input__file-button-text">Please select the file to upload</span>
                                                             </label> */}
-                                                                Here will be attachments
+                                                                <div style={{ display: "flex" }}>
+                                                                    {
+                                                                        attachments.length ? attachments.map((el, idx) => <span key={idx} className={`input__file-button-text ${el.name}`} onClick={(e) => {
+                                                                            const fileName = e.target.className.split(" ")[1]
+                                                                            downloadFile(`${address.use}/v1/api/file/${fileName}`, fileName)
+                                                                            // console.log(fileName)
+                                                                        }} style={{ marginRight: "20px", display: "flex", alignItems: "center", cursor: "pointer" }}><img src={file} style={{ width: "40px", marginRight: "5px" }} alt="file" /> {el.originalName}</span>) : <span className="input__file-button-text">No document attachments</span>
+                                                                    }
+                                                                </div>
                                                             </div>
                                                         }
                                                     </div>
@@ -317,6 +420,76 @@ export const ApproveDoc = () => {
                                         ))
                                     }
                                 </div>
+                            </div>
+                            <div className="document__orders">
+                                <div style={{ padding: "10px", background: "whitesmoke" }}>
+                                    <div className="document__orders-title">
+                                        <p style={{ fontSize: "12px" }}>
+                                            Graph
+                                        </p>
+
+                                        <button className="document__orders-add"
+                                            onClick={(e) => {
+                                                e.preventDefault()
+                                                setIsShown(!isShown)
+                                            }}>
+                                            <i className={`${isShown ? "fas fa-minus" : "fas fa-plus"}`}> </i>
+                                        </button>
+                                    </div>
+                                </div>
+                                {
+                                    isShown &&
+                                    <div className="document__orders-items">
+                                        <div className="document__orders-names">
+                                            <div className="document__orders-name">
+                                                Initiator
+                                                <i className="fas fa-long-arrow-alt-down document__orders-arrow">
+
+                                                </i>
+                                            </div>
+                                            <div className="document__orders-name">
+                                                Initiator Team Head
+                                                <i className="fas fa-long-arrow-alt-down document__orders-arrow">
+
+                                                </i>
+                                            </div>
+                                            {
+                                                positions.map((el, idx) => (
+
+                                                    <div className="document__orders-name" key={idx}>
+                                                        {
+                                                            el.post.position
+                                                        }
+                                                        {
+                                                            idx < positions.length - 1 ? <i className="fas fa-long-arrow-alt-down document__orders-arrow"></i> : ""
+                                                        }
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div className="document__orders">
+                                <div style={{ padding: "10px", background: "whitesmoke" }}>
+                                    <div className="document__orders-title">
+                                        <p style={{ fontSize: "12px" }}>
+                                            Display circulation log
+                                        </p>
+
+                                        <button className="document__orders-add"
+                                            onClick={(e) => {
+                                                e.preventDefault()
+                                                setIsShownProcess(!isShowProcess)
+                                            }}>
+                                            <i className={`${isShown ? "fas fa-minus" : "fas fa-plus"}`}> </i>
+                                        </button>
+                                    </div>
+                                </div>
+                                {
+                                    isShowProcess &&
+                                    <DocumentCompleted />
+                                }
                             </div>
                             <div className="document__button-cover">
                                 <div className="document__reject" onClick={handlePreDecline}>

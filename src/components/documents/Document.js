@@ -1,19 +1,25 @@
-import React, {useEffect, useState} from 'react'
-import {NavLink, useParams} from "react-router-dom";
-import {MemoryRouter as Router} from "react-router";
+import React, { useEffect, useState } from 'react'
+import { NavLink, useParams } from "react-router-dom";
+import { MemoryRouter as Router } from "react-router";
 import axios from "axios";
-import {address} from '../data/data';
-import {orders} from '../data/orders';
+import { address } from '../data/data';
 import V from '../../assets/images/v.svg'
-import NewSlider from "./NewSlider";
+import DocumentCompleted from './DocumentCompleted';
+import file from '../../assets/images/file.svg'
+import { useSelector } from 'react-redux'
 
 export const Document = () => {
     const [document, setDocument] = useState([])
     const [fields, setFields] = useState([])
     const [positions, setPositions] = useState([])
     const [isShown, setIsShown] = useState(false)
-    const {id} = useParams()
+    const [isShowProcess, setIsShownProcess] = useState(false)
+    const { id } = useParams()
     const [submitted, setSubmitted] = useState(false)
+    const [attachments, setAttachments] = useState([])
+    const user = useSelector((store) => store?.userReducer?.user)
+    const [dateFromTo, setDateFromTo] = useState("0 hours")
+    const [totalDays, setTotalDays] = useState("0 days")
 
     useEffect(() => {
         const config = {
@@ -23,7 +29,6 @@ export const Document = () => {
                 'Authorization': localStorage.getItem("token")
             }
         };
-        console.log(localStorage.getItem("token"))
         axios(config)
             .then(function (response) {
                 setDocument(response.data)
@@ -32,16 +37,29 @@ export const Document = () => {
             .catch(function (error) {
                 console.log(error)
             });
-
+            // console.log(user)
     }, [])
 
     useEffect(() => {
-        setPositions(orders)
+        const config = {
+            method: 'get',
+            url: `${address.use}/v1/api/document/orders/${id}`,
+            headers: {
+                'Authorization': localStorage.getItem("token")
+            }
+        };
+        axios(config)
+            .then(function (response) {
+                setPositions(response.data)
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
     }, [])
 
     const handleChange = (e) => {
-        let {id} = e.target
-        const {value} = e.target
+        let { id } = e.target
+        const { value } = e.target
         id = id.replaceAll("inp", "").replace(/[^0-9]+/g, "")
         const fieldsWithValues = fields.map(el => {
             if (el.id === +id) {
@@ -52,16 +70,39 @@ export const Document = () => {
             }
         })
         setFields(fieldsWithValues)
+        const fromToElement = fields.find((el, idx) => {
+            if (el.type === 33) {
+                return el
+            }
+        })
+        const fromToElement2 = fields.find((el, idx) => {
+            if (el.type === 37) {
+                return el
+            }
+        })
+        if (fromToElement) {
+            fromToHoursCounter(fromToElement.fromTo, fromToElement.id)
+            
+        }
+        if (fromToElement2) {
+            totalDaysCounter(fromToElement2.fromTo, fromToElement2.id)
+        }
     }
 
     const handleSubmit = (e) => {
-        let document = fields.map((el) => {
+        let docFields = fields.map((el) => {
             let newDate = null
             let newAmount = null
             if (el.type === 3) {
                 newDate = [...el.value.split("-").map(el => +el)]
             } else if (el.type === 10) {
                 newAmount = [el.value]
+            } else if (el.type === 20) {
+                el.value = user.fullName
+            } else if (el.type === 21) {
+                el.value = user.department
+            } else if (el.type === 22 && !el.value) {
+                el.value = el.choice.split(", ")[0]
             }
             const obj = {}
             if (el.id) obj.id = el.id
@@ -71,10 +112,15 @@ export const Document = () => {
             if (!el.value && !newDate && !newAmount) obj.value = ""
             return obj
         })
-        const data = {"documentId": id, fields: document}
+        let data
+        if (document.document.subOrder) {
+            data = { "documentId": id, fields: docFields, "status" : document.document.subOrder}
+        } else {
+            data = { "documentId": id, fields: docFields }
+        }
         const config = {
             method: 'post',
-            url: `${address.use}/v1/api/document/byuser`,
+            url: `${address.use}/v1/api/document/byuser${document.document.subOrder ? "/multi-approval" : ""}`,
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": localStorage.getItem("token")
@@ -82,15 +128,35 @@ export const Document = () => {
             data: data
         };
         axios(config)
-            .then(({data}) => {
-                (JSON.stringify(data))
+            .then(async ({ data }) => {
                 setSubmitted(true)
+                if (attachments.length) {
+                    for (let i = 0; i < attachments.length; i++) {
+                        const formData = new FormData()
+                        formData.append(
+                            'file',
+                            attachments[i],
+                            attachments[i].name
+                        )
+                        await axios.post(`${address.use}/v1/api/file/attachment/${data.id}`, formData, {
+                            headers: {
+                                'Authorization': localStorage.getItem("token"),
+                            }
+                        })
+                    }
+                }
             })
 
             .catch(function (error) {
-                    console.log(error);
-                }
+                console.log(error);
+            }
             )
+    }
+
+    const handleAttachment = async (e) => {
+        if (e.target.value) {
+            setAttachments(Array.from(e.target.files))
+        }
     }
 
     const handleClose = () => {
@@ -98,15 +164,107 @@ export const Document = () => {
         window.close();
     }
 
+    const handleSetup = (e) => {
+        let { id } = e.target
+        const { value } = e.target
+        id = id.replaceAll("inp", "").replace(/[^0-9]+/g, "")
+        const fieldsWithValues = fields.map(el => {
+            if (el.id === +id) {
+                el.value = value
+                return el
+            } else {
+                return el
+            }
+        })
+        setFields(fieldsWithValues)
+
+        const status = e.target.className.split(" ")[1]
+        // console.log(status)
+        // console.log(document)
+
+        const newDoc = document
+        newDoc.document.subOrder = +status
+
+        setDocument(newDoc)
+    }
+
 
     let counter = 0
+
+    const fromToHoursCounter = (fromTo, id) => {
+        const fromIdx = +(fromTo.split(", ")[0])
+        const toIdx = +(fromTo.split(", ")[1])
+        const from = fields.find((el, idx) => idx === fromIdx - 1)
+        const to = fields.find((el, idx) => idx === toIdx - 1)
+        if (from && to && from.value && to.value) {
+            let dateFrom = new Date(from.value)
+            let dateTo = new Date(to.value)
+            const difference = Math.abs(dateTo - dateFrom)
+            const newFields = fields.map(el => {
+                if (el.id === id) {
+                    el.value = `${Math.ceil((difference / (1000 * 60 * 60)) % 24)} hours`
+                    return el
+                } 
+                return el
+            })
+            setFields(newFields)
+            setDateFromTo(`${Math.ceil((difference / (1000 * 60 * 60)) % 24)} hours`)
+            return `${Math.ceil((difference / (1000 * 60 * 60)) % 24)} hours`
+        } else {
+            const newFields = fields.map(el => {
+                if (el.id === id) {
+                    el.value = "0 hours"
+                    return el
+                } 
+                return el
+            })
+            setFields(newFields)
+            setDateFromTo("0 hours")
+            return "0 hours"
+        }
+    }
+
+    const totalDaysCounter = (fromTo, id) => {
+        const fromIdx = +(fromTo.split(", ")[0])
+        const toIdx = +(fromTo.split(", ")[1])
+        const from = fields.find((el, idx) => idx === fromIdx - 1)
+        const to = fields.find((el, idx) => idx === toIdx - 1)
+        if (from && to && from.value && to.value) {
+            let dateFrom = new Date(from.value)
+            let dateTo = new Date(to.value)
+            // console.log(dateFrom)
+            // console.log(dateTo)
+            const difference = Math.abs(dateTo - dateFrom)
+            const newFields = fields.map(el => {
+                if (el.id === id) {
+                    el.value = `${Math.floor(difference / (24*60*60*1000))} days`
+                    return el
+                } 
+                return el
+            })
+            setFields(newFields)
+            setTotalDays(`${Math.floor(difference / (24*60*60*1000))} days`)
+            return `${Math.floor(difference / (24*60*60*1000))} days`
+        } else {
+            const newFields = fields.map(el => {
+                if (el.id === id) {
+                    el.value = "0 days"
+                    return el
+                }
+                return el
+            })
+            setFields(newFields)
+            setTotalDays("0 days")
+            return "0 days"
+        }
+    }
 
     if (submitted) {
         return (
             <div>
                 <div className="container">
                     <div className="contacts__created">
-                        <img src={V} alt="done" width="150px"/>
+                        <img src={V} alt="done" width="150px" />
                         <span>Your submission has been received!</span>
                         <button className="contacts__close" onClick={handleClose}>Close this page X</button>
                     </div>
@@ -120,11 +278,11 @@ export const Document = () => {
                     <Router>
                         <div className="contacts__header">
                             <a href="/" className="contacts__header-logo contacts__header-item">
-                                <i className="fas fa-home"/>
+                                <i className="fas fa-home" />
                             </a>
                             <a href="/" className="contacts__header-item"> Homepage</a>
                             <div className="contacts__header-item contacts__header-logo">
-                                <i className="fas fa-angle-right"/>
+                                <i className="fas fa-angle-right" />
                             </div>
                             <NavLink to='/address' className="contacts__header-item">
                                 {document?.document?.name}
@@ -148,7 +306,7 @@ export const Document = () => {
                                     {
                                         document?.fields?.map((el, idx, arr) => (
                                             <div className={`${el.half ? "document__row-half" : "document__row-full"}`}
-                                                 key={idx}>
+                                                key={idx}>
                                                 <div className="document__hidden">
                                                     {
                                                         counter += el.count
@@ -187,8 +345,44 @@ export const Document = () => {
                                                             <div
                                                                 className={`${el.required ? "document__require" : ""}`}>
                                                                 <input type="text" onChange={handleChange}
-                                                                       id={`inp${el.id}`}
-                                                                       className={`document__input document__date`}/>
+                                                                    id={`inp${el.id}`}
+                                                                    className={`document__input document__date`} />
+                                                            </div>
+                                                        }
+
+                                                        {
+                                                            el.type === 20 && el.half &&
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
+                                                                <input type="text" onChange={handleChange}
+                                                                    id={`inp${el.id}`}
+                                                                    className={`document__input document__date`} 
+                                                                    value={user.fullName}
+                                                                    />
+                                                            </div>
+                                                        }
+
+                                                        {
+                                                            el.type === 21 && el.half &&
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
+                                                                <input type="text" onChange={handleChange}
+                                                                    id={`inp${el.id}`}
+                                                                    className={`document__input document__date`} 
+                                                                    value={user.department}
+                                                                    />
+                                                            </div>
+                                                        }
+
+                                                        {
+                                                            el.type === 33 && el.half &&
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
+                                                                <input type="text" onChange={handleChange}
+                                                                    id={`inp${el.id}`}
+                                                                    className={`document__input document__date`} 
+                                                                    value={`${dateFromTo}`}
+                                                                    />
                                                             </div>
                                                         }
 
@@ -197,8 +391,40 @@ export const Document = () => {
                                                             <div
                                                                 className={`${el.required ? "document__require" : ""}`}>
                                                                 <input type="date" onChange={handleChange}
-                                                                       id={`inp${el.id}`}
-                                                                       className={`document__input document__date`}/>
+                                                                    id={`inp${el.id}`}
+                                                                    className={`document__input document__date`} />
+                                                            </div>
+                                                        }
+
+                                                        {
+                                                            el.type === 34 &&
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
+                                                                <input type="datetime-local" onChange={handleChange}
+                                                                    id={`datefromto${el.id}`}
+                                                                    className={`document__input document__date`} />
+                                                            </div>
+                                                        }
+                                                        {
+                                                            el.type === 36 &&
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
+                                                                <input type="date" onChange={handleChange}
+                                                                    id={`datefromto${el.id}`}
+                                                                    className={`document__input document__date`} 
+                                                                    
+                                                                    />
+                                                            </div>
+                                                        }
+                                                        {
+                                                            el.type === 37 &&
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
+                                                                <input type="text" onChange={handleChange}
+                                                                    id={`datefromto${el.id}`}
+                                                                    className={`document__input document__date`} 
+                                                                    value={totalDays}
+                                                                    />
                                                             </div>
                                                         }
                                                         {
@@ -210,15 +436,40 @@ export const Document = () => {
                                                                         el?.choice?.split(", ").map((radio, idx) => (
                                                                             <span key={idx}>
                                                                                 <input type="radio"
-                                                                                       id={`${radio}-${el.id}`}
-                                                                                       name={`radio${el.id}${el.name.replaceAll(" ", "")}`}
-                                                                                       className="document__checkbox-item"
-                                                                                       value={radio}
-                                                                                       onClick={handleChange}
+                                                                                    id={`${radio}-${el.id}`}
+                                                                                    name={`radio${el.id}${el.name.replaceAll(" ", "")}`}
+                                                                                    className="document__checkbox-item"
+                                                                                    value={radio}
+                                                                                    onClick={handleChange}
                                                                                 />
                                                                                 <label
                                                                                     htmlFor={`${radio}-${el.id}`}
-                                                                                    style={{marginLeft: "4px"}}>{radio}
+                                                                                    style={{ marginLeft: "4px" }}>{radio}
+                                                                                </label>
+                                                                            </span>
+                                                                        ))
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        {
+                                                            el.type === 32 &&
+                                                            <div
+                                                                className={`document__checkbox ${el.required ? "document__require" : ""}`}>
+                                                                <div>
+                                                                    {
+                                                                        el?.choice?.split(", ").map((radio, idx) => (
+                                                                            <span key={idx}>
+                                                                                <input type="radio"
+                                                                                    id={`${radio}-${el.id}`}
+                                                                                    name={`radio${el.id}${el.name.replaceAll(" ", "")}`}
+                                                                                    className={`document__checkbox-item ${idx+1}`}
+                                                                                    value={radio}
+                                                                                    onClick={handleSetup}
+                                                                                />
+                                                                                <label
+                                                                                    htmlFor={`${radio}-${el.id}`}
+                                                                                    style={{ marginLeft: "4px" }}>{radio}
                                                                                 </label>
                                                                             </span>
                                                                         ))
@@ -235,13 +486,26 @@ export const Document = () => {
                                                             </textarea>
                                                         }
                                                         {
+                                                            el.type === 22 &&
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
+                                                                    <select id={`inp${el.id}`} onChange={handleChange}>
+                                                                {
+                                                                    el.choice.split(", ").map((el2, idx) => (
+                                                                        <option key={idx} value={el2}>{el2}</option>
+                                                                    ))
+                                                                }
+                                                                </select>
+                                                            </div>
+                                                        }
+                                                        {
                                                             el.type === 6 && el.half &&
                                                             <div
                                                                 className={`${el.required ? "document__require" : ""}`}>
                                                                 <input type="text" onChange={handleChange}
-                                                                       id={`inp${el.id}`}
-                                                                       className={`document__input document__date`}
-                                                                       placeholder="0.00"/>
+                                                                    id={`inp${el.id}`}
+                                                                    className={`document__input document__date`}
+                                                                    placeholder="0.00" />
                                                             </div>
                                                         }
                                                         {
@@ -249,13 +513,13 @@ export const Document = () => {
                                                             <div
                                                                 className={`${el.required ? "document__require input__wrapper" : "input__wrapper"}`}>
                                                                 <input type="file" onChange={handleChange}
-                                                                       id={`inp${el.id}`}
-                                                                       className={`document__input document__date input input__file`}
-                                                                       placeholder="Please select the file to upload"
-                                                                       accept=".jpg, .jpeg, .png"
-                                                                       name="profile_pic"/>
+                                                                    id={`inp${el.id}`}
+                                                                    className={`document__input document__date input input__file`}
+                                                                    placeholder="Please select the file to upload"
+                                                                    accept=".jpg, .jpeg, .png"
+                                                                    name="profile_pic" />
                                                                 <label htmlFor={`inp${el.id}`}
-                                                                       className="input__file-button">
+                                                                    className="input__file-button">
                                                                     <span className="input__file-icon-wrapper">
                                                                         Upload
                                                                     </span>
@@ -269,20 +533,21 @@ export const Document = () => {
                                                             el.type === 5 && !el.half &&
                                                             <div
                                                                 className={`${el.required ? "document__require input__wrapper" : "input__wrapper"}`}>
-                                                                <input type="file" onChange={handleChange}
-                                                                       id={`inp${el.id}`}
-                                                                       className={`document__input document__date input input__file`}
-                                                                       placeholder="Please select the file to upload"
-                                                                       accept=".jpg, .jpeg, .png"
-                                                                       name="profile_pic"/>
+                                                                <input type="file" onChange={handleAttachment}
+                                                                    id={`inp${el.id}`}
+                                                                    className={`document__input document__date input input__file`}
+                                                                    placeholder="Please select the file to upload"
+                                                                    name="profile_pic"
+                                                                    multiple />
                                                                 <label htmlFor={`inp${el.id}`}
-                                                                       className="input__file-button"
-                                                                       style={{margin: 0}}>
+                                                                    className="input__file-button"
+                                                                    style={{ margin: 0, display: "flex", alignItems: "center"}}>
                                                                     <span className="input__file-icon-wrapper">
                                                                         Upload
                                                                     </span>
-                                                                    <span
-                                                                        className="input__file-button-text">Please select the file to upload</span>
+                                                                    {
+                                                                        attachments.length ? attachments.map((el, idx) => <span key={idx} className="input__file-button-text" style={{marginRight : "20px", display: "flex", alignItems: "center"}}><img src={file} style={{width: "40px", marginRight: "5px"}} alt="file" /> {el.name}</span>) : <span className="input__file-button-text">Please select the file to upload</span>
+                                                                    }
                                                                 </label>
                                                             </div>
                                                         }
@@ -291,232 +556,23 @@ export const Document = () => {
                                             </div>
                                         ))
                                     }
-                                    {/* <DocumentUnique /> */}
-                                    {/*<div className="border">*/}
-                                    {/*    <div className="document__unique">*/}
-                                    {/*        <p className="document__unique-item">*/}
-
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            From*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            To*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Departure Date*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Departure Time*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Arrival Date*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Arrival Time*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Airline Company/Flight Number*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Ticket Category*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Ticket amount (KZT)*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Remarks*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-
-                                    {/*        </p>*/}
-                                    {/*    </div>*/}
-                                    {/*    {*/}
-                                    {/*        isShown &&*/}
-                                    {/*        <div className="document__unique-fill">*/}
-                                    {/*            <p className="document__unique-fill-item document__unique-fill-1  ">*/}
-                                    {/*                <input type="checkbox" id="radio"/>*/}
-                                    {/*            </p>*/}
-                                    {/*            <p className="document__unique-fill-item document__unique-fill-2 ">*/}
-                                    {/*                <input type="text"/>*/}
-                                    {/*            </p>*/}
-                                    {/*            <p className="document__unique-fill-item document__unique-fill-3">*/}
-                                    {/*                <input type="text"/>*/}
-                                    {/*            </p>*/}
-                                    {/*            <p className="document__unique-fill-item document__unique-fill-4">*/}
-                                    {/*                <input type="date"/>*/}
-                                    {/*            </p>*/}
-                                    {/*            <p className="document__unique-fill-item document__unique-fill-5">*/}
-                                    {/*                <input type="time"/>*/}
-                                    {/*            </p>*/}
-                                    {/*            <p className="document__unique-fill-item document__unique-fill-6">*/}
-                                    {/*                <input type="date"/>*/}
-                                    {/*            </p>*/}
-                                    {/*            <p className="document__unique-fill-item document__unique-fill-7">*/}
-                                    {/*                <input type="time"/>*/}
-                                    {/*            </p>*/}
-                                    {/*            <p className="document__unique-fill-item document__unique-fill-8">*/}
-                                    {/*                <input type="text"/>*/}
-                                    {/*            </p>*/}
-                                    {/*            <p className="document__unique-fill-item document__unique-fill-9">*/}
-                                    {/*                <input type="text"/>*/}
-                                    {/*            </p>*/}
-                                    {/*            <p className="document__unique-fill-item document__unique-fill-10">*/}
-                                    {/*                <input type="text"/>*/}
-                                    {/*            </p>*/}
-                                    {/*            <p className="document__unique-fill-item document__unique-fill-11">*/}
-                                    {/*                <input type="text"/>*/}
-                                    {/*            </p>*/}
-                                    {/*            <p className="document__unique-fill-item document__unique-fill-12"*/}
-                                    {/*               onClick={()=>setIsShown(false)}*/}
-                                    {/*            >*/}
-                                    {/*                x*/}
-                                    {/*            </p>*/}
-                                    {/*        </div>*/}
-                                    {/*    }*/}
-                                    {/*    <div className="document__unique-more">*/}
-                                    {/*        <input type="checkbox" id="radio"/>*/}
-                                    {/*        <label htmlFor="radio" className="document__unique-label"> select all</label>*/}
-                                    {/*        <i className="far fa-trash-alt document__unique-svg"> </i>*/}
-                                    {/*        <button className="document__unique-btn document__unique-button-1">*/}
-                                    {/*            <i className="fas fa-arrow-up"> </i>*/}
-                                    {/*        </button>*/}
-                                    {/*        <button className="document__unique-btn document__unique-button-2"*/}
-                                    {/*                onClick={()=>setIsShown(true)}>*/}
-                                    {/*            <i className="fas fa-plus"> </i>*/}
-                                    {/*        </button>*/}
-                                    {/*        <button className="document__unique-btn document__unique-button-3">*/}
-                                    {/*            <i className="fas fa-arrow-down"> </i>*/}
-                                    {/*        </button>*/}
-                                    {/*    </div>*/}
-                                    {/*</div>*/}
-                                    {/*<div className="border">*/}
-                                    {/*    <div className="document__unique">*/}
-                                    {/*        <p className="document__unique-item">*/}
-
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Start date*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            End Date*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Original Currency*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Accomodation Fee*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Other Fee*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Subtotal of the original currency*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Exchange Rate*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Amount (USD)*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Travel Days*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Region*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-                                    {/*            Allowance*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-item">*/}
-
-                                    {/*        </p>*/}
-                                    {/*    </div>*/}
-                                    {/*    <div className="document__unique-fill">*/}
-                                    {/*        <p className="document__unique-fill-item document__unique-filled-1  ">*/}
-                                    {/*            <input type="checkbox" id="radio"/>*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-fill-item document__unique-filled-2 ">*/}
-                                    {/*            <input type="date"/>*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-fill-item document__unique-filled-3">*/}
-                                    {/*            <input type="date"/>*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-fill-item document__unique-filled-4">*/}
-                                    {/*            <select id="cars" className="document__select">*/}
-                                    {/*                <option label="==Select==">==Select==</option>*/}
-                                    {/*                <option label="Department afford/ Team afford">Department afford/ Team*/}
-                                    {/*                    afford*/}
-                                    {/*                </option>*/}
-                                    {/*                <option label="Project afford/ Project">Project afford/ Project</option>*/}
-                                    {/*            </select>*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-fill-item document__unique-filled-5">*/}
-                                    {/*            <input type="text"/>*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-fill-item document__unique-filled-6">*/}
-                                    {/*            <input type="text"/>*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-fill-item document__unique-filled-7">*/}
-                                    {/*            <input type="text" placeholder="0"/>*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-fill-item document__unique-filled-8">*/}
-                                    {/*            <input type="text"/>*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-fill-item document__unique-filled-9">*/}
-                                    {/*            <input type="text" placeholder="0"/>*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-fill-item document__unique-filled-10">*/}
-                                    {/*            <input type="text"/>*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-fill-item document__unique-filled-11">*/}
-                                    {/*            <select id="cars" className="document__select">*/}
-                                    {/*                <option label="==Select==">==Select==</option>*/}
-                                    {/*                <option label="Department afford/ Team afford">Department afford/ Team*/}
-                                    {/*                    afford*/}
-                                    {/*                </option>*/}
-                                    {/*                <option label="Project afford/ Project">Project afford/ Project</option>*/}
-                                    {/*            </select>*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-fill-item document__unique-filled-12">*/}
-                                    {/*            <input type="text" placeholder="0.00"/>*/}
-                                    {/*        </p>*/}
-                                    {/*        <p className="document__unique-fill-item document__unique-filled-13">*/}
-
-                                    {/*        </p>*/}
-                                    {/*    </div>*/}
-                                    {/*    <div className="document__unique-more">*/}
-                                    {/*        <input type="checkbox" id="radio"/>*/}
-                                    {/*        <label htmlFor="radio" className="document__unique-label"> select all</label>*/}
-                                    {/*        <i className="far fa-trash-alt document__unique-svg"> </i>*/}
-                                    {/*        <button className="document__unique-btn document__unique-button-1">*/}
-                                    {/*            <i className="fas fa-arrow-up"> </i>*/}
-                                    {/*        </button>*/}
-                                    {/*        <button className="document__unique-btn document__unique-button-2">*/}
-                                    {/*            <i className="fas fa-plus"> </i>*/}
-                                    {/*        </button>*/}
-                                    {/*        <button className="document__unique-btn document__unique-button-3">*/}
-                                    {/*            <i className="fas fa-arrow-down"> </i>*/}
-                                    {/*        </button>*/}
-                                    {/*    </div>*/}
-                                    {/*</div>*/}
-
-
                                 </div>
                             </div>
                             <div className="document__orders">
-                                <div className="document__orders-title">
-                                    <p>
-                                        Orders
-                                    </p>
+                                <div style={{ padding: "10px", background: "whitesmoke" }}>
+                                    <div className="document__orders-title">
+                                        <p style={{ fontSize: "12px" }}>
+                                            Graph
+                                        </p>
 
-                                    <button className="document__orders-add"
+                                        <button className="document__orders-add"
                                             onClick={(e) => {
                                                 e.preventDefault()
                                                 setIsShown(!isShown)
                                             }}>
-                                        <i className={`${isShown ? "fas fa-minus" : "fas fa-plus"}`}> </i>
-                                    </button>
+                                            <i className={`${isShown ? "fas fa-minus" : "fas fa-plus"}`}> </i>
+                                        </button>
+                                    </div>
                                 </div>
                                 {
                                     isShown &&
@@ -535,23 +591,41 @@ export const Document = () => {
                                                 </i>
                                             </div>
                                             {
-                                                positions.map((el) => (
+                                                positions.map((el, idx) => (
 
-                                                    <div className="document__orders-name">
+                                                    <div className="document__orders-name" key={idx}>
                                                         {
                                                             el.post.position
                                                         }
                                                         {
-                                                            el.post.id == "10" ? "" :
-                                                                <i className="fas fa-long-arrow-alt-down document__orders-arrow">
-
-                                                                </i>
+                                                            idx < positions.length -1 ? <i className="fas fa-long-arrow-alt-down document__orders-arrow"></i> : ""
                                                         }
                                                     </div>
                                                 ))
                                             }
                                         </div>
                                     </div>
+                                }
+                            </div>
+                            <div className="document__orders">
+                                <div style={{ padding: "10px", background: "whitesmoke" }}>
+                                    <div className="document__orders-title">
+                                        <p style={{ fontSize: "12px" }}>
+                                            Display circulation log
+                                        </p>
+
+                                        <button className="document__orders-add"
+                                            onClick={(e) => {
+                                                e.preventDefault()
+                                                setIsShownProcess(!isShowProcess)
+                                            }}>
+                                            <i className={`${isShown ? "fas fa-minus" : "fas fa-plus"}`}> </i>
+                                        </button>
+                                    </div>
+                                </div>
+                                {
+                                    isShowProcess &&
+                                    <DocumentCompleted />
                                 }
                             </div>
                             <div className="document__button-cover">

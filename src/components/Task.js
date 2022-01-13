@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import message from '../assets/images/message.svg'
 import { address } from './data/data';
-import notFound from "../assets/images/not-found.png"
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import notFound from '../assets/images/not-found.png'
 
-export const ToRead = () => {
+export const Task = () => {
     const [todo, setTodo] = useState([])
 
     useEffect(() => {
@@ -14,7 +15,7 @@ export const ToRead = () => {
     const refresh = () => {
         const config = {
             method: 'get',
-            url: `${address.use}/v1/api/document/completed`,
+            url: `${address.use}/v1/api/document`,
             headers: {
                 'Authorization': localStorage.getItem("token")
             }
@@ -30,7 +31,7 @@ export const ToRead = () => {
     }
 
     return (
-        <div>
+        <>
             <div className="task__search">
                 <span>
                     Selected:
@@ -40,16 +41,16 @@ export const ToRead = () => {
             </div>
             {
                 todo[0] ? todo.map((el, idx) => (
-                    <NavLink to={`/complete/${el.id}`} key={idx} className="todo_document" target="_blank">
-                    <div className="task__todo" >
-                        <p className="task__title__todo">{idx + 1} <div className="todo_dot_red" style={{ background: "limegreen", padding: "1px" }}></div> <span style={{ color: 'limegreen' }}>[Processed]</span> Please view the following document: {el.name} from {el.user.fullName}</p>
-                        <div className="task__info">
-                            <p className="task__subdesc">Initiator: {el.user.fullName}</p>
-                            <p className="task__subdesc">Initiate time: {`${el?.dateCreated.substring(0, 10)} ${el?.dateCreated.substring(11, 19)}`}</p>
-                            <p className="task__subdesc">Document category: {el.documentCategory.name}</p>
-                            <div>&#9872;</div>
+                    <NavLink to={`/approval/${el.id}`} className="todo_document" target="_blank">
+                        <div className="task__todo">
+                            <p className="task__title__todo">{idx + 1} <div className="todo_dot_red" style={{ background: "red", padding: "1px" }}></div> <span style={{ color: 'red' }}>[in Progress]</span> Please view the following document: {el.name} from {el.user.fullName}</p>
+                            <div className="task__info">
+                                <p className="task__subdesc">Initiator: {el.user.fullName}</p>
+                                <p className="task__subdesc">Initiate time: {`${el?.dateCreated.substring(0, 10)} ${el?.dateCreated.substring(11, 19)}`}</p>
+                                <p className="task__subdesc">Document category: {el.documentCategory.name}</p>
+                                <div>&#9872;</div>
+                            </div>
                         </div>
-                    </div>
                     </NavLink>
                 )) :
                     <div className="task__cover">
@@ -74,6 +75,6 @@ export const ToRead = () => {
                         </div>
                     </div>
             }
-        </div>
+        </>
     )
 }

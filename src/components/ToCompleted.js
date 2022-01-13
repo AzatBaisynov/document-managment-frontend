@@ -16,7 +16,7 @@ export const ToCompleted = () => {
     const refresh = () => {
         const config = {
             method: 'get',
-            url: `${address.use}/v1/api/document/completed`,
+            url: `${address.use}/v1/api/document/completed/mini`,
             headers: {
                 'Authorization': localStorage.getItem("token")
             }

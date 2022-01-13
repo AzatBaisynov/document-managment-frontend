@@ -5,6 +5,7 @@ import axios from "axios";
 import {Contact} from "./contacts/Contact";
 import {DocumentsMenu} from "./DocumentsMenu";
 import { address } from './data/data';
+import { useSelector } from 'react-redux';
 
 
 const toggleActive = (e) => {
@@ -17,8 +18,10 @@ const toggleActive = (e) => {
 
 
 export const Employee = () => {
+
     const [members, setMembers] = useState({})
     useEffect(() => {
+        console.log(user)
         const config = {
             method: 'GET',
             url: `${address.use}/v1/api/user`,
@@ -29,6 +32,7 @@ export const Employee = () => {
         axios(config)
             .then(function (response) {
                 setMembers({...response.data})
+                console.log(response.data)
             })
             .catch(function (error) {
                 console.log(error);
@@ -39,7 +43,7 @@ export const Employee = () => {
         <section className="employee">
             <div className="employee_info">
                 <div className="employee_img">
-                    <img src={user} alt=""/>
+                    <img src={members.urlImage ? `${address.use}${members.urlImage}` : user} alt=""/>
                 </div>
                 <h4 className="employee_name">
                     {
@@ -55,8 +59,8 @@ export const Employee = () => {
                 <button className="employee_btn" onClick={toggleActive}>My work</button>
                 <div className="class_dropdown-child">
                     <NavLink to='/contacts' className="class_link">Contacts</NavLink>
-                    <a href="#" className="class_link">Related Processes</a>
-                    <a href="#" className="class_link">To do</a>
+                    <NavLink to='/related' className="class_link">Related Processes</NavLink>
+                    <NavLink to='/tasks' className="class_link">To do</NavLink>
                 </div>
             </nav>
             <nav className="class_dropdown">

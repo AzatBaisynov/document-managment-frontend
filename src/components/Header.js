@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { logoutAction } from "../redux/actions/login";
 import axios from "axios";
 import { address } from './data/data';
+import { store } from '../redux/store';
+import { addUser } from '../redux/actions/user';
 
 export const Header = () => {
     const [members, setMembers] = useState({})
@@ -23,6 +25,7 @@ export const Header = () => {
         axios(config)
             .then(function (response) {
                 setMembers({ ...response.data })
+                store.dispatch(addUser(response.data))
             })
             .catch(function (error) {
                 console.log(error);

@@ -31,17 +31,15 @@ export const DocumentComponents = ({ category_id }) => {
             {
                 document.map((el, idx) => (
                     <NavLink to={`/document/${el.id}`} target="_blank" className="d-inline" key={idx}>
-                        <div className="report">
+                        <div className="report" title={el.name}>
                             <div className="report-box">
                                 {el.url ? <img src={el.url} />
                                     : <i className="fas fa-file-alt document__img"> </i>}
                             </div>
-                            <h4 className="report-box-title">
+                            <h4 className="report-box-title" >
                                 {
-                                    el.name.split("").map((element, idx) => (
-                                        idx < 8 ? element : ""))
+                                    el.name
                                 }
-                                ...
                             </h4>
                         </div>
                     </NavLink>

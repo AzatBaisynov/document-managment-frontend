@@ -10,10 +10,11 @@ export const ContactsHomePage = () => {
     const [departments, setDepartmens] = useState([])
     const [departmentId, setDeparmentId] = useState("")
     const [employee, setEmployee] = useState({})
+    const [show, setShow] = useState(false)
 
     useEffect(() => {
         const config = {
-            method : 'POST',
+            method: 'POST',
             url: `${address.use}/v1/api/contacts/list`,
             headers: {
                 'Authorization': localStorage.getItem("token")
@@ -28,22 +29,23 @@ export const ContactsHomePage = () => {
             });
     }, [])
 
-    const changeId = ( id ) => {
+    const changeId = (id) => {
         setDeparmentId(id)
     }
 
-    const changeEmployee = ( employee ) => {
+    const changeEmployee = (employee) => {
         setEmployee(employee)
     }
 
+    
     return (
         <div>
             <div className="contacts__homepage">
                 <ContactsOrganisation departments={departments} setDepartment={changeId} />
-                <ContactsMembers department={departmentId} setEmployee={changeEmployee}/>
-                <ContactsMembersDetails details={employee}/>
+                <ContactsMembers department={departmentId} setEmployee={changeEmployee} />
+                <ContactsMembersDetails details={employee} />
             </div>
         </div>
-    );
+    )
 };
 

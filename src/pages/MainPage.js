@@ -13,6 +13,7 @@ import {News} from '../components/News';
 import axios from 'axios';
 import {DocumentsMenu} from '../components/DocumentsMenu';
 import { address } from '../components/data/data';
+import { MiniTiRead } from '../components/MiniToRead';
 
 
 const MainPage = () => {
@@ -63,7 +64,7 @@ const MainPage = () => {
         {
             action_link: "/toread",
             action_text: "To be read",
-            action: ToRead
+            action: MiniTiRead
         },
         {
             action_link: "/tocompleted",

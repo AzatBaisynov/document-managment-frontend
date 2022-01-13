@@ -13,6 +13,12 @@ import {Document} from "./components/documents/Document";
 import {DocumentsMenu} from "./components/DocumentsMenu";
 import { ApproveDoc } from "./components/approve/ApproveDoc";
 import { CompleteDoc } from "./components/approve/CompletedDoc";
+import ToDoPage from "./components/ToDoPage";
+import { RelatedProcesses } from "./components/RelatedProcesses";
+import { RelatedDoc } from "./components/approve/RelatedDoc";
+import { ReadOpen } from "./components/approve/ReadOpen";
+import { ReadDoc } from "./components/approve/ReadDoc";
+import { File } from "./components/File";
 
 
 const App = () => {
@@ -34,8 +40,12 @@ const App = () => {
                                 <Route path="/document/:id" component={Document}/>
                                 <Route path="/approval/:id" component={ApproveDoc} />
                                 <Route path="/complete/:id" component={CompleteDoc} />
+                                <Route path="/tasks" component={ToDoPage} />
+                                <Route path="/related" component={RelatedProcesses} />
+                                <Route path="/progress/:id" component={RelatedDoc} />
+                                <Route path="/read/:id" component={ReadDoc} />
+                                <Route path="/file" component={File} />
                             </Switch>
-
                         </Router>
                     </div> :
                     <Auth/>
