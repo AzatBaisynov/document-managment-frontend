@@ -232,8 +232,6 @@ export const Document = () => {
         if (from && to && from.value && to.value) {
             let dateFrom = new Date(from.value)
             let dateTo = new Date(to.value)
-            // console.log(dateFrom)
-            // console.log(dateTo)
             const difference = Math.abs(dateTo - dateFrom)
             const newFields = fields.map(el => {
                 if (el.id === id) {

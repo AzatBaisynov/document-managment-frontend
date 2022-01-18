@@ -7,8 +7,9 @@ export const data =
             "SWIFT Code", "Upload Attachment"]
     }
 
+const DEV = "http://localhost:8080"
+const PROD = "http://145.249.124.164"
+
 export const address = {
-    dev : "http://localhost:8080",
-    prod : "http://109.248.133.36:8080",
-    use : "http://109.248.133.36:8080"
+    use : PROD
 }

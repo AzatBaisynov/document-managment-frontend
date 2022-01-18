@@ -5,6 +5,7 @@ import Gender from "../contacts/../../assets/images/plus.svg"
 import { useSelector } from 'react-redux'
 import { address } from '../data/data';
 import axios from 'axios';
+import QRCode from 'react-qr-code';
 
 const ContactsMembersDetails = ({ details }) => {
 
@@ -61,7 +62,7 @@ const ContactsMembersDetails = ({ details }) => {
                         </div>
                         <div className="contacts__homepage-scan">
                             <div className="contacts__homepage-scan-img">
-                                <img src={Scan} alt="" />
+                                <QRCode size="200" value={`MECARD:N:${details.fullName || ""};ADR:;TEL:${details?.phone || ""};EMAIL:${details?.email || ""};;`}/>
                             </div>
                             <p className="contacts__homepage-scan-desc">
                                 Scan this to add the people's <br />

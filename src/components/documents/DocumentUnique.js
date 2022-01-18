@@ -10,8 +10,7 @@ export class DocumentUnique extends React.Component {
 
         for (var i = 0; i < this.state.numChildren; i += 1) {
             children.push(<ChildComponent key={i} number={i}/>);
-        }
-        ;
+        };
 
         return (
             <div className="border">
