@@ -876,7 +876,6 @@ button {
 
 
 .document__rows {
-    display: flex;
     flex-wrap: wrap;
 }
 
@@ -1242,47 +1241,47 @@ button {
 }
 
 .document__unique-filled-2 {
-    width: 78px;
+    width: 74px;
 }
 
 .document__unique-filled-3 {
-    width: 75px;
+    width: 73px;
 }
 
 .document__unique-filled-4 {
-    width: 107px;
+    width: 104px;
 }
 
 .document__unique-filled-5 {
-    width: 121px;
+    width: 144px;
 }
 
 .document__unique-filled-6 {
-    width: 78px;
+    width: 79px;
 }
 
 .document__unique-filled-7 {
-    width: 164px;
+    width: 131px;
 }
 
 .document__unique-filled-8 {
-    width: 96px;
+    width: 109px;
 }
 
 .document__unique-filled-9 {
-    width: 95px;
+    width: 96px;
 }
 
 .document__unique-filled-10 {
-    width: 84px;
+    width: 83px;
 }
 
 .document__unique-filled-11 {
-    width: 78px;
+    width: 89px;
 }
 
 .document__unique-filled-12 {
-    width: 97px;
+    width: 114px;
 }
 
 
@@ -1298,9 +1297,9 @@ button {
     background-color: #838383;
     width: 100%;
     height: 50px;
-    display: flex;
     align-items: center;
     position: relative;
+    display: flex;
 }
 
 .document__unique-more input {

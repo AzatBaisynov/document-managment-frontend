@@ -9,6 +9,7 @@ import file from '../../assets/images/file.svg'
 import { useSelector } from 'react-redux'
 import { DocumentDatePicker } from './DocumentDatePicker';
 import { DocumentDateTimePicker } from './DocumentDateTimePicker';
+import {DocumentUnique} from "./DocumentUnique";
 
 export const Document = () => {
     const [document, setDocument] = useState([])
@@ -748,6 +749,7 @@ export const Document = () => {
                                     <DocumentCompleted />
                                 }
                             </div>
+                            <DocumentUnique/>
                             <div className="document__button-cover">
                                 <div className="document__submit" onClick={handleSubmit}>
                                     Submit
