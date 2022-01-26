@@ -10,6 +10,7 @@ export const ContactsHomePage = () => {
     const [departments, setDepartmens] = useState([])
     const [departmentId, setDeparmentId] = useState("")
     const [employee, setEmployee] = useState({})
+    const [departmentName, setDepartmentName] = useState("")
     const [show, setShow] = useState(false)
 
     useEffect(() => {
@@ -29,6 +30,13 @@ export const ContactsHomePage = () => {
             });
     }, [])
 
+    useEffect(() => {
+        if (departmentId) {
+        const dep = departments.find((el, idx) => el.department.id === +departmentId.split("/")[1])
+        setDepartmentName(dep.department.department)
+        }
+    }, [departmentId])
+
     const changeId = (id) => {
         setDeparmentId(id)
     }
@@ -42,7 +50,7 @@ export const ContactsHomePage = () => {
         <div>
             <div className="contacts__homepage">
                 <ContactsOrganisation departments={departments} setDepartment={changeId} />
-                <ContactsMembers department={departmentId} setEmployee={changeEmployee} />
+                <ContactsMembers department={departmentId} setEmployee={changeEmployee} departmentName={departmentName} />
                 <ContactsMembersDetails details={employee} />
             </div>
         </div>

@@ -13,6 +13,7 @@ import { addUser } from '../redux/actions/user';
 export const Header = () => {
     const [members, setMembers] = useState({})
     const [todo, setTodo] = useState(0)
+    const [role, setRole] = useState("")
     useEffect(() => {
 
         const config = {
@@ -26,6 +27,7 @@ export const Header = () => {
             .then(function (response) {
                 setMembers({ ...response.data })
                 store.dispatch(addUser(response.data))
+                console.log(response.data)
             })
             .catch(function (error) {
                 console.log(error);
@@ -56,6 +58,21 @@ export const Header = () => {
                 });
             }, 7000)
     }, [])
+
+    useEffect(() => {
+        const config = {
+            method: 'GET',
+            url: `${address.use}/v1/api/user/adm`,
+            headers: {
+                'Authorization': localStorage.getItem("token")
+            }
+        }
+        axios(config)
+        .then((res) => {
+            setRole(res.data)
+        })
+    })
+
     const dispatch = useDispatch()
     return (<header className="header">
         <div className="header_top">
@@ -84,8 +101,13 @@ export const Header = () => {
         <div className="header_bottom">
             <div className="container header_container">
                 <nav className="header_nav">
-                    <div className="header_nav-item">
+                    <div className="header_nav-item active">
                         <a href="/" className="header_link">Home</a>
+                    </div>
+                    <div className="header_nav-item">
+                        {
+                            role === "ROLE_ADMIN" ? <a href="/management" className="header_link" target="_blank">Process Management</a> : ""
+                        }
                     </div>
                 </nav>
             </div>

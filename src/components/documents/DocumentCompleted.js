@@ -7,6 +7,7 @@ import { address } from '../data/data';
 const DocumentCompleted = () => {
     const [fields, setFields] = useState([])
     const { id } = useParams()
+    const [processor, setProcessor] = useState("")
     useEffect(() => {
         const config = {
             method: 'get',
@@ -19,12 +20,33 @@ const DocumentCompleted = () => {
         axios(config)
         .then((res) => {
             setFields(res.data)
+            console.log(res.data)
         })
         .catch((err) => {
             console.log(err)
         })
 
     }, [])
+
+    useEffect(() => {
+        const config = {
+            method: 'get',
+            url: `${address.use}/v1/api/document/processor/${id}`,
+            headers: {
+                'Authorization': localStorage.getItem("token")
+            }
+        };
+
+        axios(config)
+            .then((res) => {
+                setProcessor(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    }, [])
+
     const time = fields.map((el) => (
         <div>
             {el.time}
@@ -87,8 +109,16 @@ const DocumentCompleted = () => {
                     }
                 </div>
             </div>
-
-
+            <div className="document__completed_current">
+                <p style={{height : "45%"}}> Current processor</p>
+                <div className="document__completed-column">
+                    <div className="document__completed-col">
+                        <span>
+                            {processor}
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

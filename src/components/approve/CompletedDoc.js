@@ -314,6 +314,31 @@ export const CompleteDoc = () => {
                                                             </div>
                                                         }
                                                         {
+                                                            el.type === 52 &&
+                                                            <div
+                                                                className={`document__checkbox ${el.required ? "document__require" : ""}`}>
+                                                                <div>
+                                                                    {
+                                                                        // el?.choice?.split(", ").map((radio, idx) => (
+                                                                        //     <span key={idx}>
+                                                                        //         <input type="radio"
+                                                                        //             id={`${radio}-${el.id}`}
+                                                                        //             name={`radio${el.id}${el.name.replaceAll(" ", "")}`}
+                                                                        //             className="document__checkbox-item"
+                                                                        //             value={radio}
+                                                                        //             onClick={handleChange}
+                                                                        //         />
+                                                                        //         <label
+                                                                        //             htmlFor={`${radio}-${el.id}`}>{radio}
+                                                                        //         </label>
+                                                                        //     </span>
+                                                                        // ))
+                                                                        <p className="document__info_light">{el.value}</p>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        {
                                                             el.type === 4 &&
                                                             <textarea
                                                                 className={`document__input document__comment${el.required ? "document__require" : ""}`}

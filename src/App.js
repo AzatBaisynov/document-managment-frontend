@@ -19,6 +19,7 @@ import { RelatedDoc } from "./components/approve/RelatedDoc";
 import { ReadOpen } from "./components/approve/ReadOpen";
 import { ReadDoc } from "./components/approve/ReadDoc";
 import { File } from "./components/File";
+import { Managment } from './components/Managment';
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
                         <Router>
                             <Switch>
                                 <Route exact path="/" component={MainPage}/>
+                                <Route exact path="/management" component={Managment}/>
                                 <Route exact path="/contacts" component={ContactsPage}/>
                                 <Route exact path="/document" component={Document}/>
                                 <Route exact path="/paymentrequests" component={PaymentRequests}/>

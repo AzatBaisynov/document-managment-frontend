@@ -7,6 +7,8 @@ import V from '../../assets/images/v.svg'
 import DocumentCompleted from './DocumentCompleted';
 import file from '../../assets/images/file.svg'
 import { useSelector } from 'react-redux'
+import { DocumentDatePicker } from './DocumentDatePicker';
+import { DocumentDateTimePicker } from './DocumentDateTimePicker';
 
 export const Document = () => {
     const [document, setDocument] = useState([])
@@ -20,6 +22,8 @@ export const Document = () => {
     const user = useSelector((store) => store?.userReducer?.user)
     const [dateFromTo, setDateFromTo] = useState("0 hours")
     const [totalDays, setTotalDays] = useState("0 days")
+    const [projectNeed, setProjectNeed] = useState(false)
+    const [projects, setProjects] = useState([])
 
     useEffect(() => {
         const config = {
@@ -38,6 +42,18 @@ export const Document = () => {
                 console.log(error)
             });
             // console.log(user)
+    }, [])
+
+    useEffect(async () => {
+        const config = {
+            method: 'get',
+            url: `${address.use}/v1/api/project`,
+            headers: {
+                'Authorization': localStorage.getItem("token")
+            }
+        };
+        const { data } = await axios(config)
+        setProjects(data)
     }, [])
 
     useEffect(() => {
@@ -83,6 +99,71 @@ export const Document = () => {
         if (fromToElement) {
             fromToHoursCounter(fromToElement.fromTo, fromToElement.id)
             
+        }
+        if (fromToElement2) {
+            totalDaysCounter(fromToElement2.fromTo, fromToElement2.id)
+        }
+    }
+
+    const handleChangeDate = (e, id) => {
+        const value = e
+        id = id.replaceAll("inp", "")
+
+        const fieldsWithValues = fields.map(el => {
+            if (el.id === +id) {
+                el.value = value
+                return el
+            } else {
+                return el
+            }
+        })
+        setFields(fieldsWithValues)
+        const fromToElement = fields.find((el, idx) => {
+            if (el.type === 33) {
+                return el
+            }
+        })
+        const fromToElement2 = fields.find((el, idx) => {
+            if (el.type === 37) {
+                return el
+            }
+        })
+        if (fromToElement) {
+            fromToHoursCounter(fromToElement.fromTo, fromToElement.id)
+
+        }
+        if (fromToElement2) {
+            totalDaysCounter(fromToElement2.fromTo, fromToElement2.id)
+        }
+    }
+
+    const handleChangeProject = (e) => {
+        setProjectNeed(false)
+        let { id } = e.target
+        const { value } = e.target
+        id = id.replaceAll("inp", "").replace(/[^0-9]+/g, "")
+        const fieldsWithValues = fields.map(el => {
+            if (el.id === +id) {
+                el.value = value
+                return el
+            } else {
+                return el
+            }
+        })
+        setFields(fieldsWithValues)
+        const fromToElement = fields.find((el, idx) => {
+            if (el.type === 33) {
+                return el
+            }
+        })
+        const fromToElement2 = fields.find((el, idx) => {
+            if (el.type === 37) {
+                return el
+            }
+        })
+        if (fromToElement) {
+            fromToHoursCounter(fromToElement.fromTo, fromToElement.id)
+
         }
         if (fromToElement2) {
             totalDaysCounter(fromToElement2.fromTo, fromToElement2.id)
@@ -384,13 +465,21 @@ export const Document = () => {
                                                             </div>
                                                         }
 
-                                                        {
+                                                        {/* {
                                                             el.type === 3 &&
                                                             <div
                                                                 className={`${el.required ? "document__require" : ""}`}>
                                                                 <input type="date" onChange={handleChange}
+                                                                    lang="en"
                                                                     id={`inp${el.id}`}
                                                                     className={`document__input document__date`} />
+                                                            </div>
+                                                        } */}
+                                                        {
+                                                            el.type === 3 &&
+                                                            <div
+                                                                className={`${el.required ? "document__require" : ""}`}>
+                                                                <DocumentDatePicker handleChange={handleChangeDate} dateId={`inp${el.id}`} />
                                                             </div>
                                                         }
 
@@ -398,20 +487,14 @@ export const Document = () => {
                                                             el.type === 34 &&
                                                             <div
                                                                 className={`${el.required ? "document__require" : ""}`}>
-                                                                <input type="datetime-local" onChange={handleChange}
-                                                                    id={`datefromto${el.id}`}
-                                                                    className={`document__input document__date`} />
+                                                                <DocumentDateTimePicker handleChange={handleChangeDate} dateId={`inp${el.id}`} />
                                                             </div>
                                                         }
                                                         {
                                                             el.type === 36 &&
                                                             <div
                                                                 className={`${el.required ? "document__require" : ""}`}>
-                                                                <input type="date" onChange={handleChange}
-                                                                    id={`datefromto${el.id}`}
-                                                                    className={`document__input document__date`} 
-                                                                    
-                                                                    />
+                                                                <DocumentDatePicker handleChange={handleChangeDate} dateId={`inp${el.id}`} />
                                                             </div>
                                                         }
                                                         {
@@ -446,6 +529,45 @@ export const Document = () => {
                                                                                 </label>
                                                                             </span>
                                                                         ))
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        {
+                                                            el.type === 52 &&
+                                                            <div
+                                                                className={`document__checkbox ${el.required ? "document__require" : ""}`}>
+                                                                <div>
+                                                                    {
+                                                                        el?.choice?.split(", ").map((radio, idx, arr) => 
+                                                                        (
+                                                                            <span key={idx}>
+                                                                                <input type="radio"
+                                                                                    id={`${radio}-${el.id}`}
+                                                                                    name={`radio${el.id}${el.name.replaceAll(" ", "")}`}
+                                                                                    className="document__checkbox-item"
+                                                                                    value={radio}
+                                                                                    onClick={idx === arr.length - 1 ? () => {
+                                                                                        setProjectNeed(true)
+                                                                                    } : handleChangeProject}
+                                                                                />
+                                                                                <label
+                                                                                    htmlFor={`${radio}-${el.id}`}
+                                                                                    style={{ marginLeft: "4px" }}>{radio}
+                                                                                </label>
+                                                                                {
+                                                                                    idx === arr.length -1 && projectNeed ? 
+                                                                                        (<select style={{ margin: "0 10px" }} id={`inp${el.id}`} onChange={handleChange}>
+                                                                                        {
+                                                                                            projects.map((el2, idx) => (
+                                                                                                <option key={idx} value={`Project ${el2.title}`}> {el2.title} </option>
+                                                                                            ))
+                                                                                        }
+                                                                                    </select>) : false
+                                                                                }
+                                                                            </span>
+                                                                        )
+                                                                        )
                                                                     }
                                                                 </div>
                                                             </div>

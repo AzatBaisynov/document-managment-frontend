@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Contact } from './Contact';
 import { address } from '../data/data';
 
-const ContactsMembers = ({ department, setEmployee }) => {
+const ContactsMembers = ({ department, setEmployee, departmentName }) => {
     const [members, setMembers] = useState({})
 
     useEffect(() => {
@@ -37,7 +37,7 @@ const ContactsMembers = ({ department, setEmployee }) => {
             {
                 members?.employees && (
                     <div className="contacts__members-title">
-                        CPL department <span>{members.employees.length}</span> staff
+                        {departmentName} <span>{members.employees.length}</span> staff
                     </div>
                 )
             }
