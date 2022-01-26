@@ -20,6 +20,10 @@ import { ReadOpen } from "./components/approve/ReadOpen";
 import { ReadDoc } from "./components/approve/ReadDoc";
 import { File } from "./components/File";
 import { Managment } from './components/Managment';
+import {DocumentManagement} from "./components/DocumentManagement";
+import {NewsManagement} from "./components/NewsManagement";
+import {NoticeCard} from "./components/NoticeCard";
+import {DocumentNotice} from "./components/documents/DocumentNotice";
 
 
 const App = () => {
@@ -44,6 +48,10 @@ const App = () => {
                                 <Route path="/complete/:id" component={CompleteDoc} />
                                 <Route path="/tasks" component={ToDoPage} />
                                 <Route path="/related" component={RelatedProcesses} />
+                                <Route path="/documentmanager" component={DocumentManagement} />
+                                <Route path="/news" component={NewsManagement} />
+                                <Route path="/documentnotice" component={DocumentNotice} />
+                                <Route path="/notice" component={NoticeCard} />
                                 <Route path="/progress/:id" component={RelatedDoc} />
                                 <Route path="/read/:id" component={ReadDoc} />
                                 <Route path="/file" component={File} />

@@ -12,9 +12,9 @@ export const ManagmentMenu = () => {
 				<a href="/projectmanager" target="_blank">Project manager</a>
 			</div>
 			<div className="manager__row">
-				<h4>Project managment</h4>
+				<h4>Document managment</h4>
 				<a href="/documentmanager" target="_blank">Document manager</a>
-			</div>
+			</div>	
 		</div>
 	)
 }

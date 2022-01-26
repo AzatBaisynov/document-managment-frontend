@@ -98,7 +98,7 @@ button {
     display: flex;
 }
 
-.header_nav-item.active{
+.header_nav-item.active {
     height: 100%;
     display: flex;
     align-items: center;
@@ -117,6 +117,7 @@ button {
     color: #2373c8;
     margin-right: 19px;
 }
+
 .header_nav-item:hover {
     height: 100%;
     display: flex;
@@ -303,7 +304,7 @@ button {
 
 .report {
     padding: 10px;
-    
+
 }
 
 .report-box {
@@ -328,7 +329,7 @@ button {
     text-align: center;
     margin-top: 10px;
     max-width: 101px;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
 }
@@ -1490,7 +1491,7 @@ button {
 
 .task__todo {
     padding: 10px 20px;
-    border-bottom : 1px dotted #333;
+    border-bottom: 1px dotted #333;
 }
 
 .task__title {
@@ -1535,7 +1536,7 @@ button {
 
 .task__title__todo {
     font-size: 16px;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     width: 893px;
@@ -1613,11 +1614,13 @@ button {
 .related {
     padding: 10px;
 }
+
 .related__grid {
     display: grid;
     grid-template-columns: 0.5fr 2.3fr 0.5fr 1fr 1fr 0.7fr 1fr 1fr;
-    
+
 }
+
 .related__title {
     font-size: 12px;
     font-weight: 600;
@@ -1627,6 +1630,7 @@ button {
     background: whitesmoke;
     color: #006edc;
 }
+
 .related__field {
     margin: 10px 0 0 0;
     padding-bottom: 10px;
@@ -1641,21 +1645,24 @@ button {
 .read {
     padding: 10px;
 }
+
 .table {
-	width: 100%;
-	margin-bottom: 20px;
-	border: 1px solid #dddddd;
-	border-collapse: collapse; 
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #dddddd;
+    border-collapse: collapse;
 }
+
 .table th {
-	font-weight: 600;
-	padding: 5px;
-	background: whitesmoke;;
-	border: 1px solid #dddddd;
+    font-weight: 600;
+    padding: 5px;
+    background: whitesmoke;;
+    border: 1px solid #dddddd;
 }
+
 .table td {
-	border: 1px solid #dddddd;
-	padding: 5px;
+    border: 1px solid #dddddd;
+    padding: 5px;
 }
 
 .read__select {
@@ -1680,25 +1687,32 @@ button {
 .react-date-picker__clear-button.react-date-picker__button {
     display: none;
 }
+
 .react-date-picker__calendar {
     border: 1px solid #000000 !important;
     z-index: 1000 !important;
 }
+
 .react-date-picker__wrapper {
     border: none !important;
 }
+
 .react-date-picker__wrapper {
     border-bottom: 1px solid #d9d9d9 !important;
 }
+
 .react-datepicker-popper {
     min-width: 329px !important;
 }
+
 .react-datepicker__input-container input {
     border: none !important;
 }
+
 .react-datepicker__input-container input {
     border-bottom: 1px solid #d9d9d9 !important;
 }
+
 .mini__todo {
     color: rgb(255, 255, 255);
     background: #f66d37;
@@ -1711,14 +1725,149 @@ button {
 .managment {
     padding: 30px 0;
 }
+
 .manager {
     padding: 10px;
 }
+
 .manager__row {
     display: flex;
     margin-bottom: 20px;
 }
+
 .manager__row a {
     display: inline-block;
     margin-left: 20px;
 }
+
+.document__management__item {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.notice__card {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.notice__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.notice__title {
+    text-align: center;
+}
+
+.notice__title-second {
+    text-align: center;
+    color: #a171d0;
+    padding-bottom: 30px;
+    font-family: Outfit, sans-serif;
+}
+
+.notice__desc {
+    text-align: center;
+    color: #a171d0;
+    padding-top: 30px;
+    line-height: 50px;
+    font-family: Outfit, sans-serif;
+}
+
+.notice__subtitle {
+    color: gray;
+    margin-right: 30px;
+}
+
+.notice__link {
+    color: #47a7f7;
+    text-decoration: none;
+}
+
+.notice__info {
+    display: flex;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.notice__comment {
+    height: 100px;
+    padding-top: 15px;
+    padding-bottom: 50px;
+}
+
+.notice__input {
+    box-sizing: border-box;
+    height: 100%;
+    width: calc(100% - 161px);
+    padding-left: 20px;
+    border: 1px solid lightgrey;
+}
+
+.comment__btn {
+    color: #FFFFFF;
+    margin: 0 30px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100px;
+    height: 100%;
+    background-color: #0f71b7;
+}
+
+.notice__cover {
+    margin: 50px 0;
+    border: 1px solid lightgray;
+    border-bottom: none;
+}
+
+.document__notice-title {
+    height: 50px;
+    background-color: #f6f6f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.notice__row {
+    display: flex;
+}
+
+.notice__name {
+    box-sizing: border-box;
+    background-color: #f6f6f6;
+    width: 20%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgrey;
+}
+.notice__comment-name{
+    height: 150px;
+}
+
+.notice__inner {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-bottom: 1px solid lightgray;
+    box-sizing: border-box;
+}
+.notice__comment-cover{
+    height: 150px;
+    box-sizing: border-box;
+}
+.notice__inner-input{
+    width: 300px;
+}
+.notice__comment-input{
+    height: 100px;
+}
+
