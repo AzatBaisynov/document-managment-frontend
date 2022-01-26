@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import man from "../assets/images/man.jpeg"
+import men from "../assets/images/men.png"
 
 export const NoticeCard = () => {
     const documentnotice = {
@@ -59,9 +60,28 @@ export const NoticeCard = () => {
                 <button className="comment__btn">
                     Submit
                 </button>
-                <a href="/documentnotice">
-                    hi
-                </a>
+            </div>
+            <div className="comment__saved">
+                <div className="notice__comment-img">
+                    <img src={men} alt=""/>
+                </div>
+                <div>
+                    <span className="notice__comment-title">
+                         {
+                             notice.author
+                         }
+                    </span>
+                    <span className="notice__comment-date">
+                        {
+                            notice.date
+                        }
+                    </span>
+                    <p className="notice__comment-desc">
+                        {
+                            notice.comment
+                        }
+                    </p>
+                </div>
             </div>
         </div>
     );

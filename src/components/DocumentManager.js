@@ -1,7 +1,7 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { address } from './data/data'
-import { NavLink } from 'react-router-dom'
+import React, {useEffect, useState} from 'react'
+import {address} from './data/data'
+import {NavLink} from 'react-router-dom'
 
 export const DocumentManager = () => {
 
@@ -22,10 +22,6 @@ export const DocumentManager = () => {
             })
     }, [])
 
-    const handleClick = (e) => {
-        console.dir(e.target.className.split(" ")[1].replaceAll("rel", ""))
-
-    }
 
     return (
         <div className="related">
@@ -33,35 +29,34 @@ export const DocumentManager = () => {
                 <span>
                     Selected:
                 </span>
-                <input type="text" id="task" placeholder="Enter a keyword" />
+                <input type="text" id="task" placeholder="Enter a keyword"/>
                 <label htmlFor="task" className="task__label"> <i className="fas fa-search task__svg"> </i></label>
+            </div>
+            <div className="document__manager-add">
+                <button className="document__manager-btn">
+                    add
+                </button>
             </div>
             <div className="related__grid">
                 <p className="related__title">Seq</p>
                 <p className="related__title">Subject</p>
                 <p className="related__title">No</p>
-                <p className="related__title">Initiator</p>
+                <p className="related__title ">Initiator</p>
                 <p className="related__title">Init date</p>
                 <p className="related__title">File status</p>
                 <p className="related__title">Current process</p>
                 <p className="related__title">Current Step</p>
             </div>
-            {
-                data?.map((el, idx) => (
-                    <NavLink to={`/progress/${el.no}`} target="_blank">
-                        <div className={`related__grid rel${el.no}`} key={idx} onClick={handleClick} >
-                            <p className={`related__field rel${el.no}`}>{+el.seq + 1}</p>
-                            <p className={`related__field rel${el.no}`}>{el.subject}</p>
-                            <p className={`related__field rel${el.no}`}>{el.no}</p>
-                            <p className={`related__field rel${el.no}`}>{el.initiator}</p>
-                            <p className={`related__field rel${el.no}`}>{el.initDate}</p>
-                            <p className={`related__field rel${el.no}`}>{el.fileStatus}</p>
-                            <p className={`related__field rel${el.no}`}>{el.currentProcess}</p>
-                            <p className={`related__field rel${el.no}`}>{el.currentStep}</p>
-                        </div>
-                    </NavLink>
-                ))
-            }
+            <div className="related__grid document__manager">
+                <p className="document__manager-item"> 1 </p>
+                <p className="document__manager-item"> Hello</p>
+                <p className="document__manager-item"> Hello</p>
+                <p className="document__manager-item initiator__title"> Hello</p>
+                <p className="document__manager-item"> Hello</p>
+                <p className="document__manager-item"> Hello</p>
+                <p className="document__manager-item"> Hello</p>
+                <p className="document__manager-item"> Hello</p>
+            </div>
         </div>
     )
 }

@@ -17,22 +17,7 @@ export const DocumentNotice = () => {
                                 <input type="text" className="notice__inner-input"/>
                             </div>
                         </div>
-                        <div className="notice__row">
-                            <div className="notice__name">
-                                Date
-                            </div>
-                            <div className="notice__inner">
-                                <input type="datetime-local" className="notice__inner-input"/>
-                            </div>
-                        </div>
-                        <div className="notice__row">
-                            <div className="notice__name">
-                                Autor
-                            </div>
-                            <div className="notice__inner">
-                                <input type="text" className="notice__inner-input"/>
-                            </div>
-                        </div>
+
                         <div className="notice__row">
                             <div className="notice__name">
                                 Second title
@@ -46,7 +31,18 @@ export const DocumentNotice = () => {
                                 Image
                             </div>
                             <div className="notice__inner">
-                                <input type="file" className="notice__inner-input"/>
+                                <input type="file"
+                                       id="input"
+                                       className={` input__file-2`}
+                                       placeholder="Please select the file to upload"
+                                       accept=".jpg, .jpeg, .png"
+                                       name="profile_pic"/>
+                                <label htmlFor="input"
+                                       className="input__file-button">
+
+                                      <span className="input__file-icon-wrapper-2">Upload</span>
+                                      <span className="input__file-button-text">Please select the file to upload</span>
+                                </label>
                             </div>
                         </div>
                         <div className="notice__row">
@@ -57,6 +53,11 @@ export const DocumentNotice = () => {
                                 <input type="comment" className="notice__inner-input notice__comment-input"/>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div className="document__button-cover">
+                    <div className="document__submit">
+                        Submit
                     </div>
                 </div>
             </form>
