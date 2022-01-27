@@ -1,8 +1,6 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router';
-import man from "../assets/images/man.jpeg"
-import men from "../assets/images/men.png"
 import { address } from './data/data';
 
 export const NoticeCard = () => {
@@ -34,8 +32,8 @@ export const NoticeCard = () => {
     }, [])
     return (
         <div className="container">
-            <div className="notice__card">
-                <h2 className="notice__title">
+            <div className="notice__card" style={{color: `${notice.color}`}}>
+                <h2 className="notice__title" style={{color: "#000", fontWeight : "400"}}>
                     {
                         notice?.title
                     }
@@ -43,21 +41,19 @@ export const NoticeCard = () => {
                 <div className="notice__info">
                     <span className="notice__subtitle">
                         {
-                            notice?.dateCreated.replaceAll("-", "/").replace("T", " ").substr(0, 16)
+                            notice?.dateCreated?.replaceAll("-", "/").replace("T", " ").substr(0, 16)
                         }
                 </span>
-                    <span className="notice__subtitle">
-                Author：
-                    </span>
+                    <span className="notice__subtitle">Author:</span>
                     <span className="notice__link">
                         {
-                            notice.user.fullName
+                            notice?.user?.fullName
                         }
-            </span>
+                    </span>
                 </div>
                 <h2 className="notice__title-second">
                     {
-                        notice.second_title
+                        notice?.secondTitle
                     }
                 </h2>
                 <div className="notice__img">
@@ -65,10 +61,12 @@ export const NoticeCard = () => {
                 </div>
                 <h2 className="notice__desc">
                     {
-                        notice.comment
+                        notice?.comment
                     }
                 </h2>
             </div>
+            <hr />
+            <br/>
             <h4>
                 Comment
             </h4>

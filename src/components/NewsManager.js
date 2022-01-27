@@ -82,9 +82,7 @@ export const NewsManager = () => {
                     </div>
                     </NavLink>
                 ))
-            }
-            
-            <a href="/notice" target="_blank">Hello</a>
+            }            
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import news from '../assets/images/news.png'
+import news from '../assets/images/file.png'
 
 
 

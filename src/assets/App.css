@@ -1762,14 +1762,12 @@ button {
 
 .notice__title-second {
     text-align: center;
-    color: #a171d0;
     padding-bottom: 30px;
     font-family: Outfit, sans-serif;
 }
 
 .notice__desc {
     text-align: center;
-    color: #a171d0;
     padding-top: 30px;
     line-height: 50px;
     font-family: Outfit, sans-serif;
@@ -1777,7 +1775,8 @@ button {
 
 .notice__subtitle {
     color: gray;
-    margin-right: 30px;
+    font-size: 14px;
+    margin-right: 14px;
 }
 
 .notice__link {
@@ -1787,7 +1786,7 @@ button {
 
 .notice__info {
     display: flex;
-    padding: 30px;
+    padding: 10px 0 20px;
     justify-content: center;
     align-items: center;
 }
@@ -1987,6 +1986,7 @@ button {
 .document__management-img{
     background-color: #0f71b7;
     margin-bottom: 20px;
+    height: 186px;
 }
 .document__management-img img{
     width: 100%;
