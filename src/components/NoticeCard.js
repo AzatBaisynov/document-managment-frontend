@@ -1,8 +1,14 @@
+import axios from 'axios';
 import React, {useEffect, useState} from 'react';
+import { useParams } from 'react-router';
 import man from "../assets/images/man.jpeg"
 import men from "../assets/images/men.png"
+import { address } from './data/data';
 
 export const NoticeCard = () => {
+
+    const { id } = useParams()
+
     const documentnotice = {
         title: "Happy birthday, Assem!",
         date: "01/18/2022 12:02",
@@ -12,20 +18,32 @@ export const NoticeCard = () => {
     }
     const [notice, setNotice] = useState({})
     useEffect(() => {
-        setNotice(documentnotice)
-    })
+        const config = {
+            method: "get",
+            headers: {
+                "Authorization": localStorage.getItem("token")
+            },
+            url: `${address.use}/v1/api/notice/${id}`
+        }
+        axios(config)
+            .then(({ data }) => {
+                setNotice(data)
+                console.log(data)
+            })
+        console.log(id)
+    }, [])
     return (
         <div className="container">
             <div className="notice__card">
                 <h2 className="notice__title">
                     {
-                        notice.title
+                        notice?.title
                     }
                 </h2>
                 <div className="notice__info">
                     <span className="notice__subtitle">
                         {
-                            notice.date
+                            notice?.dateCreated.replaceAll("-", "/").replace("T", " ").substr(0, 16)
                         }
                 </span>
                     <span className="notice__subtitle">
@@ -33,7 +51,7 @@ export const NoticeCard = () => {
                     </span>
                     <span className="notice__link">
                         {
-                            notice.author
+                            notice.user.fullName
                         }
             </span>
                 </div>
@@ -43,7 +61,7 @@ export const NoticeCard = () => {
                     }
                 </h2>
                 <div className="notice__img">
-                    <img src={man} alt=""/>
+                    <img src={`${address.use}/v1/api/file/notice/${id}`} alt=""/>
                 </div>
                 <h2 className="notice__desc">
                     {
@@ -61,7 +79,7 @@ export const NoticeCard = () => {
                     Submit
                 </button>
             </div>
-            <div className="comment__saved">
+            {/* <div className="comment__saved">
                 <div className="notice__comment-img">
                     <img src={men} alt=""/>
                 </div>
@@ -82,7 +100,7 @@ export const NoticeCard = () => {
                         }
                     </p>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

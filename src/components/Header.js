@@ -71,7 +71,7 @@ export const Header = () => {
         .then((res) => {
             setRole(res.data)
         })
-    })
+    }, [])
 
     const dispatch = useDispatch()
     return (<header className="header">

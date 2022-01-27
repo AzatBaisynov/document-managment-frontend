@@ -51,7 +51,7 @@ const App = () => {
                                 <Route path="/documentmanager" component={DocumentManagement} />
                                 <Route path="/news" component={NewsManagement} />
                                 <Route path="/documentnotice" component={DocumentNotice} />
-                                <Route path="/notice" component={NoticeCard} />
+                                <Route path="/notice/:id" component={NoticeCard} />
                                 <Route path="/progress/:id" component={RelatedDoc} />
                                 <Route path="/read/:id" component={ReadDoc} />
                                 <Route path="/file" component={File} />

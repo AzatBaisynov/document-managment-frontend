@@ -4,10 +4,6 @@ import { downloadFile } from "./FileDownloader";
 
 export const File = () => {
 
-    useEffect(() => {
-        // downloadFile("http://localhost:8080/v1/api/file/1641411716180.pdf")
-    }, [])
-
     const handleClick = () => {
         downloadFile("http://localhost:8080/v1/api/file/1641411716180.pdf")
     }
