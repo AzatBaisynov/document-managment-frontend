@@ -876,6 +876,7 @@ button {
 
 
 .document__rows {
+    display: flex;
     flex-wrap: wrap;
 }
 
@@ -2031,3 +2032,25 @@ button {
     color: #0f71b7;
 }
 
+.project {
+    padding: 30px 0;
+}
+.project__inner {
+    padding: 10px;   
+}
+.project__new {
+    height: 28px;
+    width: 400px;
+    padding: 0 10px;
+}
+.project__add {
+    background: #47a7f7;
+    color: #fff;
+    height: 32px;
+    width: 150px;
+    border: 1px solid #47a7f7;
+}
+.project__add:hover {
+    border: 1px solid #1b76c0;
+    background: #1b76c0;
+}

@@ -21,10 +21,6 @@ export const DocumentNotice = () => {
     }
 
     const handleSubmit = () => {
-        // console.log(title)
-        // console.log(secondTitle)
-        // console.log(comment)
-        // console.log(color)
 
         const data = { title, secondTitle, comment, color }
         const config = {
@@ -38,21 +34,18 @@ export const DocumentNotice = () => {
         }
         axios(config)
             .then(async ({ data }) => {
+                const formData = new FormData()
+                formData.append(
+                    'file',
+                    attachments[0],
+                    attachments[0].name
+                )
+                await axios.post(`${address.use}/v1/api/file/notice/${data.id}`, formData, {
+                    headers: {
+                        'Authorization': localStorage.getItem("token"),
+                    }
+                })
 
-
-                for (let i = 0; i < attachments.length; i++) {
-                    const formData = new FormData()
-                    formData.append(
-                        'file',
-                        attachments[i],
-                        attachments[i].name
-                    )
-                    await axios.post(`${address.use}/v1/api/file/notice/${data.id}`, formData, {
-                        headers: {
-                            'Authorization': localStorage.getItem("token"),
-                        }
-                    })
-                }
                 handleClose()
             })
     }

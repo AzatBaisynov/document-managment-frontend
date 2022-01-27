@@ -1,35 +1,36 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { address } from './data/data'
 
 export const Notice = () => {
-    const [users, setUsers] = useState([])
+    const [notices, setNotices] = useState([])
 
     useEffect(() => {
-        const configure = {
-            method: "GET",
-            url: `${address.use}/v1/api/user/bd`,
+        const config = {
+            method: "get",
             headers: {
                 "Authorization": localStorage.getItem("token")
-            }
+            },
+            url: `${address.use}/v1/api/notice`
         }
-        axios(configure)
-            .then(response => {
-                setUsers(response.data)
-            })
-            .catch((error) => {
-                console.log(error)
+        axios(config)
+            .then(({ data }) => {
+                console.log(data)
+                setNotices(data)
             })
     }, [])
 
     return (
         <div className="notice">
             {
-                users.map((el, idx) => (
-                    <div key={idx}>
-                        <p style={{fontSize : "15px"}}><span style={{color : "#2373c8"}}>[Notice]</span> Happy birthday, {el.fullName}!</p>
-                        <br />
+                notices.map((el, idx) => (
+                    <NavLink to={`/notice/${el.id}`} target="_blank" key={idx}>
+                    <div key={idx} style={{display: "flex", justifyContent: "space-between", marginBottom : "15px"}}>
+                        <p style={{fontSize : "15px"}}><span style={{color : "#2373c8"}}>[Notice]</span> {el.title}</p>
+                        <p>{el?.dateCreated?.replaceAll("-", "/").replace("T", " ").substr(0, 11)}</p>
                     </div>
+                    </NavLink>
                 ))
             }
         </div>

@@ -57,7 +57,7 @@ export const NoticeCard = () => {
                     }
                 </h2>
                 <div className="notice__img">
-                    <img src={`${address.use}/v1/api/file/notice/${id}`} alt=""/>
+                    <img src={`${address.use}/v1/api/images/notice/${id}`} alt=""/>
                 </div>
                 <h2 className="notice__desc">
                     {

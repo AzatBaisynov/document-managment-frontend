@@ -9,7 +9,6 @@ import file from '../../assets/images/file.svg'
 import { useSelector } from 'react-redux'
 import { DocumentDatePicker } from './DocumentDatePicker';
 import { DocumentDateTimePicker } from './DocumentDateTimePicker';
-import {DocumentUnique} from "./DocumentUnique";
 
 export const Document = () => {
     const [document, setDocument] = useState([])
@@ -42,7 +41,7 @@ export const Document = () => {
             .catch(function (error) {
                 console.log(error)
             });
-            // console.log(user)
+        // console.log(user)
     }, [])
 
     useEffect(async () => {
@@ -99,7 +98,7 @@ export const Document = () => {
         })
         if (fromToElement) {
             fromToHoursCounter(fromToElement.fromTo, fromToElement.id)
-            
+
         }
         if (fromToElement2) {
             totalDaysCounter(fromToElement2.fromTo, fromToElement2.id)
@@ -196,7 +195,7 @@ export const Document = () => {
         })
         let data
         if (document.document.subOrder) {
-            data = { "documentId": id, fields: docFields, "status" : document.document.subOrder}
+            data = { "documentId": id, fields: docFields, "status": document.document.subOrder }
         } else {
             data = { "documentId": id, fields: docFields }
         }
@@ -286,7 +285,7 @@ export const Document = () => {
                 if (el.id === id) {
                     el.value = `${Math.ceil((difference / (1000 * 60 * 60)) % 24)} hours`
                     return el
-                } 
+                }
                 return el
             })
             setFields(newFields)
@@ -297,7 +296,7 @@ export const Document = () => {
                 if (el.id === id) {
                     el.value = "0 hours"
                     return el
-                } 
+                }
                 return el
             })
             setFields(newFields)
@@ -317,14 +316,14 @@ export const Document = () => {
             const difference = Math.abs(dateTo - dateFrom)
             const newFields = fields.map(el => {
                 if (el.id === id) {
-                    el.value = `${Math.floor(difference / (24*60*60*1000))} days`
+                    el.value = `${Math.floor(difference / (24 * 60 * 60 * 1000))} days`
                     return el
-                } 
+                }
                 return el
             })
             setFields(newFields)
-            setTotalDays(`${Math.floor(difference / (24*60*60*1000))} days`)
-            return `${Math.floor(difference / (24*60*60*1000))} days`
+            setTotalDays(`${Math.floor(difference / (24 * 60 * 60 * 1000))} days`)
+            return `${Math.floor(difference / (24 * 60 * 60 * 1000))} days`
         } else {
             const newFields = fields.map(el => {
                 if (el.id === id) {
@@ -436,9 +435,9 @@ export const Document = () => {
                                                                 className={`${el.required ? "document__require" : ""}`}>
                                                                 <input type="text" onChange={handleChange}
                                                                     id={`inp${el.id}`}
-                                                                    className={`document__input document__date`} 
+                                                                    className={`document__input document__date`}
                                                                     value={user.fullName}
-                                                                    />
+                                                                />
                                                             </div>
                                                         }
 
@@ -448,9 +447,9 @@ export const Document = () => {
                                                                 className={`${el.required ? "document__require" : ""}`}>
                                                                 <input type="text" onChange={handleChange}
                                                                     id={`inp${el.id}`}
-                                                                    className={`document__input document__date`} 
+                                                                    className={`document__input document__date`}
                                                                     value={user.department}
-                                                                    />
+                                                                />
                                                             </div>
                                                         }
 
@@ -460,9 +459,9 @@ export const Document = () => {
                                                                 className={`${el.required ? "document__require" : ""}`}>
                                                                 <input type="text" onChange={handleChange}
                                                                     id={`inp${el.id}`}
-                                                                    className={`document__input document__date`} 
+                                                                    className={`document__input document__date`}
                                                                     value={`${dateFromTo}`}
-                                                                    />
+                                                                />
                                                             </div>
                                                         }
 
@@ -504,9 +503,9 @@ export const Document = () => {
                                                                 className={`${el.required ? "document__require" : ""}`}>
                                                                 <input type="text" onChange={handleChange}
                                                                     id={`datefromto${el.id}`}
-                                                                    className={`document__input document__date`} 
+                                                                    className={`document__input document__date`}
                                                                     value={totalDays}
-                                                                    />
+                                                                />
                                                             </div>
                                                         }
                                                         {
@@ -540,7 +539,7 @@ export const Document = () => {
                                                                 className={`document__checkbox ${el.required ? "document__require" : ""}`}>
                                                                 <div>
                                                                     {
-                                                                        el?.choice?.split(", ").map((radio, idx, arr) => 
+                                                                        el?.choice?.split(", ").map((radio, idx, arr) =>
                                                                         (
                                                                             <span key={idx}>
                                                                                 <input type="radio"
@@ -557,14 +556,14 @@ export const Document = () => {
                                                                                     style={{ marginLeft: "4px" }}>{radio}
                                                                                 </label>
                                                                                 {
-                                                                                    idx === arr.length -1 && projectNeed ? 
+                                                                                    idx === arr.length - 1 && projectNeed ?
                                                                                         (<select style={{ margin: "0 10px" }} id={`inp${el.id}`} onChange={handleChange}>
-                                                                                        {
-                                                                                            projects.map((el2, idx) => (
-                                                                                                <option key={idx} value={`Project ${el2.title}`}> {el2.title} </option>
-                                                                                            ))
-                                                                                        }
-                                                                                    </select>) : false
+                                                                                            {
+                                                                                                projects.map((el2, idx) => (
+                                                                                                    <option key={idx} value={`Project ${el2.title}`}> {el2.title} </option>
+                                                                                                ))
+                                                                                            }
+                                                                                        </select>) : false
                                                                                 }
                                                                             </span>
                                                                         )
@@ -584,7 +583,7 @@ export const Document = () => {
                                                                                 <input type="radio"
                                                                                     id={`${radio}-${el.id}`}
                                                                                     name={`radio${el.id}${el.name.replaceAll(" ", "")}`}
-                                                                                    className={`document__checkbox-item ${idx+1}`}
+                                                                                    className={`document__checkbox-item ${idx + 1}`}
                                                                                     value={radio}
                                                                                     onClick={handleSetup}
                                                                                 />
@@ -610,12 +609,12 @@ export const Document = () => {
                                                             el.type === 22 &&
                                                             <div
                                                                 className={`${el.required ? "document__require" : ""}`}>
-                                                                    <select id={`inp${el.id}`} onChange={handleChange}>
-                                                                {
-                                                                    el.choice.split(", ").map((el2, idx) => (
-                                                                        <option key={idx} value={el2}>{el2}</option>
-                                                                    ))
-                                                                }
+                                                                <select id={`inp${el.id}`} onChange={handleChange}>
+                                                                    {
+                                                                        el.choice.split(", ").map((el2, idx) => (
+                                                                            <option key={idx} value={el2}>{el2}</option>
+                                                                        ))
+                                                                    }
                                                                 </select>
                                                             </div>
                                                         }
@@ -662,12 +661,12 @@ export const Document = () => {
                                                                     multiple />
                                                                 <label htmlFor={`inp${el.id}`}
                                                                     className="input__file-button"
-                                                                    style={{ margin: 0, display: "flex", alignItems: "center"}}>
+                                                                    style={{ margin: 0, display: "flex", alignItems: "center" }}>
                                                                     <span className="input__file-icon-wrapper">
                                                                         Upload
                                                                     </span>
                                                                     {
-                                                                        attachments.length ? attachments.map((el, idx) => <span key={idx} className="input__file-button-text" style={{marginRight : "20px", display: "flex", alignItems: "center"}}><img src={file} style={{width: "40px", marginRight: "5px"}} alt="file" /> {el.name}</span>) : <span className="input__file-button-text">Please select the file to upload</span>
+                                                                        attachments.length ? attachments.map((el, idx) => <span key={idx} className="input__file-button-text" style={{ marginRight: "20px", display: "flex", alignItems: "center" }}><img src={file} style={{ width: "40px", marginRight: "5px" }} alt="file" /> {el.name}</span>) : <span className="input__file-button-text">Please select the file to upload</span>
                                                                     }
                                                                 </label>
                                                             </div>
@@ -719,7 +718,7 @@ export const Document = () => {
                                                             el.post.position
                                                         }
                                                         {
-                                                            idx < positions.length -1 ? <i className="fas fa-long-arrow-alt-down document__orders-arrow"></i> : ""
+                                                            idx < positions.length - 1 ? <i className="fas fa-long-arrow-alt-down document__orders-arrow"></i> : ""
                                                         }
                                                     </div>
                                                 ))
@@ -749,7 +748,6 @@ export const Document = () => {
                                     <DocumentCompleted />
                                 }
                             </div>
-                            <DocumentUnique/>
                             <div className="document__button-cover">
                                 <div className="document__submit" onClick={handleSubmit}>
                                     Submit
