@@ -1868,7 +1868,10 @@ button {
 }
 
 .notice__inner-input {
-    width: 300px;
+    width: 600px;
+    border: none;
+    height: 30px;
+    border-bottom: 1px solid #d3d3d3;
 }
 
 .notice__comment-input {
@@ -1995,13 +1998,14 @@ button {
 }
 .news__manager-wrapper{
     padding: 20px;
+    border-bottom: 1px dotted #dedede;
 }
 .news__manager-wrapper:hover{
     background-color: #ece8e8;
 }
 .news__manager-grid{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-columns: 1fr 1fr 1fr ;
     grid-column-gap: 20px;
     margin-left: 20px;
 }
