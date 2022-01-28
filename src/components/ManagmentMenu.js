@@ -1,6 +1,10 @@
 import React from "react"
+import { useSelector } from 'react-redux'
 
 export const ManagmentMenu = () => {
+
+	const id = useSelector(el => el.userReducer.user.id)
+
 	return (
 		<div className="manager">
 			<div className="manager__row">
@@ -11,10 +15,12 @@ export const ManagmentMenu = () => {
 				<h4>Project management</h4>
 				<a href="/projectmanager" target="_blank">Project manager</a>
 			</div>
-			<div className="manager__row">
+			{
+				id !== 10 ? (<div className="manager__row">
 				<h4>Document management</h4>
 				<a href="/documentmanager" target="_blank">Document manager</a>
-			</div>	
+			</div>	) : ""
+			}
 		</div>
 	)
 }
