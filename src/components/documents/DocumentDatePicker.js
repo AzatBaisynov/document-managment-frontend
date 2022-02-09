@@ -14,14 +14,22 @@
 // 	);
 // };
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
 export const DocumentDatePicker = ({ handleChange, dateId }) => {
 	const [startdate, setStartdate] = useState(new Date());
+	
+	useEffect(() => {
+		setTimeout(() => {
+			console.log("Hello")
+			handleChange(`${startdate.getFullYear()}-${startdate.getMonth() + 1}-${startdate.getDate()}`, dateId)
+		}, 1000)
+	}, [])
 
 	return (
+		// <div></div>
 		<DatePicker locale="en" dateFormat="dd / MM / yyyy" selected={startdate} onChange={(date) => {
 			handleChange(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`, dateId)
 			setStartdate(date)

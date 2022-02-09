@@ -1,4 +1,4 @@
-import React, { useState }from 'react';
+import React, { useEffect, useState }from 'react';
 import DatePicker from 'react-datepicker';
 
 export const DocumentDateTimePicker = ({ handleChange, dateId }) => {
@@ -7,6 +7,12 @@ export const DocumentDateTimePicker = ({ handleChange, dateId }) => {
 	let handleColor = (time) => {
 		return time.getHours() > 12 ? "text-success" : "text-error";
 	};
+
+	useEffect(() => {
+		setTimeout(() => {
+			handleChange(`${startDate.toISOString().substr(0, 16)}`, dateId)
+		}, 1000)
+	}, [])
 
 	return (
 		<DatePicker
@@ -19,5 +25,6 @@ export const DocumentDateTimePicker = ({ handleChange, dateId }) => {
 			dateFormat="dd/MM/yyyy  p"
 			timeClassName={handleColor}
 		/>
+		// <div></div>
 	);
 }
