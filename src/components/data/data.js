@@ -8,7 +8,7 @@ export const data =
     }
 
 const DEV = "http://localhost:8080"
-const PROD = "http://192.168.1.67:8080"
+const PROD = "http://dms.ccecc.kz:8080/"
 
 export const address = {
     use : PROD
