@@ -79,16 +79,16 @@ const ContactsMembersDetails = ({ details }) => {
                             {details.fullName}
                         </p>
 
-                        <p className="contacts__homepage-info">Employee info:</p>
+                        <p className="contacts__homepage-info">Информация о сотруднике:</p>
                         <div className="contacts__homepage-descriptions">
                             
-                            <p className="contacts__homepage-info">Mobile Phone
+                            <p className="contacts__homepage-info">Мобильный телефон
                                 {showMobile ? (<span><input onInput={(e) => setMobile(e.target.value)} style={{ width: "115px", border: "none", borderBottom: "1px solid #000"}} type="text"/><button onClick={handlePressPhone}>save</button></span>) : (<span><span> {details?.phone} </span>{details?.id === user?.id ? (<span onClick={() => { setShowMobile(!showMobile) }} style={{ background: "#699f4c", padding: "0px 4px", borderRadius: "50%", color: "#fff" }}>+</span>) : ""}</span>)}
                             </p>
-                            <p className="contacts__homepage-info">Email
+                            <p className="contacts__homepage-info">Почта
                                 {showEmail ? (<span><input onInput={(e) => setEmail(e.target.value)} style={{ width: "115px", border: "none", borderBottom: "1px solid #000" }} type="text" /><button onClick={handlePressEmail}>save</button></span>) : (<span><span> {details?.email} </span>{details?.id === user?.id ? (<span onClick={() => { setShowEmail(!showEmail) }} style={{ background: "#699f4c", padding: "0px 4px", borderRadius: "50%", color: "#fff" }}>+</span>) : ""}</span>)}
                             </p>
-                            <p className="contacts__homepage-info">Post
+                            <p className="contacts__homepage-info">Должность
                                 <span> {details?.postId?.position} </span>
                             </p>
                         </div>
@@ -97,8 +97,8 @@ const ContactsMembersDetails = ({ details }) => {
                                 <QRCode size="200" value={`MECARD:N:${details.fullName || ""};ADR:;TEL:${details?.phone || ""};EMAIL:${details?.email || ""};;`}/>
                             </div>
                             <p className="contacts__homepage-scan-desc">
-                                Scan this to add the people's <br />
-                                information to Contact list
+                                Отскайнируйте QR код для<br />
+                                добавления в список контактов
                             </p>
                         </div>
 

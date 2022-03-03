@@ -65,7 +65,7 @@ button {
 
 .header_name {
     padding: 13px 19px;
-    background: #efefef;
+    background: #f2f2bdad;
     border-radius: 0 0 7px 7px;
     font-size: 13px;
     display: flex;
@@ -89,8 +89,8 @@ button {
 
 .header_bottom {
     height: 37px;
-    background: #ceeaf5;
-    border-top: #2373c8 solid 7px;
+    background: #f0f2c0;
+    border-top: #59825b solid 7px;
 }
 
 .header_nav {
@@ -103,7 +103,7 @@ button {
     display: flex;
     align-items: center;
     padding: 0 20px;
-    background: #2373c8;
+    background: #59825b;
     color: #ffffff;
     margin-right: 19px;
 }
@@ -114,7 +114,7 @@ button {
     align-items: center;
     padding: 0 20px;
     /* background: #2373c8; */
-    color: #2373c8;
+    color: #59825b;
     margin-right: 19px;
 }
 
@@ -123,7 +123,7 @@ button {
     display: flex;
     align-items: center;
     padding: 0 20px;
-    background: #2373c8;
+    background: #59825b;
     color: #fff;
     margin-right: 19px;
 }
@@ -202,8 +202,8 @@ button {
     width: 100%;
     text-align: left;
     padding: 0 10px;
-    background-color: #ceeaf5;
-    color: #00509d;
+    background-color: #f0f2c0;
+    color: #465547;
     font-size: 16px;
     cursor: pointer;
 }
@@ -227,7 +227,7 @@ button {
 
 .menu_header {
     height: 35px;
-    background-color: #ceeaf5;
+    background-color: #f0f2c0;
     border-bottom: 1px solid #dfdfdf;
     display: flex;
 }
@@ -242,7 +242,7 @@ button {
 }
 
 .menu_link:hover {
-    color: steelblue;
+    color: #2d422e;
 }
 
 .menu_link.active {
@@ -260,7 +260,7 @@ button {
     height: 95%;
     border-left: 1px solid #dfdfdf;
     border-right: 1px solid #dfdfdf;
-    border-top: 3px solid #00509d;
+    border-top: 3px solid #5a805d;
 }
 
 .menu_block {
@@ -314,7 +314,7 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #5599ff;
+    background-color: #59815d;
     padding: 5px;
     font-size: 40px;
 }
@@ -354,10 +354,11 @@ button {
 
 .react-calendar__tile--active {
     border-radius: 5px;
+    background: #587f5a !important;
 }
 
 .react-calendar__navigation__label {
-    background: #006edc !important;
+    background: #104813 !important;
     color: #fff;
     opacity: .7;
     border-radius: 5px;
@@ -366,7 +367,7 @@ button {
 .auth {
     width: 100%;
     height: 100vh;
-    background: url("../assets//images/auth.webp") no-repeat center/cover;
+    background: url("../assets/images/kzbg.jpg") no-repeat center/cover;
 }
 
 .auth_container {
@@ -381,14 +382,14 @@ button {
 }
 
 .auth_logo {
-    width: 130px;
+    width: 196px;
 
 }
 
 .auth_form {
     position: relative;
     width: 380px;
-    height: 325px;
+    height: 400px;
     background: #fff;
     border-radius: 10px;
     display: flex;
@@ -845,7 +846,7 @@ button {
 }
 
 .document__approval {
-    color: #2373c8;
+    color: #298d2e;
     font-size: 15px;
     padding-bottom: 40px;
     font-weight: bold;
@@ -954,7 +955,7 @@ button {
     border-top: 0;
     width: 100%;
     padding-bottom: 5px;
-    color: cornflowerblue;
+    color: #739648;
 }
 
 .document__info_light {
@@ -1063,7 +1064,7 @@ button {
 }
 
 .document__submit {
-    background-color: #2373c8;
+    background-color: #298d2e;
     width: 120px;
     height: 40px;
     cursor: pointer;
@@ -1074,9 +1075,9 @@ button {
 }
 
 .document__submit:hover {
-    color: #2373c8;
+    color: #298d2e;
     background-color: #FFFFFF;
-    border: 1px solid #2373c8;
+    border: 1px solid #298d2e;
 }
 
 .document__button-cover {
@@ -1104,7 +1105,7 @@ button {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    background: #2373c8;
+    background: #298d2e;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -1386,7 +1387,7 @@ button {
 
 .document__orders-name {
     margin-bottom: 30px;
-    background-color: #2373c8;
+    background-color: #5f8961;
     color: #FFFFFF;
     width: 130px;
     min-height: 50px;
@@ -1796,6 +1797,7 @@ button {
     height: 100px;
     padding-top: 15px;
     padding-bottom: 50px;
+    display: flex;
 }
 
 .notice__input {
@@ -1811,7 +1813,7 @@ button {
     margin: 0 30px;
     font-size: 20px;
     font-weight: bold;
-    width: 100px;
+    padding: 0 10px;
     height: 100%;
     background-color: #0f71b7;
 }

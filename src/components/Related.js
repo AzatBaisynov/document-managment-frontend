@@ -30,14 +30,14 @@ export const Related = () => {
     return (
         <div className="related">
             <div className="related__grid">
-                <p className="related__title">Seq</p>
-                <p className="related__title">Subject</p>
-                <p className="related__title">No</p>
-                <p className="related__title">Initiator</p>
-                <p className="related__title">Init date</p>
-                <p className="related__title">File status</p>
-                <p className="related__title">Current process</p>
-                <p className="related__title">Current Step</p>
+                <p className="related__title">№</p>
+                <p className="related__title">Документ</p>
+                <p className="related__title">Номер</p>
+                <p className="related__title">Инициатор</p>
+                <p className="related__title">Дата созд.</p>
+                <p className="related__title">Статус файла</p>
+                <p className="related__title">Текущий процесс</p>
+                <p className="related__title">Текущий шаг</p>
             </div>
             {
                 data?.map((el, idx) => (

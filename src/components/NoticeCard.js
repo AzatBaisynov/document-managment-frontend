@@ -44,7 +44,7 @@ export const NoticeCard = () => {
                             notice?.dateCreated?.replaceAll("-", "/").replace("T", " ").substr(0, 16)
                         }
                 </span>
-                    <span className="notice__subtitle">Author:</span>
+                    <span className="notice__subtitle">Автор:</span>
                     <span className="notice__link">
                         {
                             notice?.user?.fullName
@@ -68,13 +68,13 @@ export const NoticeCard = () => {
             <hr />
             <br/>
             <h4>
-                Comment
+                Комментарий
             </h4>
             <div className="notice__comment">
                 <input type="comment" className="notice__input"
-                       placeholder="You have done a good job! I would like to cheer for you!"/>
+                       placeholder="Напишите свой комментарий!"/>
                 <button className="comment__btn">
-                    Submit
+                    Опубликовать
                 </button>
             </div>
             {/* <div className="comment__saved">

@@ -56,18 +56,18 @@ export const Employee = () => {
                 }</p>
             </div>
             <nav className="class_dropdown active">
-                <button className="employee_btn" onClick={toggleActive}>My work</button>
+                <button className="employee_btn" onClick={toggleActive}>Меню</button>
                 <div className="class_dropdown-child">
-                    <NavLink to='/contacts' className="class_link">Contacts</NavLink>
-                    <NavLink to='/related' className="class_link">Related Processes</NavLink>
-                    <NavLink to='/tasks' className="class_link">To do</NavLink>
+                    <NavLink to='/contacts' className="class_link">Контакты</NavLink>
+                    <NavLink to='/related' className="class_link">Мои процессы</NavLink>
+                    <NavLink to='/tasks' className="class_link">Задачи</NavLink>
                 </div>
             </nav>
             <nav className="class_dropdown">
-                <button className="employee_btn" onClick={toggleActive}>Link</button>
+                <button className="employee_btn" onClick={toggleActive}>Ссылки</button>
                 <div className="class_dropdown-child">
-                    <a href="http://www.ccecc.com.cn/" target="_blank" className="class_link">CCECC</a>
-                    <a href="#" className="class_link">DMS user manual</a>
+                    <a href="http://www.ccecc.com.cn/" target="_blank" className="class_link">Адрес компании</a>
+                    <a href="#" className="class_link">Инструкции к DMS</a>
                 </div>
             </nav>
         </section>

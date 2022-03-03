@@ -33,20 +33,20 @@ export const ToRead = () => {
         <div>
             <div className="task__search">
                 <span>
-                    Selected:
+                    Найти:
                 </span>
-                <input type="text" id="task" placeholder="Enter a keyword" />
+                <input type="text" id="task" placeholder="Введите значение" />
                 <label htmlFor="task" className="task__label"> <i className="fas fa-search task__svg"> </i></label>
             </div>
             {
                 todo[0] ? todo.map((el, idx) => (
                     <NavLink to={`/complete/${el.id}`} key={idx} className="todo_document" target="_blank">
                     <div className="task__todo" >
-                        <p className="task__title__todo">{idx + 1} <div className="todo_dot_red" style={{ background: "limegreen", padding: "1px" }}></div> <span style={{ color: 'limegreen' }}>[Processed]</span> Please view the following document: {el.name} from {el.user.fullName}</p>
+                        <p className="task__title__todo">{idx + 1} <div className="todo_dot_red" style={{ background: "limegreen", padding: "1px" }}></div> <span style={{ color: 'limegreen' }}>[Processed]</span> Пожалуйста проверьте документ: {el.name} от {el.user.fullName}</p>
                         <div className="task__info">
-                            <p className="task__subdesc">Initiator: {el.user.fullName}</p>
-                            <p className="task__subdesc">Initiate time: {`${el?.dateCreated.substring(0, 10)} ${el?.dateCreated.substring(11, 19)}`}</p>
-                            <p className="task__subdesc">Document category: {el.documentCategory.name}</p>
+                            <p className="task__subdesc">Инициатор: {el.user.fullName}</p>
+                            <p className="task__subdesc">Дата создания: {`${el?.dateCreated.substring(0, 10)} ${el?.dateCreated.substring(11, 19)}`}</p>
+                            <p className="task__subdesc">Категория документа: {el.documentCategory.name}</p>
                             <div>&#9872;</div>
                         </div>
                     </div>

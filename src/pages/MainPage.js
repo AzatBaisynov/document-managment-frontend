@@ -58,38 +58,38 @@ const MainPage = () => {
     const todos = [
         {
             action_link: "/",
-            action_text: "To do",
+            action_text: "Задачи",
             action: Todo
         },
         {
             action_link: "/toread",
-            action_text: "To be read",
+            action_text: "К прочтению",
             action: MiniTiRead
         },
         {
             action_link: "/tocompleted",
-            action_text: "Completed",
+            action_text: "Выполнено",
             action: ToCompleted
         }
     ]
     const slider = [
         {
             action_link: "/",
-            action_text: "Picture News",
+            action_text: "Новости",
             action: Slider
         }
     ]
     const calendar = [
         {
             action_link: "/",
-            action_text: "My calendar",
+            action_text: "Календарь",
             action: CalendarPart
         }
     ]
     const noticeAndNews = [
         {
             action_link: "/",
-            action_text: "Notice",
+            action_text: "Уведомления",
             action: Notice
         }
     ]

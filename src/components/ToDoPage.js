@@ -7,12 +7,12 @@ import {ToRead} from "./ToRead";
 const todos = [
     {
         action_link: "/",
-        action_text: "Task List",
+        action_text: "Список задач",
         action: Task
     },
     {
         action_link: "/toread",
-        action_text: "Completed Task List",
+        action_text: "Список законченных задач",
         action: ToRead
     },
 ]

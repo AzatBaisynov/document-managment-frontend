@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import logo from '../assets/images/logo_header.png';
+import logo from '../assets/images/logo.jpg';
 import wait from '../assets/images/wait.svg'
 import see from '../assets/images/see.svg'
 import exclamation from '../assets/images/exclamation.svg'
@@ -78,21 +78,22 @@ export const Header = () => {
         <div className="header_top">
             <div className="container header_container">
                 <div className="header_logo">
-                    <img src={logo} />
+                    <img src={logo} style={{width: "110px", height: "110px"}} />
+                    {/*<span style={{fontSize: "40px", fontWeight: "700"}}>LOGO</span>*/}
                 </div>
                 <div className="header_info">
                     <div className="header_name">
-                        <p> Welcome </p>
+                        <p> Пользователь </p>
                         <span className="bolder">{members.fullName}</span>
                         <img className="header_ico" src={wait} />
                         <span> {todo? todo : "0"} </span>
                         <img className="header_ico" src={see} />
                         <span> 0 </span>
                         <img className="header_ico" src={exclamation} />
-                        <p>Feedback</p>
+                        <p>Поддержка</p>
                         <span className="bolder"
                             onClick={() => dispatch(logoutAction())}
-                        >Logout</span>
+                        >Выйти</span>
                     </div>
 
                 </div>
@@ -102,11 +103,11 @@ export const Header = () => {
             <div className="container header_container">
                 <nav className="header_nav">
                     <div className="header_nav-item active">
-                        <a href="/" className="header_link">Home</a>
+                        <a href="/" className="header_link">Главная</a>
                     </div>
                     <div className="header_nav-item">
                         {
-                            role === "ROLE_ADMIN" ? <a href="/management" className="header_link" target="_blank">Process Management</a> : ""
+                            role === "ROLE_ADMIN" ? <a href="/management" className="header_link" target="_blank">Управление процессами</a> : ""
                         }
                     </div>
                 </nav>

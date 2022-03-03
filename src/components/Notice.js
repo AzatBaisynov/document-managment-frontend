@@ -27,7 +27,7 @@ export const Notice = () => {
                 notices.map((el, idx) => (
                     <NavLink to={`/notice/${el.id}`} target="_blank" key={idx}>
                     <div key={idx} style={{display: "flex", justifyContent: "space-between", marginBottom : "15px"}}>
-                        <p style={{fontSize : "15px"}}><span style={{color : "#2373c8"}}>[Notice]</span> {el.title}</p>
+                            <p style={{ fontSize: "15px" }}><span style={{ color: "#12b622" }}>[Уведомление]</span> {el.title}</p>
                         <p>{el?.dateCreated?.replaceAll("-", "/").replace("T", " ").substr(0, 11)}</p>
                     </div>
                     </NavLink>

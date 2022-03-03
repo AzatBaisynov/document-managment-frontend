@@ -10,9 +10,9 @@ export const CalendarPart = () => {
             <Calendar
                 onChange={onChange}
                 value={value}
-                locale="en"
+                locale="ru"
             />
-            <p className="calendar_data">No Data</p>
+            <p className="calendar_data">Нет данных</p>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import logo from '../assets/images/logo.png'
+import logo from '../assets/images/logo.jpg'
 import {useDispatch} from "react-redux";
 import {loginAction} from "../redux/actions/login";
 import axios from "axios";
@@ -39,13 +39,13 @@ export const Auth = () => {
                         <label htmlFor="auth_loging">
                         </label>
                         <p className="auth_error-message">{message}</p>
-                        <input id="auth_login" className="auth_username" placeholder="Username" type="text"
+                        <input id="auth_login" className="auth_username" placeholder="Логин" type="text"
                                onChange={(e) => setLogin(e.target.value)}/>
                         <label htmlFor="auth_password"> </label>
-                        <input id="auth_password" className="auth_password" placeholder="Password" type="password"
+                        <input id="auth_password" className="auth_password" placeholder="Пароль" type="password"
                                onChange={(e) => setPassword(e.target.value)}
                         />
-                        <button className="auth_login">Sign in</button>
+                        <button className="auth_login">Войти</button>
                     </div>
                 </form>
             </div>

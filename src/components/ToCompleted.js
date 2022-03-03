@@ -35,7 +35,7 @@ export const ToCompleted = () => {
         <div className="todo_info">
             <div className="todo_nothing">
                 <img src={message} className="todo_message" />
-                You <span style={{ color: "red", margin: "0 5px", fontWeight: "600" }}> have {todo[0] ? todo.length : "no"} task</span> <u>Items handled</u><img onClick={refresh} src={reload} style={{width: "20px", marginLeft: "7px", fill : "#ffae12", cursor: "pointer"}} alt="reload"/>
+                У Вас <span style={{ color: "red", margin: "0 5px", fontWeight: "600" }}> {todo[0] ? todo.length : "нет"} </span><u>выполненных задач</u><img onClick={refresh} src={reload} style={{width: "20px", marginLeft: "7px", fill : "#ffae12", cursor: "pointer"}} alt="reload"/>
             </div>
             {
                 todo.map((el, idx) => (

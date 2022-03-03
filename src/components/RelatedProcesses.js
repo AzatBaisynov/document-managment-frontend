@@ -6,7 +6,7 @@ import { Related } from "./Related"
 const todos = [
     {
         action_link: "/",
-        action_text: "Related",
+        action_text: "Мои процессы",
         action: Related
     }
 ]

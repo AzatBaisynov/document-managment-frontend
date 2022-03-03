@@ -42,7 +42,7 @@ const ContactsMembers = ({ department, setEmployee, departmentName }) => {
                 )
             }
             <p className="contacts__members-subtitle">
-                principal
+                Руководитель
             </p>
             {
                 members?.principal && (
@@ -50,7 +50,7 @@ const ContactsMembers = ({ department, setEmployee, departmentName }) => {
                 )
             }
             <p className="contacts__members-subtitle">
-                members
+                Сотрудники
             </p>
 
             {

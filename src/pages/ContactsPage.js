@@ -19,7 +19,7 @@ export const ContactsPage = () => {
 
                             </i>
                         </a>
-                        <a href="/" className="contacts__header-item"> Homepage</a>
+                        <a href="/" className="contacts__header-item"> Главная страница </a>
                         <div className="contacts__header-item contacts__header-logo">
                             <i className="fas fa-angle-right">
 
@@ -29,7 +29,7 @@ export const ContactsPage = () => {
                         <div className="contacts__header-item contacts__header-logo">
                             <i className="fas fa-angle-right"> </i>
                         </div> */}
-                        <NavLink to='/address' className="contacts__header-item"> Address Book</NavLink>
+                        <NavLink to='/address' className="contacts__header-item"> Адресная книга </NavLink>
                     </div>
                     <Switch>
                         <Route exact path="/" component={ContactsHomePage}/>

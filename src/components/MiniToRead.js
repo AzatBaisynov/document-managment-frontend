@@ -34,14 +34,14 @@ export const MiniTiRead = () => {
         <div>
             <div className="todo_nothing">
                 <img src={message} className="todo_message" />
-                You <span style={{ color: "red", margin: "0 5px", fontWeight: "600" }}> have {todo[0] ? todo.length : "no"} task</span> <u>to read</u><img onClick={refresh} src={reload} style={{width: "20px", marginLeft: "7px", fill : "#ffae12", cursor: "pointer"}} alt="reload"/>
+                У Вас <span style={{ color: "red", margin: "0 5px", fontWeight: "600" }}> {todo[0] ? todo.length : "нет"} задач</span> <u>для чтения</u><img onClick={refresh} src={reload} style={{width: "20px", marginLeft: "7px", fill : "#ffae12", cursor: "pointer"}} alt="reload"/>
             </div>
         </div>
         {
                 todo.map((el, idx) => (
                     <div key={idx}>
                         <NavLink to={`/read/${el.document.id}`} className="todo_document" target="_blank">
-                            <div className="todo_dot_red"></div>Please view the following document: {el.document.name} from {el.creator.fullName}
+                            <div className="todo_dot_red"></div>Пожалуйста проверьте документ: {el.document.name} от {el.creator.fullName}
                         </NavLink>
                     </div>
                 ))
