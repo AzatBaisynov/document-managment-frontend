@@ -59,8 +59,8 @@ export const Employee = () => {
                 <button className="employee_btn" onClick={toggleActive}>Меню</button>
                 <div className="class_dropdown-child">
                     <NavLink to='/contacts' className="class_link">Контакты</NavLink>
-                    <NavLink to='/related' className="class_link">Мои процессы</NavLink>
-                    <NavLink to='/tasks' className="class_link">Задачи</NavLink>
+                    <NavLink to='/related' className="class_link">Связанные процессы</NavLink>
+                    <NavLink to='/tasks' className="class_link">В работе</NavLink>
                 </div>
             </nav>
             <nav className="class_dropdown">

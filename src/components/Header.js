@@ -90,7 +90,7 @@ export const Header = () => {
                         <img className="header_ico" src={see} />
                         <span> 0 </span>
                         <img className="header_ico" src={exclamation} />
-                        <p>Поддержка</p>
+                        <p>Обратная связь</p>
                         <span className="bolder"
                             onClick={() => dispatch(logoutAction())}
                         >Выйти</span>
@@ -103,7 +103,7 @@ export const Header = () => {
             <div className="container header_container">
                 <nav className="header_nav">
                     <div className="header_nav-item active">
-                        <a href="/" className="header_link">Главная</a>
+                        <a href="/" className="header_link">На главную</a>
                     </div>
                     <div className="header_nav-item">
                         {

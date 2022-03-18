@@ -58,7 +58,7 @@ const MainPage = () => {
     const todos = [
         {
             action_link: "/",
-            action_text: "Задачи",
+            action_text: "В работе",
             action: Todo
         },
         {
@@ -68,28 +68,28 @@ const MainPage = () => {
         },
         {
             action_link: "/tocompleted",
-            action_text: "Выполнено",
+            action_text: "Завершенные",
             action: ToCompleted
         }
     ]
     const slider = [
         {
             action_link: "/",
-            action_text: "Новости",
+            action_text: "Новости в картинках",
             action: Slider
         }
     ]
     const calendar = [
         {
             action_link: "/",
-            action_text: "Календарь",
+            action_text: "Мой календарь",
             action: CalendarPart
         }
     ]
     const noticeAndNews = [
         {
             action_link: "/",
-            action_text: "Уведомления",
+            action_text: "Новости",
             action: Notice
         }
     ]
