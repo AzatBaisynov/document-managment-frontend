@@ -344,8 +344,8 @@ export const Document = () => {
                 <div className="container">
                     <div className="contacts__created">
                         <img src={V} alt="done" width="150px" />
-                        <span>Your submission has been received!</span>
-                        <button className="contacts__close" onClick={handleClose}>Close this page X</button>
+                        <span>Ваша заявка принята!</span>
+                        <button className="contacts__close" onClick={handleClose}>Закрыть страницу X</button>
                     </div>
                 </div>
             </div>
@@ -359,7 +359,7 @@ export const Document = () => {
                             <a href="/" className="contacts__header-logo contacts__header-item">
                                 <i className="fas fa-home" />
                             </a>
-                            <a href="/" className="contacts__header-item"> Homepage</a>
+                            <a href="/" className="contacts__header-item"> На главную</a>
                             <div className="contacts__header-item contacts__header-logo">
                                 <i className="fas fa-angle-right" />
                             </div>
@@ -370,7 +370,7 @@ export const Document = () => {
                     </Router>
                     <div className="document">
                         <p className="document__approval">
-                            Approval Content
+                            Содержание утверждения
                         </p>
                         <form>
                             <div className="document__cover">
@@ -635,16 +635,16 @@ export const Document = () => {
                                                                 <input type="file" onChange={handleChange}
                                                                     id={`inp${el.id}`}
                                                                     className={`document__input document__date input input__file`}
-                                                                    placeholder="Please select the file to upload"
+                                                                    placeholder="Пожалуйста выберите файлы для загрузки"
                                                                     accept=".jpg, .jpeg, .png"
                                                                     name="profile_pic" />
                                                                 <label htmlFor={`inp${el.id}`}
                                                                     className="input__file-button">
                                                                     <span className="input__file-icon-wrapper">
-                                                                        Upload
+                                                                        Загрузить
                                                                     </span>
                                                                     <span
-                                                                        className="input__file-button-text">Please select the file to upload</span>
+                                                                        className="input__file-button-text">Пожалуйста выберите файлы для загрузки</span>
                                                                 </label>
 
                                                             </div>
@@ -656,17 +656,17 @@ export const Document = () => {
                                                                 <input type="file" onChange={handleAttachment}
                                                                     id={`inp${el.id}`}
                                                                     className={`document__input document__date input input__file`}
-                                                                    placeholder="Please select the file to upload"
+                                                                    placeholder="Пожалуйста выберите файлы для загрузки"
                                                                     name="profile_pic"
                                                                     multiple />
                                                                 <label htmlFor={`inp${el.id}`}
                                                                     className="input__file-button"
                                                                     style={{ margin: 0, display: "flex", alignItems: "center" }}>
                                                                     <span className="input__file-icon-wrapper">
-                                                                        Upload
+                                                                        Загрузить
                                                                     </span>
                                                                     {
-                                                                        attachments.length ? attachments.map((el, idx) => <span key={idx} className="input__file-button-text" style={{ marginRight: "20px", display: "flex", alignItems: "center" }}><img src={file} style={{ width: "40px", marginRight: "5px" }} alt="file" /> {el.name}</span>) : <span className="input__file-button-text">Please select the file to upload</span>
+                                                                        attachments.length ? attachments.map((el, idx) => <span key={idx} className="input__file-button-text" style={{ marginRight: "20px", display: "flex", alignItems: "center" }}><img src={file} style={{ width: "40px", marginRight: "5px" }} alt="file" /> {el.name}</span>) : <span className="input__file-button-text">Пожалуйста выберите файлы для загрузки</span>
                                                                     }
                                                                 </label>
                                                             </div>
@@ -682,7 +682,7 @@ export const Document = () => {
                                 <div style={{ padding: "10px", background: "whitesmoke" }}>
                                     <div className="document__orders-title">
                                         <p style={{ fontSize: "12px" }}>
-                                            Graph
+                                            Содержание утверждения
                                         </p>
 
                                         <button className="document__orders-add"
@@ -699,13 +699,13 @@ export const Document = () => {
                                     <div className="document__orders-items">
                                         <div className="document__orders-names">
                                             <div className="document__orders-name">
-                                                Initiator
+                                                    Инициатор
                                                 <i className="fas fa-long-arrow-alt-down document__orders-arrow">
 
                                                 </i>
                                             </div>
                                             <div className="document__orders-name">
-                                                Initiator Team Head
+                                                    Руководитель инициирующего департамента
                                                 <i className="fas fa-long-arrow-alt-down document__orders-arrow">
 
                                                 </i>
@@ -731,7 +731,7 @@ export const Document = () => {
                                 <div style={{ padding: "10px", background: "whitesmoke" }}>
                                     <div className="document__orders-title">
                                         <p style={{ fontSize: "12px" }}>
-                                            Display circulation log
+                                            Показать журнал обращения
                                         </p>
 
                                         <button className="document__orders-add"
@@ -750,7 +750,7 @@ export const Document = () => {
                             </div>
                             <div className="document__button-cover">
                                 <div className="document__submit" onClick={handleSubmit}>
-                                    Submit
+                                    Утвердить
                                 </div>
                             </div>
                         </form>

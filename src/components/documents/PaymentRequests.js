@@ -54,7 +54,7 @@ const PaymentRequests = () => {
                     </div>
                     <div
                         className="payment__request-info  payment__request-background  payment__request-border-r">
-                        Initiator
+                        Инициатор
                     </div>
 
                     <div className="payment__request-fill   payment__request-border-r">
@@ -69,7 +69,7 @@ const PaymentRequests = () => {
                         1
                     </div>
                     <div className="payment__request-info  payment__request-background  payment__request-border-r">
-                        Initiator
+                        Инициатор
                     </div>
                     <div className="payment__request-fill  payment__request-border-r">
 

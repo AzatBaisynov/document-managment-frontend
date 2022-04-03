@@ -120,7 +120,7 @@ export const RelatedDoc = () => {
                         <a href="/" className="contacts__header-logo contacts__header-item">
                             <i className="fas fa-home" />
                         </a>
-                        <a href="/" className="contacts__header-item"> Homepage</a>
+                        <a href="/" className="contacts__header-item"> На главную</a>
                         <div className="contacts__header-item contacts__header-logo">
                             <i className="fas fa-angle-right" />
                         </div>
@@ -131,7 +131,7 @@ export const RelatedDoc = () => {
                 </Router>
                 <div className="document">
                     <p className="document__approval">
-                        Approval Content
+                        Содержание утверждения
                     </p>
                     <form>
                         <div className="document__cover">
@@ -391,7 +391,7 @@ export const RelatedDoc = () => {
                             <div style={{ padding: "10px", background: "whitesmoke" }}>
                                 <div className="document__orders-title">
                                     <p style={{ fontSize: "12px" }}>
-                                        Graph
+                                        Содержание утверждения
                                     </p>
 
                                     <button className="document__orders-add"
@@ -408,13 +408,13 @@ export const RelatedDoc = () => {
                                 <div className="document__orders-items">
                                     <div className="document__orders-names">
                                         <div className="document__orders-name">
-                                            Initiator
+                                                Инициатор
                                             <i className="fas fa-long-arrow-alt-down document__orders-arrow">
 
                                             </i>
                                         </div>
                                         <div className="document__orders-name">
-                                            Initiator Team Head
+                                                Руководитель инициирующего департамента
                                             <i className="fas fa-long-arrow-alt-down document__orders-arrow">
 
                                             </i>
@@ -440,7 +440,7 @@ export const RelatedDoc = () => {
                             <div style={{ padding: "10px", background: "whitesmoke" }}>
                                 <div className="document__orders-title">
                                     <p style={{ fontSize: "12px" }}>
-                                        Display circulation log
+                                        Показать журнал обращения
                                     </p>
 
                                     <button className="document__orders-add"

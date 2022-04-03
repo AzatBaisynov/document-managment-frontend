@@ -83,13 +83,13 @@ export const DocumentNotice = () => {
                                 <input type="file"
                                     id="input"
                                     className={` input__file-2`}
-                                    placeholder="Please select the file to upload"
+                                    placeholder="Пожалуйста выберите файл для загрузки"
                                     accept=".jpg, .jpeg, .png" onChange={handleAttachment}
                                     name="profile_pic" />
                                 <label htmlFor="input"
                                     className="input__file-button">
 
-                                    <span className="input__file-icon-wrapper-2">Upload</span>
+                                    <span className="input__file-icon-wrapper-2">Загрузить</span>
                                     <span className="input__file-button-text">{attachments[0]?.name ? attachments[0].name : ""}</span>
                                 </label>
                             </div>
@@ -116,7 +116,7 @@ export const DocumentNotice = () => {
                 </div>
                 <div className="document__button-cover">
                     <div className="document__submit" onClick={handleSubmit}>
-                        Submit
+                        Утвердить
                     </div>
                 </div>
             </form>

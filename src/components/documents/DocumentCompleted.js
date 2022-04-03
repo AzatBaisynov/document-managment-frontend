@@ -82,11 +82,11 @@ const DocumentCompleted = () => {
     return (
         <div style={{padding : "10px"}}>
             <div className="document__completed">
-                <p> Time</p>
-                <p> Node Name </p>
-                <p> Operator </p>
-                <p> Operation</p>
-                <p> Process Opinion </p>
+                <p> Время </p>
+                <p> Название узла </p>
+                <p> Оператор </p>
+                <p> Действие</p>
+                <p> Детали процесса </p>
                 <div className="document__completed-column">
                     {time}
                 </div>
@@ -110,7 +110,7 @@ const DocumentCompleted = () => {
                 </div>
             </div>
             <div className="document__completed_current">
-                <p style={{height : "45%"}}> Current processor</p>
+                <p style={{height : "45%"}}> Текущий процессор</p>
                 <div className="document__completed-column">
                     <div className="document__completed-col">
                         <span>
