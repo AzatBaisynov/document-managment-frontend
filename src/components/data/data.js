@@ -11,5 +11,5 @@ const DEV = "http://localhost:8080"
 const PROD = "http://217.11.70.2:8080"
 
 export const address = {
-    use : DEV
+    use : PROD
 }
