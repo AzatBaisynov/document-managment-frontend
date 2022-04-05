@@ -8,17 +8,14 @@ export const ManagmentMenu = () => {
 	return (
 		<div className="manager">
 			<div className="manager__row">
-				<h4>Cultural management</h4>
-				<a href="/news" target="_blank">News manager</a>
+				<a href="/news" target="_blank">Управление новостями</a>
 			</div>
 			<div className="manager__row">
-				<h4>Project management</h4>
-				<a href="/projectmanager" target="_blank">Project manager</a>
+				<a href="/projectmanager" target="_blank">Управление проектами</a>
 			</div>
 			{
 				id !== 10 ? (<div className="manager__row">
-				<h4>Document management</h4>
-				<a href="/documentmanager" target="_blank">Document manager</a>
+				<a href="/documentmanager" target="_blank">Управление документами</a>
 			</div>	) : ""
 			}
 		</div>

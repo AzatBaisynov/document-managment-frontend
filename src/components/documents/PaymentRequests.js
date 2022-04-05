@@ -35,13 +35,13 @@ const PaymentRequests = () => {
                         No
                     </div>
                     <div className="payment__request-border-r">
-                        Field Name
+                        Название поля
                     </div>
                     <div className="payment__request-border-r">
-                        Field Type
+                        Типо поля
                     </div>
                     <div>
-                        Field Options
+                        Параметры поля
                     </div>
                 </div>
                 <div className="payment__request-gap">

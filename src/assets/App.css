@@ -1461,6 +1461,7 @@ button {
     border: 1px solid lightgrey;
     color: lightgrey;
     padding-left: 10px;
+    width: 189px;
 }
 
 .task__cover {
@@ -1987,7 +1988,7 @@ button {
     margin-top: 10px;
 }
 .document__management-img{
-    background-color: #0f71b7;
+    background-color: #59825b;
     margin-bottom: 20px;
     height: 186px;
 }

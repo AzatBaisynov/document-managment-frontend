@@ -36,16 +36,16 @@ export const DocumentManager = () => {
                 <span>
                     Selected:
                 </span>
-                <input type="text" id="task" placeholder="Enter a keyword"/>
+                <input type="text" id="task" placeholder="Введите ключевое слово"/>
                 <label htmlFor="task" className="task__label"> <i className="fas fa-search task__svg"> </i></label>
             </div>
             <div className="related__grid" style={{gridTemplateColumns : "1fr 1fr 1fr 1fr 1fr 1fr", textAlign : "center"}}>
                 <p className="related__title">Seq</p>
-                <p className="related__title">Subject</p>
-                <p className="related__title">No</p>
-                <p className="related__title ">Initiator</p>
-                <p className="related__title">Init date</p>
-                <p className="related__title">File status</p>
+                <p className="related__title">Тема</p>
+                <p className="related__title">№</p>
+                <p className="related__title ">Иницатор</p>
+                <p className="related__title">Дата</p>
+                <p className="related__title">Статус файла</p>
             </div>
             {
                 data.map((el, idx) => (

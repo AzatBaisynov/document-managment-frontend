@@ -401,7 +401,7 @@ export const CompleteDoc = () => {
                                                                             const fileName = e.target.className.split(" ")[1]
                                                                             downloadFile(`${address.use}/v1/api/file/${fileName}`, fileName)
                                                                             // console.log(fileName)
-                                                                        }} style={{ marginRight: "20px", display: "flex", alignItems: "center", cursor: "pointer" }}><img src={file} style={{ width: "40px", marginRight: "5px" }} alt="file" /> {el.originalName}</span>) : <span className="input__file-button-text">No document attachments</span>
+                                                                        }} style={{ marginRight: "20px", display: "flex", alignItems: "center", cursor: "pointer" }}><img src={file} style={{ width: "40px", marginRight: "5px" }} alt="file" /> {el.originalName}</span>) : <span className="input__file-button-text">Нет вложений</span>
                                                                     }
                                                                 </div>
                                                             </div>

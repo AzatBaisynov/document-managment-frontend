@@ -7,11 +7,11 @@ const DocumentRadio = () => {
                 <div className="document__yes">
                     <input type="radio" id="yes"
                            name="contact" value="email"/>
-                    <label htmlFor="yes">Yes</label>
+                    <label htmlFor="yes">Да</label>
                 </div>
                 <input type="radio" id="no"
                        name="contact" value="phone"/>
-                <label htmlFor="no">No</label>
+                <label htmlFor="no">Нет</label>
             </div>
         </div>
 

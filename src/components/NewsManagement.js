@@ -6,7 +6,7 @@ import { NewsManager } from "./NewsManager"
 const todos = [
     {
         action_link: "/",
-        action_text: "NewsManager",
+        action_text: "Менеджер новостей",
         action: NewsManager
     }
 ]

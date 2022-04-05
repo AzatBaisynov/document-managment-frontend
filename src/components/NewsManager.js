@@ -37,13 +37,13 @@ export const NewsManager = () => {
             <div className="task__search news__search">
                 <div>
                     <span>
-                        Selected:
+                        Выбрать:
                     </span>
-                    <input type="text" id="task" placeholder="Enter a keyword" />
+                    <input type="text" id="task" placeholder="Введите ключевое слово" />
                     <label htmlFor="task" className="task__label"> <i className="fas fa-search task__svg"> </i></label>
                 </div>
                 <a href="/documentnotice" target="_blank" className="document__manager-btn">
-                    add
+                    добавить
                 </a>
 
             </div>

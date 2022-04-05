@@ -7,7 +7,7 @@ export const Managment = () => {
 	const managment_action = [
 		{
 			action_link: "/",
-			action_text: "Application navigation",
+			action_text: "Навигация по приложению",
 			action: ManagmentMenu
 		}
 	]

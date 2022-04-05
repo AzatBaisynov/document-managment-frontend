@@ -9,7 +9,7 @@ export const NewsManagementMenu = () => {
         <section className="employee">
             <div className="employee_info">
                 <p className="document__management__item">
-                    My Work
+                    Меню
                 </p>
                 <div className="employee_img document__management-img">
                     <img src={news} alt=""/>
@@ -17,9 +17,9 @@ export const NewsManagementMenu = () => {
 
             </div>
             <nav className="class_dropdown active">
-                <button className="employee_btn"> Category navigation </button>
+                <button className="employee_btn"> Навигация </button>
                 <div className="class_dropdown-child">
-                    <a  href="#" className="notice__menu"> Notice </a>
+                    <a  href="#" className="notice__menu"> Новости </a>
                 </div>
             </nav>
         </section>

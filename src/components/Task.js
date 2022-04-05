@@ -58,10 +58,10 @@ export const Task = () => {
                             <img src={notFound} className="task__img" />
                             <div className="task__content">
                                 <p className="task__title">
-                                    Not Found!
+                                    Не найдено!
                                 </p>
                                 <span className="task__desc">
-                                    Please try another query
+                                    Попробуйте другой запрос
                                 </span>
                                 <hr className="task__border" />
                                 <div className="task__col">

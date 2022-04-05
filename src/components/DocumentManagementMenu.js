@@ -8,7 +8,7 @@ export const DocumentManagementMenu = () => {
         <section className="employee">
             <div className="employee_info">
                 <p className="document__management__item">
-                    My Work
+                    Управление документами
                 </p>
                 <div className="employee_img document__management__item">
                     <img src={direction} alt=""/>
@@ -16,7 +16,7 @@ export const DocumentManagementMenu = () => {
 
             </div>
             <nav className="class_dropdown active">
-                <button className="employee_btn">Component</button>
+                <button className="employee_btn">Элементы</button>
             </nav>
         </section>
     </div>)

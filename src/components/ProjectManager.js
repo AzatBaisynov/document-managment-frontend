@@ -12,7 +12,7 @@ export const ProjectManager = () => {
 	const managment_action = [
 		{
 			action_link: "/",
-			action_text: "Project management",
+			action_text: "Управление проектами",
 			action: ProjectManagerInner
 		}
 	]

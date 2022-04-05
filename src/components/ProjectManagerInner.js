@@ -48,9 +48,9 @@ export const ProjectManagerInner = () => {
 				<div className="related" style={{ marginBottom: "40px" }}>
 					<div className="related__grid" style={{ gridTemplateColumns: "1fr 3fr 1fr 1fr" }}>
 						<p className="related__title">Seq</p>
-						<p className="related__title">Project</p>
+						<p className="related__title">Проект</p>
 						<p className="related__title">No</p>
-						<p className="related__title">Date created</p>
+						<p className="related__title">Дата создания</p>
 					</div>
 					{
 						projects.map((el, idx) => (
@@ -66,7 +66,7 @@ export const ProjectManagerInner = () => {
 			</div>
 			<div>
 				<input type="text" className="project__new" onInput={(e) => setProject(e.target.value)} />
-				<button className="project__add" onClick={handleCreate}>Add new project</button>
+				<button className="project__add" onClick={handleCreate}>Добавить проект</button>
 			</div>
 		</div>
 	)

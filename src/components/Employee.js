@@ -66,7 +66,7 @@ export const Employee = () => {
             <nav className="class_dropdown">
                 <button className="employee_btn" onClick={toggleActive}>Ссылки</button>
                 <div className="class_dropdown-child">
-                    <a href="http://www.ccecc.com.cn/" target="_blank" className="class_link">Адрес компании</a>
+                    <a href="#" target="_blank" className="class_link">Адрес компании</a>
                     <a href="#" className="class_link">Инструкции к DMS</a>
                 </div>
             </nav>

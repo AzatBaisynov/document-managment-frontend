@@ -6,7 +6,7 @@ import { DocumentManager } from "./DocumentManager"
 const todos = [
     {
         action_link: "/",
-        action_text: "DocumentManager",
+        action_text: "Управление документами",
         action: DocumentManager
     }
 ]
