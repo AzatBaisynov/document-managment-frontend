@@ -26,6 +26,8 @@ import { NoticeCard } from "./components/NoticeCard";
 import { DocumentNotice } from "./components/documents/DocumentNotice";
 import { DocumentUnique } from "./components/documents/DocumentUnique";
 import { ProjectManager } from './components/ProjectManager';
+import { TaskManager } from './components/task/TaskManager';
+import { TaskDesc } from './components/task/TasksDesc';
 
 
 const App = () => {
@@ -52,6 +54,8 @@ const App = () => {
                             <Route path="/tasks" component={ToDoPage} />
                             <Route path="/related" component={RelatedProcesses} />
                             <Route path="/documentmanager" component={DocumentManagement} />
+                            <Route path="/taskmanager" component={TaskManager} />
+                            <Route path="/taskslist" component={TaskDesc} /> 
                             <Route path="/news" component={NewsManagement} />
                             <Route path="/documentnotice" component={DocumentNotice} />
                             <Route path="/notice/:id" component={NoticeCard} />

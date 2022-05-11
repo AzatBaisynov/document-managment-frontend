@@ -61,6 +61,7 @@ export const Employee = () => {
                     <NavLink to='/contacts' className="class_link">Contacts</NavLink>
                     <NavLink to='/related' className="class_link">Related Processes</NavLink>
                     <NavLink to='/tasks' className="class_link">To do</NavLink>
+                    <NavLink to='/taskslist' className="class_link">Task</NavLink>
                 </div>
             </nav>
             <nav className="class_dropdown">
