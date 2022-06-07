@@ -22,6 +22,9 @@ export const ManagmentMenu = () => {
 						<div className="manager__row">
 							<a href="/taskmanager" target="_blank">Task manager</a>
 						</div>
+						<div className="manager__row">
+							<a href="/employeesmanager" target="_blank">Employees manager</a>
+						</div>
 					</div>
 				) : ""
 			}

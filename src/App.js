@@ -28,6 +28,7 @@ import { DocumentUnique } from "./components/documents/DocumentUnique";
 import { ProjectManager } from './components/ProjectManager';
 import { TaskManager } from './components/task/TaskManager';
 import { TaskDesc } from './components/task/TasksDesc';
+import { EmployeesManager } from './components/employee/EmployeesManager';
 
 
 const App = () => {
@@ -55,6 +56,7 @@ const App = () => {
                             <Route path="/related" component={RelatedProcesses} />
                             <Route path="/documentmanager" component={DocumentManagement} />
                             <Route path="/taskmanager" component={TaskManager} />
+                            <Route path="/employeesmanager" component={EmployeesManager} />
                             <Route path="/taskslist" component={TaskDesc} /> 
                             <Route path="/news" component={NewsManagement} />
                             <Route path="/documentnotice" component={DocumentNotice} />

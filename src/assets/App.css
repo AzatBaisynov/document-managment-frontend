@@ -22,6 +22,22 @@ button {
     margin: 0;
 }
 
+.d-flex {
+    display: flex;
+}
+.align-center {
+    align-items: center;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.mt-10 {
+    margin-top: 60px;
+}
+
 .d-inline {
     display: inline-block;
 }
@@ -2298,4 +2314,137 @@ button {
     cursor: pointer;
     margin-left: 30px;
     display: inline-block;
+}
+
+.employees-manager {
+    padding: 50px 0;
+}
+.employees-manager__table {
+    border-collapse: collapse;
+    border: 1px solid rgb(209, 209, 209);
+    width: 100%;
+}
+.employees-manager__table th {
+    padding: 5px;
+    background-color: rgb(230, 230, 230);
+}
+
+.employees-manager__table td {
+    border: 1px solid rgb(216, 216, 216);
+    padding: 7px;
+    text-align: center;
+}
+.employees-manager__table th:last-child {
+    width: 100px;
+    border: none;
+}
+.employees-manager__table caption {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 600;
+
+}
+.employees-manager__rename {
+    padding: 5px 10px;
+    margin-right: 10px;
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #2373c8b4;
+    transition: .3s;
+}
+.employees-manager__rename:hover {
+    background-color: #2373c8;
+}
+.employees-manager__delete {
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 15px;
+    color: #fff;
+    background-color: #cf464688;
+    transition: .3s;
+}
+.employees-manager__delete:hover {
+    background-color: #cf4646;
+}
+.employees-manager__title {
+    margin: 30px 0 10px;
+    font-size: 20px;
+}
+.employees-manager__inp {
+    height: 30px;
+    font-size: 20px;
+    padding: 0 10px;
+    width: 500px;
+}
+.employees-manager__inp::placeholder {
+    color: red;
+}
+.employees-manager__inp.employees-manager__inp_error {
+    border: 1px solid red;
+    height: 32px;
+}
+
+.employees-manager__create {
+    height: 34px;
+    margin-left: -2px;
+    width: 200px;
+    font-size: 15px;
+    color: #FFF;
+    background-color: #2373c8d7;
+    transition: .3s;
+}
+.employees-manager__create:hover {
+    background-color: #2373c8;
+}
+.employees-manager__overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #0009;
+}
+.employees-manager__department-change {
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 100;
+    background-color: #fff;
+    padding: 40px;
+    position: fixed;
+    height: 100px;
+}
+.employees-manager__department-change span {
+    padding: 5px 10px;
+    position: absolute;
+    border-radius: 50%;
+    right: 37px;
+    top: 20px;
+    color: #b84545;
+    cursor: pointer;
+    border: 2px solid #b84545;
+}
+.employees-manager__user-inp {
+    width: 300px;
+    height: 30px;
+    margin-right: 20px;
+    padding: 0 5px;
+    font-size: 14px;
+}
+.employees-manager__user-select {
+    width: 300px;
+    padding: 0 5px;
+    height: 30px;
+    font-size: 14px;
+    margin-right: 20px;
+}
+.employees-manager__selects {
+    margin: 10px 0;
+}
+.employees-manager__user-role {
+    padding: 0 5px;
+    height: 30px;
+    font-size: 14px;
+    margin-right: 20px;
 }
