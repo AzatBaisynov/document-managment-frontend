@@ -206,6 +206,12 @@ button {
     display: inline-block;
     transition: 0.6s;
 }
+.class_notification {
+    background: #ff0000;
+    padding: 2px 7px;
+    color: #fff;
+    border-radius: 50%;
+}
 
 .class_dropdown-child {
     display: none;
@@ -2397,6 +2403,60 @@ button {
 }
 .employees-manager__create:hover {
     background-color: #2373c8;
+}
+.employee-manager__invisible {
+    position: fixed;
+    z-index: 12;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0009;
+}
+.employee-manager__change-user {
+    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 600px;
+    height: 500px;
+    z-index: 13;
+}
+.employee-manager__close {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 10px;
+    top: 10px;
+    color: #fff;
+    background-color: darkred;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    font-size: 16px;
+}
+.employee-manager__change-lbl {
+    font-weight: 600;
+}
+.employee-manager__change-field {
+    height: 25px;
+    margin-bottom: 10px;
+}
+.employee-manager__save {
+    margin-top: 20px;
+    background: #4689d1;
+    width: 200px;
+    align-self: center;
+    height: 30px;
+    color: #FFF;
+    cursor: pointer;
 }
 .employees-manager__overlay {
     position: absolute;

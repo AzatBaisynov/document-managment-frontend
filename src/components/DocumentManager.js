@@ -49,7 +49,7 @@ export const DocumentManager = () => {
             </div>
             {
                 data.map((el, idx) => (
-                    <NavLink to={`/read/${el.id}`} className="todo_document" target="_blank">
+                    <NavLink to={`/change/${el.id}`} className="todo_document" target="_blank">
                     <div className="related__grid document__manager" style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr", textAlign: "center", fontSize : "13px"}}>
                         <p className="document__manager-item"> {++idx} </p>
                         <p className="document__manager-item"> {el.name}</p>

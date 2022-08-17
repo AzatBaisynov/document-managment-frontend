@@ -29,6 +29,7 @@ import { ProjectManager } from './components/ProjectManager';
 import { TaskManager } from './components/task/TaskManager';
 import { TaskDesc } from './components/task/TasksDesc';
 import { EmployeesManager } from './components/employee/EmployeesManager';
+import { ChangeDoc } from './components/approve/ChangeDoc';
 
 
 const App = () => {
@@ -63,6 +64,7 @@ const App = () => {
                             <Route path="/notice/:id" component={NoticeCard} />
                             <Route path="/progress/:id" component={RelatedDoc} />
                             <Route path="/read/:id" component={ReadDoc} />
+                            <Route path="/change/:id" component={ChangeDoc} />
                             <Route path="/file" component={File} />
                         </Switch>
                     </Router>

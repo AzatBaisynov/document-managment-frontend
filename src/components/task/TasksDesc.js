@@ -43,6 +43,24 @@ export const TaskDesc = () => {
 		}
 	}
 
+	const readTask = async (id) => {
+		const config = {
+			method: "post",
+			headers: {
+				"Authorization": localStorage.getItem("token")
+			},
+			url: `${address.use}/v1/api/task/notifications/task/${id}`
+		}
+		try {
+			const { data } = await axios(config)
+			console.log("read")
+		}
+		catch (e) {
+			console.log("couldn't read")
+		}
+
+	}
+
 	return (
 		<section className="task-manager">
 			<div className="container">
@@ -54,7 +72,10 @@ export const TaskDesc = () => {
 						<h4 className="task-manager__title">TODO</h4>
 						{
 							todo.map(el => (
-								<div className="task-manager__card" onClick={() => setTask(el)}>
+								<div className="task-manager__card" onClick={() => {
+									setTask(el)
+									readTask(el.task.id)
+									}}>
 									<div className={`task-manager__top ${colorPicker(el.task.priority)}`} />
 									<div className="task-manager__bottom">
 										<p>{el.task.name}</p>
@@ -80,7 +101,10 @@ export const TaskDesc = () => {
 						<h4 className="task-manager__title">In Process</h4>
 						{
 							inProcess.map(el => (
-								<div className="task-manager__card" onClick={() => setTask(el)}>
+								<div className="task-manager__card" onClick={() => {
+									setTask(el)
+
+									}}>
 									<div className={`task-manager__top ${colorPicker(el.task.priority)}`} />
 									<div className="task-manager__bottom">
 										<p>{el.task.name}</p>

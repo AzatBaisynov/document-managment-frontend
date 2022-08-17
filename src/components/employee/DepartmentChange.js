@@ -1,9 +1,18 @@
 import axios from 'axios'
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { address } from '../data/data'
 
 export const DepartmentChange = ({ id, department, setCloseDepModal, departments}) => {
 	const [departmentName, setDepartmentName] = useState("")
+	
+	useEffect(() => {
+		document.body.style.overflow = "hidden"
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'smooth',
+		});
+	}, [])
 
 	const handleChange = async () => {
 		if (!departments.map((el) => el.department).includes(departmentName)) {
@@ -33,14 +42,19 @@ export const DepartmentChange = ({ id, department, setCloseDepModal, departments
 	return (
 		<div className='d-flex align-center justify-center' >
 			<div className="employees-manager__department-change">
-				<span onClick={() => setCloseDepModal(false)}>X</span>
+				<span onClick={() => {setCloseDepModal(false)
+					document.body.style.overflow = "auto"
+}}>X</span>
 				<h4 className="employees-manager__title">Change department</h4>
 				<div className="d-flex">
 					<input onInput={(e) => setDepartmentName(e.target.value)} type="text" className={`employees-manager__inp`} placeholder={department}/>
 					<button onClick={handleChange} className="employees-manager__create" >Change</button>
 				</div>
 			</div>
-			<div className="employees-manager__overlay" onClick={() => setCloseDepModal(false)}/>
+			<div className="employees-manager__overlay" onClick={() => {
+				setCloseDepModal(false)
+				document.body.style.overflow = "auto"
+				}}/>
 		</div>
 	)
 }

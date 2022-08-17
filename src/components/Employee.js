@@ -20,6 +20,8 @@ const toggleActive = (e) => {
 export const Employee = () => {
 
     const [members, setMembers] = useState({})
+    const [tasks, setTasks] = useState(0)
+
     useEffect(() => {
         console.log(user)
         const config = {
@@ -39,6 +41,20 @@ export const Employee = () => {
             });
 
     }, [])
+
+    useEffect(async () => {
+        const config = {
+            method: 'GET',
+            url: `${address.use}/v1/api/task/notifications`,
+            headers: {
+                'Authorization': localStorage.getItem("token")
+            }
+        }
+        const {data} = await axios(config)
+        console.log(data)
+        setTasks(data.length)
+    }, [])
+
     return (<div>
         <section className="employee">
             <div className="employee_info">
@@ -61,7 +77,7 @@ export const Employee = () => {
                     <NavLink to='/contacts' className="class_link">Contacts</NavLink>
                     <NavLink to='/related' className="class_link">Related Processes</NavLink>
                     <NavLink to='/tasks' className="class_link">To do</NavLink>
-                    <NavLink to='/taskslist' className="class_link">Task</NavLink>
+                    <NavLink to='/taskslist' className="class_link">Task {tasks !== 0 && (<span className='class_notification'>{tasks}</span>)}</NavLink>
                 </div>
             </nav>
             <nav className="class_dropdown">
