@@ -29,6 +29,7 @@ export const EmployeesManager = () => {
 		};
 		try {
 			const { data } = await axios(config)
+			console.log("deps", data)
 			setDepartments(data)
 		} catch (e) {
 			console.log(e);
@@ -112,10 +113,10 @@ export const EmployeesManager = () => {
 		}
 	}
 
-	const handleRenameDepartment = (id, department) => {
+	const handleRenameDepartment = (id, department, principal) => {
 		document.body.style.overflow = "hidden"
 		setCloseDepModal(true)
-		setDepChange({ id, department })
+		setDepChange({ id, department, principal })
 	}
 
 	const handleChangeUser = (id) => {
@@ -228,7 +229,10 @@ export const EmployeesManager = () => {
 								<td>{el.department}</td>
 								<td>{el.dateCreated?.substr(0, 19).replace("T", " ")}</td>
 								<td>{el.dateUpdated?.substr(0, 19).replace("T", " ")}</td>
-								<td><button className="employees-manager__rename" onClick={() => handleRenameDepartment(el.id, el.department)}>Rename</button><button onClick={() => handleDeleteDepartment(el.id)} className="employees-manager__delete">Delete</button></td>
+								<td><button className="employees-manager__rename" onClick={() => {
+									handleRenameDepartment(el.id, el.department)
+									console.log("princ", el)
+									}}>Rename</button><button onClick={() => handleDeleteDepartment(el.id)} className="employees-manager__delete">Delete</button></td>
 							</tr>
 						))
 					}
@@ -238,7 +242,7 @@ export const EmployeesManager = () => {
 					<input onInput={(e) => setDepInp(e.target.value)} value={depInp} type="text" className={`employees-manager__inp ${depError ? "employees-manager__inp_error" : ""}`} placeholder={depError} />
 					<button onClick={handleCreateDepartment} className="employees-manager__create" >Create</button>
 				</div>
-				{closeDepModal && <DepartmentChange setCloseDepModal={setCloseDepModal} id={depChange.id} department={depChange.department} departments={departments} />}
+				{closeDepModal && <DepartmentChange setCloseDepModal={setCloseDepModal} id={depChange.id} principal={depChange.principal} department={depChange.department} departments={departments} users={users} />}
 
 				<table className="employees-manager__table mt-10">
 					<caption>Employees</caption>

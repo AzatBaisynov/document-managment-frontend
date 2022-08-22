@@ -34,11 +34,11 @@ const ContactsOrganisation = ({ departments, setDepartment }) => {
             {
                 departments.map(dep => (
                     <nav className="class_dropdown" key={dep.department.id} >
-                        <button onClick={toggleActive} className={dep.department.id}><i className="fas fa-caret-right contacts__caret" > </i> {dep.department.department}</button>
+                        <button onClick={toggleActive} className={dep?.department?.id}><i className="fas fa-caret-right contacts__caret" > </i> {dep?.department?.department}</button>
                         <div className="class_dropdown-child">
                         {
-                            dep.subDepartments.map(sub => (
-                                <a href="#" className={`class_link ${sub.id}`} key={sub.id} onClick={handleClick}>{sub.subDepartment}</a>
+                            dep?.subDepartments?.map(sub => (
+                                <a href="#" className={`class_link ${sub?.id}`} key={sub?.id} onClick={handleClick}>{sub?.subDepartment}</a>
                             ))
                         }
                         </div>
