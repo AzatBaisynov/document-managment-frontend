@@ -12,7 +12,7 @@ const ContactsMembers = ({ department, setEmployee, departmentName }) => {
                 method: 'GET',
                 url: `${address.use}/v1/api/contacts/${department}`,
                 headers: {
-                    'Authorization' : localStorage.getItem("token")
+                    'Authorization': localStorage.getItem("token")
                 }
             }
             axios(config)
@@ -26,10 +26,16 @@ const ContactsMembers = ({ department, setEmployee, departmentName }) => {
     }, [department])
 
     const principalChecker = (contact, principal) => {
-        if (contact.id !== principal.id) 
-        return (
-            <Contact employee={contact} setEmployee={setEmployee} key={contact.id}/>
-        )
+        if (principal) {
+            if (contact.id !== principal.id)
+                return (
+                    <Contact employee={contact} setEmployee={setEmployee} key={contact.id} />
+                )
+        } else {
+            return (
+                <Contact employee={contact} setEmployee={setEmployee} key={contact.id} />
+            )
+        }
     }
 
     return (
@@ -46,7 +52,7 @@ const ContactsMembers = ({ department, setEmployee, departmentName }) => {
             </p>
             {
                 members?.principal && (
-                    <Contact employee={members?.principal} setEmployee={setEmployee}/>
+                    <Contact employee={members?.principal} setEmployee={setEmployee} />
                 )
             }
             <p className="contacts__members-subtitle">
