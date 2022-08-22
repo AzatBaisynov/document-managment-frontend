@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import { address } from '../data/data'
 
 export const DepartmentChange = ({ id, department, setCloseDepModal, departments, users}) => {
-	const [departmentName, setDepartmentName] = useState("")
+	const [departmentName, setDepartmentName] = useState(department)
 	const [principal, setPrincipal] = useState(null)
 	
 	useEffect(async () => {
@@ -25,7 +25,23 @@ export const DepartmentChange = ({ id, department, setCloseDepModal, departments
 	}, [])
 
 	const handleChange = async () => {
-		if (!departments.map((el) => el.department).includes(departmentName)) {
+		if (departmentName) {
+			const departmentData = {
+				"id": id,
+				"department": departmentName.trim(),
+			}
+			
+			if (principal && typeof principal !== "string") {
+				departmentData.principal = {
+					id: principal.id
+				}
+			} else if (principal && typeof principal === "string") {
+				departmentData.principal = {
+					id: principal
+				}
+			}
+
+
 			const config = {
 				method: 'post',
 				url: `${address.use}/v1/api/employee-manager/department`,
@@ -33,10 +49,7 @@ export const DepartmentChange = ({ id, department, setCloseDepModal, departments
 					'Authorization': localStorage.getItem("token"),
 					'Content-Type': 'application/json'
 				},
-				data: JSON.stringify({
-					"id" : id,
-					"department": departmentName.trim()
-				})
+				data: JSON.stringify(departmentData)
 			}
 			try {
 				const { data } = await axios(config)
@@ -45,7 +58,7 @@ export const DepartmentChange = ({ id, department, setCloseDepModal, departments
 				alert(e)
 			}
 		} else {
-			alert("This department name is already exist")
+			console.log("This department name is already exist")
 		}
 	}
 
@@ -58,10 +71,13 @@ export const DepartmentChange = ({ id, department, setCloseDepModal, departments
 				<h4 className="employees-manager__title">Change department</h4>
 				<div style={{marginBottom: "20px", flexDirection : "column"}} className="d-flex">
 					<p>Principal</p>
-					<select style={{width: "300px", height: "40px"}}>
+					<select style={{width: "300px", height: "40px"}} onInput={(e) => {
+						console.log(e.target.value)
+						setPrincipal(e.target.value)
+					}}>
 						<option value={principal?.id}>{principal?.fullName}</option>
 						{
-							users?.map((el,idx) => (
+							users?.filter(el => el.id != principal?.id).map((el,idx) => (
 								<option value={el.id}>{el.fullName}</option>
 							))
 						}
